@@ -41,6 +41,7 @@ def get_player_attributes(driver):
     try:
         position = driver.find_element(By.XPATH, '//*[@class="sc-eDWCr dfLZrf"]').text
         is_goalkepeer = False
+        attributes['position'] = position
         if position == 'G':
             is_goalkepeer = True
         if is_goalkepeer:
