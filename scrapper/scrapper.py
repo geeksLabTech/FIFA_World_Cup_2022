@@ -11,7 +11,7 @@ URL = 'https://www.sofascore.com/tournament/football/world/world-cup/16#41087'
 def get_players_data(driver): 
     players_data = {}
     players_links = set()
-    iterations = 0
+    # iterations = 0
     
     links = driver.find_elements(By.XPATH, '//a[@href]')
         # players_links[card_name] = set()
@@ -29,19 +29,20 @@ def get_players_data(driver):
         attributes = get_player_attributes(driver)
         players_data[x[0]] = attributes
         print('players_data', players_data)
-        iterations+=1
+        # iterations+=1
         driver.back()
-        if iterations == 4:
-            break
+        # if iterations == 2:
+        #     break
     return players_data
 
 def get_player_attributes(driver):
     attributes = {}
-    position = driver.find_element(By.XPATH, '//*[@class="sc-eDWCr dfLZrf"]').text
-    is_goalkepeer = False
-    if position == 'G':
-        is_goalkepeer = True
+    
     try:
+        position = driver.find_element(By.XPATH, '//*[@class="sc-eDWCr dfLZrf"]').text
+        is_goalkepeer = False
+        if position == 'G':
+            is_goalkepeer = True
         if is_goalkepeer:
             attributes['aerial'] = driver.find_element(By.XPATH, '//*[@class="sc-hLBbgP sc-eDvSVe kRaGsb eRXHvd aerial"]//*[@class="sc-eDWCr dbpNPs"]').text
             attributes['anticipation'] = driver.find_element(By.XPATH, '//*[@class="sc-hLBbgP sc-eDvSVe kRaGsb eRXHvd anticipation"]//*[@class="sc-eDWCr dbpNPs"]').text
@@ -63,7 +64,7 @@ def get_player_attributes(driver):
 
 
 def main():
-    driver = webdriver.Firefox()
+    driver = webdriver.Chrome()
     driver.get(URL)
     
     # Dictionary with teams as keys, values are other dictionaries with players as keys and attributes as values

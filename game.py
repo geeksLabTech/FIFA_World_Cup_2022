@@ -24,11 +24,6 @@ class Game(ABC) :
                 elif(i >= middle_x0 and i <= middle_x1):
                     map.map[i][j] = self.zone[2].name
 
-
-                    
-                
-
-
     @abstractmethod
     def play(self):
         pass
