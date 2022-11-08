@@ -1,5 +1,5 @@
 
-from selenium import webdriver
+from selenium.webdriver import ChromeOptions, Chrome
 from selenium.webdriver.common.by import By
 from typing import Set, Tuple
 import json
@@ -21,15 +21,15 @@ def get_players_data(driver):
         if href[3] == 'player':
             player_name = href[4].capitalize()
             players_links.add((player_name, elem.get_attribute('href')))
-                
-                
-    print('players_links', players_links)
-    for x in players_links:
+
+    # print('players_links', players_links)
+    for (c,x) in enumerate(players_links):
         driver.get(x[1])
         attributes = get_player_attributes(driver)
         players_data[x[0]] = attributes
-        print('players_data', players_data)
+        # print('players_data', players_data)
         # iterations+=1
+        print(f"{c}/{len(players_links)}", end='\r')
         driver.back()
         # if iterations == 2:
         #     break
@@ -65,9 +65,11 @@ def get_player_attributes(driver):
 
 
 def main():
-    driver = webdriver.Chrome()
+    options = ChromeOptions();
+    options.add_argument('--headless --silent --log-level=3')
+    driver = Chrome(options=options);
     driver.get(URL)
-    
+    print('getting players data\n')
     # Dictionary with teams as keys, values are other dictionaries with players as keys and attributes as values
     results = {}
 
@@ -78,8 +80,11 @@ def main():
         if href[3] == 'team' and href[4] == 'football':
             football_teams_links.add((href[5], elem.get_attribute("href")))
 
-
-    for team_link in football_teams_links:
+    print(f'found {len(football_teams_links)} football teams')
+    print("starting to get players data\n")
+    
+    for c,team_link in enumerate(football_teams_links):
+        print(f"{c}/{len(football_teams_links)}")
         driver.get(team_link[1])
         players_data = get_players_data(driver)
         results[team_link[0]] = players_data
