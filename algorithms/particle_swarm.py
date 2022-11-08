@@ -5,7 +5,7 @@ import sys
 
 # based on https://www.geeksforgeeks.org/implementation-of-particle-swarm-optimization/
 
-
+# TODO Modify this to use values from the player stats for velocity and position
 class Particle:
     def __init__(self, fitness, dim, minx, maxx, seed):
         self.rnd = random.Random(seed)
