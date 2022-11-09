@@ -31,9 +31,9 @@ class Game(ABC) :
 class Football(Game):
     def __init__(self,team1 , team2 , field, zone , time):
         zone = []
-        zone.append(('Defense', lambda fielda : ((0 , fielda.length/3), (fielda.width/3 , ))))
-        zone.append(('Midfield',lambda fielda : (fielda.length/3 ,  fielda.length/3)))
-        zone.append(('Attack',lambda fielda : (2*fielda.length/3 , fielda.length)))
+        zone.append(('Defense', lambda field : ((0 , field.length/3), (field.width/3 , ))))
+        zone.append(('Midfield',lambda field : (field.length/3 ,  field.length/3)))
+        zone.append(('Attack',lambda field : (2*field.length/3 , field.length)))
         super().__init__(team1 , team2 , field , zone, time)
     
     def play(self):
