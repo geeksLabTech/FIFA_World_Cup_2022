@@ -1,9 +1,19 @@
 from group import Group
-
+import json
 class Tournament:
 
     def load_groups(self):
-        return [Group("A",["team1","team2","team3","team4"])]
+        
+        data = {}
+        with open("groups.json") as f:
+            # load json file
+            data = json.load(f)
+
+        groups = []
+        for g in data.keys():
+            teams = data[g]
+            groups.append(Group(g,teams))
+        return groups
 
     def __init__(self) -> None:
         groups = self.load_groups()
