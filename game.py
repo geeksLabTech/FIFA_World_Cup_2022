@@ -19,7 +19,12 @@ class Football(Game):
     
     def play(self):
         print("Playing Football")
-        print("Time: ", self.time)
+        for i in range(self.time):
+            print("Time: ", i, end="\r")
+        print("Game Over")
+        import random
+        winner = self.team1.name if random.randint(0,1) == 0 else self.team2.name
+        print(f"winner: {winner}")
 
 
 

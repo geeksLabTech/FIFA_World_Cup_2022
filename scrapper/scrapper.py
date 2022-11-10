@@ -62,6 +62,8 @@ def get_player_attributes(driver):
     except Exception as e:
         print(e)
         return {}
+    
+
 
 
 def main():

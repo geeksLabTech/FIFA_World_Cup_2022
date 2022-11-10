@@ -1,21 +1,18 @@
-
+from group import Group
 
 class Tournament:
-    def __init__(self, initial_matches) -> None:
-        self.initial_matches = initial_matches
 
+    def load_groups(self):
+        return [Group("A",["team1","team2","team3","team4"])]
 
-    def run(self):
-        winners = self.initial_matches
-        while True:
-            actual_winners = []
-            for match in winners:
-                result = match.play()
-                actual_winners.append(result)
-            
-            winners = actual_winners
+    def __init__(self) -> None:
+        groups = self.load_groups()
 
-            if len(winners) == 1:
-                break
+        self.groups = groups
+        self.matches = []
         
-        return winners[0]
+        for group in groups:
+            self.matches += group.get_matches()
+   
+    def run(self):
+        pass

@@ -1,0 +1,47 @@
+{
+    "A":[
+
+        "quatar",
+        "ecuador",
+        "senegal",
+        "nethelands"
+    ],
+
+    "B":[
+        "england",
+        "iran",
+        "usa",
+        "whales"
+    ],
+    "C":[
+        "argentina",
+        "saudi-arabia",
+        "mexico",
+        "poland"
+    ],
+    "D":[
+        "france",
+        "australia",
+        "denmark",
+        "tunisia"
+    ],
+    "E":[
+        "spain",
+        "costa-rica",
+        "germany",
+        "japan"
+    ],
+    "G":[
+        "bazil",
+        "serbia",
+        "switzerland",
+        "cameroon"
+    ],
+    "H":[
+        "portugal",
+        "ghana",
+        "uruguay",
+        "south-korea"
+    ]
+
+}
