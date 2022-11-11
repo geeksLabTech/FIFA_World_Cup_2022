@@ -1,3 +1,6 @@
+import random
+
+
 class Group:
     def __init__(self,name,teams):
         self.name = name
@@ -12,3 +15,6 @@ class Group:
                     continue
                 matches.append((t,t2))
         return matches
+    
+    def play_matches(self):
+        pass
