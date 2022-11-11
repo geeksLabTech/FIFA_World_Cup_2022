@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from player import Player
 from game import Game
 from field import Field
-
+from zone import Zone
 
 class Action(ABC):
     def __ini__(self , name) :
@@ -33,7 +33,7 @@ class ComplexAction(Action):
 
 class Shoot(SimpleAction):
     def __init__(self, name , tipo):
-        super().__init__(name , tipo)
+        super().__init__(name )
     
     def execute(self):
         #TODO : Calcular la accion resultante  que el jugador meta el gol(Redes Bayesianas)
@@ -55,9 +55,9 @@ class Move(ComplexAction):
     def __ini__(self, name):
         return super().__ini__(name)
 
-    def execute(self, player : Player ):
+    def execute(self, zone : Zone , player : Player):
         #TODO Calcular la accion resultante perder o no la pelota (Redes Bayesianas) jugador que gana la pelota
-        player.ballposition = True
+        player.posicion = zone
         #Todo : Mover al jugador de zona
         pass
 
