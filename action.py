@@ -5,7 +5,7 @@ from field import Field
 from zone import Zone
 
 class Action(ABC):
-    def __ini__(self , name) :
+    def __init__(self , name) :
         self.name = name
 
     @abstractmethod
@@ -42,8 +42,8 @@ class Shoot(SimpleAction):
 
 
 class Pass(ComplexAction):
-    def __init__(self, name , tipo):
-        super().__init__(name , tipo)
+    def __init__(self, name ):
+        super().__init__(name)
     
     def execute(self , player : Player):
         player.ballposition =  True
@@ -52,8 +52,8 @@ class Pass(ComplexAction):
 
 
 class Move(ComplexAction):
-    def __ini__(self, name):
-        return super().__ini__(name)
+    def __init__(self, name):
+        return super().__init__(name)
 
     def execute(self, zone : Zone , player : Player):
         #TODO Calcular la accion resultante perder o no la pelota (Redes Bayesianas) jugador que gana la pelota
