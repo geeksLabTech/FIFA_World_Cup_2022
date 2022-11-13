@@ -2,11 +2,14 @@
 import json
 
 class Player:
-    def __init__(self, name, team, actions, features):
+    def __init__(self, name, team, actions, features , posicion , zone , ballposition):
         self.name = name
         self.actions = actions
         self.features = features
         self.team = team
+        self.posicion = posicion
+        self.zone = zone
+        self.ballposition = ballposition
         self.load_data()
 
     def load_data(self):
@@ -18,3 +21,7 @@ class Player:
             self.defense = data[self.team][self.name]['defense']
             self.tactical = data[self.team][self.name]['tactical']
             self.technical = data[self.team][self.name]['technical']
+
+    
+            
+

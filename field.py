@@ -17,6 +17,14 @@ class Field():
             for j in range(y):
                 name = names[it] if len(names) > it else "Zone " + str(it)
                 it += 1
+                if( i ==  0):
+                    name = 'Defensive'
+                elif(i == 1):
+                    name = 'Midlefield'
+                else :
+                    name = 'Attack'
                 zone = Zone(name=name,bottom_left=(i,j),top_right=(i+1,j+1))
                 field.append(zone)
         return field    
+
+    
