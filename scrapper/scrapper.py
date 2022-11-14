@@ -2,6 +2,7 @@
 from selenium.webdriver import ChromeOptions, Chrome
 from selenium.webdriver.common.by import By
 from typing import Set, Tuple
+from bs4 import BeautifulSoup
 import json
 
 
@@ -11,7 +12,7 @@ URL = 'https://www.sofascore.com/tournament/football/world/world-cup/16#41087'
 def get_players_data(driver): 
     players_data = {}
     players_links = set()
-    # iterations = 0
+    iterations = 0
     
     links = driver.find_elements(By.XPATH, '//a[@href]')
         # players_links[card_name] = set()
@@ -39,9 +40,15 @@ def get_player_attributes(driver):
     attributes = {}
     
     try:
-        position = driver.find_element(By.XPATH, '//*[@class="sc-eDWCr dfLZrf"]').text
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        card_with_data = soup.find('div', {'class': 'sc-hLBbgP sc-eDvSVe gjJmZQ lXUNw'})
+        posible_pos = card_with_data.find_all('div', {'class': 'sc-hLBbgP jXHMHH'})
+        position = posible_pos[-2].find('div', {'class': 'sc-eDWCr dfLZrf'}).text
+        print('pos??', position)
+        
         is_goalkepeer = False
         attributes['position'] = position
+        print('position', position)
         if position == 'G':
             is_goalkepeer = True
         if is_goalkepeer:
@@ -50,6 +57,7 @@ def get_player_attributes(driver):
             attributes['ballDistribution'] = driver.find_element(By.XPATH, '//*[@class="sc-hLBbgP sc-eDvSVe kRaGsb eRXHvd ballDistribution"]//*[@class="sc-eDWCr dbpNPs"]').text
             attributes['saves'] = driver.find_element(By.XPATH, '//*[@class="sc-hLBbgP sc-eDvSVe kRaGsb eRXHvd saves"]//*[@class="sc-eDWCr dbpNPs"]').text
             attributes['tactical'] = driver.find_element(By.XPATH, '//*[@class="sc-hLBbgP sc-eDvSVe kRaGsb eRXHvd tactical"]//*[@class="sc-eDWCr dbpNPs"]').text
+            print('goalkeeper', attributes)
             return attributes
 
         attributes['attack'] = driver.find_element(By.XPATH, '//*[@class="sc-hLBbgP sc-eDvSVe kRaGsb eRXHvd attacking"]//*[@class="sc-eDWCr dbpNPs"]').text
@@ -67,9 +75,9 @@ def get_player_attributes(driver):
 
 
 def main():
-    options = ChromeOptions();
+    options = ChromeOptions()
     options.add_argument('--headless --silent --log-level=3')
-    driver = Chrome(options=options);
+    driver = Chrome(options=options)
     driver.get(URL)
     print('getting players data\n')
     # Dictionary with teams as keys, values are other dictionaries with players as keys and attributes as values
