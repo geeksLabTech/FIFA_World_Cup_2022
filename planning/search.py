@@ -163,7 +163,7 @@ class SimpleProblemSolvingAgentProgram:
 # Uninformed Search algorithms
 
 
-def breadth_first_tree_search(problem):
+def breadth_first_tree_search(problem, iterations = 10):
     """
     [Figure 3.7]
     Search the shallowest nodes in the search tree first.
@@ -173,13 +173,17 @@ def breadth_first_tree_search(problem):
     """
 
     frontier = deque([Node(problem.initial)])  # FIFO queue
-
+    solutions_nodes = []
     while frontier:
+        if iterations == 0:
+            break
         node = frontier.popleft()
         if problem.goal_test(node.state):
-            return node
+            solutions_nodes.append(node)
         frontier.extend(node.expand(problem))
-    return None
+        iterations -= 1
+    print(solutions_nodes)
+    return solutions_nodes
 
 
 def depth_first_tree_search(problem):
