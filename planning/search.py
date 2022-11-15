@@ -101,7 +101,7 @@ class Node:
         zone_coef = {
             2: 1,
             1: 0.5,
-            0: 0
+            0: 0.2
         }
         prob = players[str(node.action.args[0])].attributes_score[node.action.name.lower()]
         if node.action.name.lower() == 'shoot':
