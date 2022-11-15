@@ -52,18 +52,22 @@ class Football(Game):
         # Choose a random action in model based on player_probs
         player_name = np.random.choice(list(model.keys()), p=list(model.values()))
         return player_name
-
-
-
-
-    
-    
-    # def transitions(self, player : list[ Player]):
-    #     #TODO : Transformar la funcion de enjambre de particulas , debe devolver una accion
-    #     player_acction_time_current = {}
-    #     for player in players:
-    #         player_acction_time_current[player] = particle_swarm_optimization(player)
-        
-    #     #TODO : Llamar a la red bayesiana con las acciones , eso debe devolver la accion que tuvo mas probabilidad
-    #     #TODO : Luego se executa la accion
       
+    def move_player_in_team_with_ballposicion(self , player_with_ball : Player , team : Team):
+        for player in team.players:
+            if (player_with_ball.position.types == 'Atack' or player_with_ball.position.types == 'Midfield'):
+                if(self.IsValid(player.position.row + 1)):
+                    player.position.row += 1
+    
+    
+    def move_player_in_team_without_ballposicion(self , team : Team):
+        return
+
+
+    def IsValid(self , row):
+        if(row < 3):
+            return True
+        return False
+    
+
+    

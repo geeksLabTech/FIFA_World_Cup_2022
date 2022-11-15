@@ -2,6 +2,7 @@
 import json
 
 from player import Player
+from zone import Zone
 
 
 class Team():
@@ -20,7 +21,11 @@ class Team():
             team = self.team_name
             features = data[self.team_name][p]
             position = features['position'] if 'position' in features else "D"
-            players.append(Player(name,team,features,position))
+            zones = {
+                'Attack': Zone('Attack', 2, 1, 'A')
+            }
+            # TODO modify this to load place in field
+            players.append(Player(name,team,features,position, zones['Attack'], zones['Attack']))
         return players
 
     def set_active_players(self,names):

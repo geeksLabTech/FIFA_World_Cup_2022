@@ -1,11 +1,14 @@
 import random
 from typing import Dict
+from zone import Zone
 
 class Player:
-    def __init__(self, name:str, team:str, features:Dict[str,float] , position:str ):
+    def __init__(self, name, team, features , role , position, current_position):
         self.name = name
-        self.position = position
+        self.role = role
         self.features = features
+        self.position = position
+        self.current_position = current_position
         self.team = team
         normalized_data = self.load_and_normalize_data_from_json()
         self.attributes_score = self.compute_attributes_score_from_data(normalized_data)
@@ -17,7 +20,8 @@ class Player:
 
     def load_and_normalize_data_from_json(self):
         normalized_data = {}
-        if self.position != "G":
+        if self.role != "G":
+            print(self.role)
             self.check_null_values(['attack',
                                     'creativity',
                                     'defending',
@@ -46,7 +50,7 @@ class Player:
 
     def compute_attributes_score_from_data(self, data: Dict[str, float]):
         attributes_score = {}
-        if self.position != "G":
+        if self.role != "G":
             attributes_score['pass'] = data['tactical'] * data['technical'] * data['creativity']
             attributes_score['shoot'] = data['attack'] * data['technical'] * data['creativity']
             attributes_score['entry'] = data['defending'] * data['tactical'] * data['technical']

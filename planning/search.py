@@ -1,3 +1,4 @@
+import math
 import sys
 from collections import deque
 
@@ -95,15 +96,27 @@ class Node:
                          problem.path_cost(self.path_cost, self.state, action, next_state))
         return next_node
 
-    def eval_probability(self, node, players:list[Player]):
+    def eval_probability(self, node, players:dict[str,Player]):
         
         zone_coef = {
             2: 1,
             1: 0.5,
             0: 0
         }
-        
         prob = players[str(node.action.args[0])].attributes_score[node.action.name.lower()]
+        if node.action.name.lower() == 'shoot':
+            position = players[str(node.action.args[0])]
+            position = position.position
+            if position.row and position.row not in [1,2]:
+                position.row = 0
+            prob *= zone_coef[position.row]
+        if len(node.action.args) > 1 and node.action.args[1] is not None:
+            position1 = players[str(node.action.args[0])].position
+            position2 = players[str(node.action.args[1])].position
+            # calculate distance between players and that will affect the probability of success
+            dist = math.sqrt((position1.row - position2.row)**2 + (position1.column - position2.column)**2)
+            prob *= (1/(1+dist))
+                
         if node.parent is not None and node.parent.action is not None:
             prob = self.eval_probability(node.parent, players) + prob / 2
         return prob
