@@ -12,11 +12,15 @@ class Team():
     
     def get_players(self) -> list[Player]:
         
-        with open('data.json', 'r', encoding="utf-8") as f:
-            data = json.load(f)
+        with open('data.json', 'r', encoding="utf-8") as file:
+            data = json.load(file)
         players = []
         for p in data[self.team_name]:
-            players.append(Player(p,self.team_name,['shoot','pass','entry','move','intercept'],data[self.team_name][p],data[self.team_name][p]['position']))
+            name = p
+            team = self.team_name
+            features = data[self.team_name][p]
+            position = features['position'] if 'position' in features else "D"
+            players.append(Player(name,team,features,position))
         return players
 
     def set_active_players(self,names):
