@@ -1,6 +1,5 @@
 - definir probabilidades de acciones (search.py) solution devuelve tupla con camino probabilidades
 
-- llevar diccionario para machear jugador con variable en modelo planificion (planning)
 - planificion defendiendo 
 (
     si estas en zona de jugado con la pelota decidir si interceptar o entrar

@@ -57,7 +57,7 @@ class Move(ComplexAction):
 
     def execute(self, zone : Zone , player : Player):
         #TODO Calcular la accion resultante perder o no la pelota (Redes Bayesianas) jugador que gana la pelota
-        player.posicion = zone
+        player.position = zone
         #Todo : Mover al jugador de zona
         pass
 

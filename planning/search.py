@@ -2,6 +2,7 @@ import sys
 from collections import deque
 
 from planning.utils import *
+from player import Player
 
 
 class Problem:
@@ -93,13 +94,22 @@ class Node:
         next_node = Node(next_state, self, action, problem.path_cost(self.path_cost, self.state, action, next_state))
         return next_node
 
-    def solution(self):
+    def eval_probability(self, node, players:list[Player]):
+        prob = players[str(node.action.args[0])].attributes_score[node.action.name.lower()]
+        if node.parent != None and node.parent.action != None:
+            prob = self.eval_probability(node.parent, players) + prob / 2
+        return prob
+    
+    def solution(self,players):
         """Return the sequence of actions to go from the root to this node."""
-        mean_precision = 0
+        mean_precision = -1
+        solution = None
         for node in self.path()[1:]:
-            pass
-            # mean_precision += eval_probability(node.action)
-        return [node.action for node in self.path()[1:]]
+            sol_precision = self.eval_probability(node,players) 
+            if mean_precision < sol_precision:
+                mean_precision = sol_precision
+                solution = node.action
+        return solution,mean_precision
 
     def path(self):
         """Return a list of nodes forming the path from the root to this node."""
