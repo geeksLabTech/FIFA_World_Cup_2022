@@ -3,13 +3,14 @@ from typing import Dict
 from zone import Zone
 
 class Player:
-    def __init__(self, name, team, features , role , position, current_position):
+    def __init__(self, name, team, features , role , position, current_position , ballposition: bool):
         self.name = name
         self.role = role
         self.features = features
         self.position = position
         self.current_position = current_position
         self.team = team
+        self.ballposition = ballposition
         normalized_data = self.load_and_normalize_data_from_json()
         self.attributes_score = self.compute_attributes_score_from_data(normalized_data)
 

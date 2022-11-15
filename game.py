@@ -72,10 +72,7 @@ class Football(Game):
                 actions.append((player,move))
         return actions
 
-        
-
-
-
+    
     def IsValid(self , row):
         if(row < 3):
             return True

@@ -25,7 +25,7 @@ class Team():
                 'Attack': Zone('Attack', 2, 1, 'A')
             }
             # TODO modify this to load place in field
-            players.append(Player(name,team,features,position, zones['Attack'], zones['Attack']))
+            players.append(Player(name,team,features,position, zones['Attack'], zones['Attack'] , False))
         return players
 
     def set_active_players(self,names):
