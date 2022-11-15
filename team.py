@@ -27,5 +27,3 @@ class Team():
         for p in self.players:
             if p.name in names:
                 self.active_players.append(p)
-
-            

@@ -96,6 +96,13 @@ class Node:
         return next_node
 
     def eval_probability(self, node, players:list[Player]):
+        
+        zone_coef = {
+            2: 1,
+            1: 0.5,
+            0: 0
+        }
+        
         prob = players[str(node.action.args[0])].attributes_score[node.action.name.lower()]
         if node.parent is not None and node.parent.action is not None:
             prob = self.eval_probability(node.parent, players) + prob / 2
