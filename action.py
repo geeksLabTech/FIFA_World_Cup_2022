@@ -53,7 +53,7 @@ class Move(ComplexAction):
         player.position = zone
 
 
-class Mild_Entry(ComplexAction):
+class Mid_Entry(ComplexAction):
     def __init__(self, name):
         super().__init__(name)
 
