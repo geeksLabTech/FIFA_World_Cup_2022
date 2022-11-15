@@ -22,7 +22,6 @@ class Player:
     def load_and_normalize_data_from_json(self):
         normalized_data = {}
         if self.role != "G":
-            print(self.role)
             self.check_null_values(['attack',
                                     'creativity',
                                     'defending',
