@@ -5,10 +5,10 @@ from functools import reduce as _reduce
 
 import numpy as np
 
-import search
-from logic import FolKB, conjuncts, unify_mm, associate
-from search import Node
-from utils import Expr, expr, first
+import planning.search as search
+from planning.logic import FolKB, conjuncts, unify_mm, associate
+from planning.search import Node
+from planning.utils import Expr, expr, first
 
 
 class PlanningProblem:
@@ -26,6 +26,7 @@ class PlanningProblem:
 
     def convert(self, clauses):
         """Converts strings into exprs"""
+
         if not isinstance(clauses, Expr):
             if len(clauses) > 0:
                 clauses = expr(clauses)

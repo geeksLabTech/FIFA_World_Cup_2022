@@ -1,7 +1,7 @@
 import sys
 from collections import deque
 
-from utils import *
+from planning.utils import *
 
 
 class Problem:
@@ -95,6 +95,10 @@ class Node:
 
     def solution(self):
         """Return the sequence of actions to go from the root to this node."""
+        mean_precision = 0
+        for node in self.path()[1:]:
+            pass
+            # mean_precision += eval_probability(node.action)
         return [node.action for node in self.path()[1:]]
 
     def path(self):

@@ -1,7 +1,15 @@
-from planning import Action , PlanningProblem
-
-def football_model():
-    return PlanningProblem(initial = 'BallPocesion(P) & PlayerInTeam(P,T) & PlayerInTeam(P1 ,T) & PlayerInTeam(P2,T) & PlayerInTeam(P3,T)  & PlayerInTeam(P4,T) & PlayerInTeam(P5,T) & PlayerInTeam(P6,T) & PlayerInTeam(P2,T) & PlayerInTeam(P7,T) & PlayerInTeam(P8,T) & PlayerInTeam(P9,T) & PlayerInTeam(P10,T) ',
+from planning.planning import Action , PlanningProblem
+from player import Player
+from team import Team
+def football_model(team:Team, player:Player):
+    names = {'P': player}
+    iter = 1
+    for p in team.active_players:
+        if p.name != player.name:
+            names[f'P{iter}'] = p
+            iter += 1
+            
+    return names,PlanningProblem(initial = 'BallPocesion(P) & PlayerInTeam(P,T) & PlayerInTeam(P1 ,T) & PlayerInTeam(P2,T) & PlayerInTeam(P3,T)  & PlayerInTeam(P4,T) & PlayerInTeam(P5,T) & PlayerInTeam(P6,T) & PlayerInTeam(P2,T) & PlayerInTeam(P7,T) & PlayerInTeam(P8,T) & PlayerInTeam(P9,T) & PlayerInTeam(P10,T) ',
                             goals = 'BallInGoal()',
                             actions = [Action('Move(x,y,z)',
                                             precond = 'Position(z,x) ',

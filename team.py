@@ -1,6 +1,27 @@
 
+import json
+
+from player import Player
+
+
 class Team():
-    def __init__(self, name , players, coach ,):
-        self.name = name 
-        self.players = players
-        self.coach = coach
+    def __init__(self, name ):
+        self.team_name = name
+        self.players = self.get_players()
+        self.active_players = []
+    
+    def get_players(self) -> list[Player]:
+        
+        with open('data.json', 'r', encoding="utf-8") as f:
+            data = json.load(f)
+        players = []
+        for p in data[self.team_name]:
+            players.append(Player(p,self.team_name,['shoot','pass','entry','move','intercept'],data[self.team_name][p],data[self.team_name][p]['position']))
+        return players
+
+    def set_active_players(self,names):
+        for p in self.players:
+            if p.name in names:
+                self.active_players.append(p)
+
+            

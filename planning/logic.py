@@ -6,7 +6,7 @@ from collections import defaultdict, Counter
 #from agents import Agent, Glitter, Bump, Stench, Breeze, Scream
 #from csp import parse_neighbors, UniversalDict
 #from search import astar_search, PlanRoute
-from utils import remove_all, unique, first, issequence, Expr, expr, subexpressions, extend
+from planning.utils import remove_all, unique, first, issequence, Expr, expr, subexpressions, extend
 
 
 class KB:
