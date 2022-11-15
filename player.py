@@ -4,7 +4,7 @@ import random
 from typing import Dict
 
 class Player:
-    def __init__(self, name, team, features , position ):
+    def __init__(self, name, team, actions, features , position :Zone  ):
         self.name = name
         self.position = position
         self.features = features
