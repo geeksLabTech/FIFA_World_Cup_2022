@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from player import Player
-from game import Game
-from field import Field
+# from game import Game
+# from field import Field
 from zone import Zone
 
 class Action(ABC):
@@ -21,64 +21,48 @@ class SimpleAction(Action):
     def execute(self):
         pass
 
-
 class ComplexAction(Action):
     def __init__(self, name ):
         super().__init__(name)
 
     @abstractmethod
-    def execute(self , object : object ):
+    def execute(self , object : object):
         pass
 
 
 class Shoot(SimpleAction):
-    def __init__(self, name , tipo):
-        super().__init__(name )
-    
+    def __init__(self, name):
+        super().__init__(name)
+
     def execute(self):
-        #TODO : Calcular la accion resultante  que el jugador meta el gol(Redes Bayesianas)
         # return bool (hecho o no gol)
         pass
-
-
 class Pass(ComplexAction):
     def __init__(self, name ):
         super().__init__(name)
-    
+
     def execute(self , player : Player):
         player.ballposition =  True
-
-        pass   
 
 
 class Move(ComplexAction):
     def __init__(self, name):
-        return super().__init__(name)
+        super().__init__(name)
 
     def execute(self, zone : Zone , player : Player):
-        #TODO Calcular la accion resultante perder o no la pelota (Redes Bayesianas) jugador que gana la pelota
         player.position = zone
-        #Todo : Mover al jugador de zona
-        pass
 
 
 class Mild_Entry(ComplexAction):
     def __init__(self, name):
-        return super().__init__(name)
+        super().__init__(name)
 
     def execute(self, player : Player):
-        #TODO Calcular la accion resultante perder o no la pelota (Redes Bayesianas) jugador que gana la pelota
         player.ballposition = True
-        pass
-
 
 class Strong_Entry(ComplexAction):
     def __init__(self, name):
-        return super().__init__(name)
+        super().__init__(name)
 
     def execute(self, player : Player):
-        #TODO Calcular la accion resultante perder o no la pelota (Redes Bayesianas) jugador que gana la pelota
         player.ballposition = True
-        pass
-
-    
