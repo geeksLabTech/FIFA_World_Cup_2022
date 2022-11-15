@@ -6,6 +6,7 @@ from abc import ABC, abstractmethod
 from typing import List, Dict, Tuple
 import numpy as np
 from player import Player
+import action
 
 from zone import Zone
 import random
@@ -55,13 +56,24 @@ class Football(Game):
       
     def move_player_in_team_with_ballposicion(self , player_with_ball : Player , team : Team):
         for player in team.players:
-            if (player_with_ball.position.types == 'Atack' or player_with_ball.position.types == 'Midfield'):
-                if(self.IsValid(player.position.row + 1)):
+            if (player_with_ball.current_position.types == 'Atack' or player_with_ball.position.types == 'Midfield'):
+                if(self.IsValid(player.current_position.row + 1)):
                     player.position.row += 1
     
-    
-    def move_player_in_team_without_ballposicion(self , team : Team):
-        return
+
+    def move_player_in_team_without_ballposicion(self , player_with_ball : Player ,team : Team):
+        actions = []
+        for player in team.players:
+            if(player.current_position == player_with_ball.current_position):
+                entry = action.Entry('entry')
+                actions.append((player,entry))
+            elif(not player.current_position  == player.position):
+                move = action.Move('move', player.current_position.row - 1)
+                actions.append((player,move))
+        return actions
+
+        
+
 
 
     def IsValid(self , row):

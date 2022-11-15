@@ -46,23 +46,18 @@ class Pass(ComplexAction):
 
 
 class Move(ComplexAction):
-    def __init__(self, name):
+    def __init__(self, name , zone : Zone):
+        self.zone = zone
         super().__init__(name)
 
     def execute(self, zone : Zone , player : Player):
         player.position = zone
 
 
-class Mid_Entry(ComplexAction):
+class Entry(ComplexAction):
     def __init__(self, name):
         super().__init__(name)
 
     def execute(self, player : Player):
         player.ballposition = True
 
-class Strong_Entry(ComplexAction):
-    def __init__(self, name):
-        super().__init__(name)
-
-    def execute(self, player : Player):
-        player.ballposition = True
