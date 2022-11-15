@@ -1,7 +1,0 @@
-- planificion defendiendo 
-(
-    si estas en zona de jugador con la pelota decidir si interceptar o entrar
-    si estas fuera de tu zona regresar a ella
-    si estas en tu zona interceptar
-)
-- mover hacia alante el equipo q ataca o quedarse en la zona de ataque
