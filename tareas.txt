@@ -1,8 +1,6 @@
-- definir probabilidades de acciones (search.py) solution devuelve tupla con camino probabilidades
-
 - planificion defendiendo 
 (
-    si estas en zona de jugado con la pelota decidir si interceptar o entrar
+    si estas en zona de jugador con la pelota decidir si interceptar o entrar
     si estas fuera de tu zona regresar a ella
     si estas en tu zona interceptar
 )

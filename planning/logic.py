@@ -1,7 +1,7 @@
-import heapq
+# import heapq
 import itertools
-import random
-from collections import defaultdict, Counter
+# import random
+from collections import defaultdict #, Counter
 
 #from agents import Agent, Glitter, Bump, Stench, Breeze, Scream
 #from csp import parse_neighbors, UniversalDict
