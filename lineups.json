@@ -1,194 +1,604 @@
 {
-  "Qatar ": {
-    "goalkeeper": " Y. Hassan",
-    "def": [" I. Mohammad", "Pedro Miguel", "B. Hisham", "Salman", "M. Waad"],
-    "mid": [" A. Hatem", "Ali Assadalla", "Al Haydos"],
-    "att": [" Almoez Ali", "Akram Afif"]
+  "germany": {
+    "att": [
+      "Thomas-muller",
+      "Leroy-sane",
+      "Kai-havertz"
+    ],
+    "def": [
+      "Lukas-klostermann",
+      "Niklas-sule",
+      "Antonio-rudiger",
+      "David-raum"
+    ],
+    "goalkeeper": "Manuel-neuer",
+    "mid": [
+      "Ilkay-gundogan",
+      "Joshua-kimmich",
+      "Jamal-musiala"
+    ]
   },
-  "Ecuador ": {
-    "goalkeeper": " Dominguez",
-    "def": [" Castillo", "Porozo", "Hincapie", "Estupinan"],
-    "mid": [" Gruezo", "Caicedo", "Mena"],
-    "att": [" Plata", "Ibarra", "Estrada"]
+  "saudi-arabia": {
+    "att": [
+      "Salem-al-dawsari",
+      "Saleh-al-shehri",
+      "Firas-al-buraikan"
+    ],
+    "def": [
+      "Mohammed-al-burayk",
+      "Abdulelah-al-amri",
+      "Al Bulayhi",
+      "Yasir-al-shahrani"
+    ],
+    "goalkeeper": "Mohammed-al-owais",
+    "mid": [
+      "Mohamed-kanno",
+      "Salman-al-faraj",
+      "Hattan-bahebri"
+    ]
   },
-  "Paises Bajos ": {
-    "goalkeeper": " Pasveer",
-    "def": [" Dumfries", "Van Dijk", "Timber", "Ake", "Blind"],
-    "mid": [" De Jong", "Koopmeiners", "Berghuis"],
-    "att": [" Bergwijn", "Memphis"]
+  "argentina": {
+    "att": [
+      "Angel-di-maria",
+      "Nicolas-gonzalez",
+      "Lionel-messi"
+    ],
+    "def": [
+      "Nahuel-molina",
+      "Cristian-romero",
+      "Nicolas-otamendi",
+      "Marcos-acuna"
+    ],
+    "goalkeeper": "Emiliano-martinez",
+    "mid": [
+      "Rodrigo-de-paul",
+      "Leandro-paredes"
+    ]
   },
-  "Senegal ": {
-    "goalkeeper": " Mendy",
-    "def": [" Sabaly", "Koulibaly", "Diallo", "Ballo-Toure"],
-    "mid": [" Gueye", "N. Mendy", "Pape Mata Sarr"],
-    "att": [" Mane", "Ismaila Sarr", "Boulaye Dia"]
+  "australia": {
+    "att": [
+      "Mathew-leckie",
+      "Martin-boyle",
+      "Mitchell-duke"
+    ],
+    "def": [
+      "Nathaniel-atkinson",
+      "Bailey-wright",
+      "Kye-rowles",
+      "Aziz-behich"
+    ],
+    "goalkeeper": "Mathew-ryan",
+    "mid": [
+      "Aaron-mooy",
+      "Jackson-irvine",
+      "Ajdin-hrustic"
+    ]
   },
-  "Estados Unidos ": {
-    "goalkeeper": " Turner",
-    "def": [" Dest", "Carter-Vickers", "Long", "Robinson"],
-    "mid": [" Adams", "McKennie", "Musah"],
-    "att": [" Reyna", "Pulisic", "Weah"]
+  "belgium": {
+    "att": [
+      "Kevin-de-bruyne",
+      "Eden-hazard",
+      "Michy-batshuayi"
+    ],
+    "def": [
+      "Thomas-meunier",
+      "Toby-alderweireld",
+      "Jan-vertonghen",
+      "Zeno-debast",
+      "Yannick-carrasco"
+    ],
+    "goalkeeper": "Thibaut-courtois",
+    "mid": [
+      "Axel-witsel",
+      "Youri-tielemans"
+    ]
   },
-  "Inglaterra ": {
-    "goalkeeper": " Pickford",
-    "def": [" Trippier", "Walker", "Dier", "Maguire", "Shaw"],
-    "mid": [" Rice", "Bellingham"],
-    "att": [" Sterling", "Foden", "Harry Kane"]
+  "brazil ": {
+    "att": [
+      "Vinicius-junior",
+      "Raphinha",
+      "Neymar"
+    ],
+    "def": [
+      "Eder-militao",
+      "Marquinhos",
+      "Thiago-silva",
+      "Alex-telles"
+    ],
+    "goalkeeper": "Alisson",
+    "mid": [
+      "Casemiro",
+      "Lucas-paqueta"
+    ]
   },
-  "Gales ": {
-    "goalkeeper": " Hennessey",
-    "def": [" C. Roberts", "Mepham", "Rodon", "Davies", "N. Williams"],
-    "mid": [" Allen", "Ampadu"],
-    "att": [" James", "Johnson", "Bale"]
+  "cameroon ": {
+    "att": [
+      "Nicolas-moumie-ngamaleu",
+      "Eric-maxim-choupo-moting",
+      "Karl-toko-ekambi"
+    ],
+    "def": [
+      "Collins-fai",
+      "Jean-charles-castelletto",
+      "Michael-ngadeu",
+      "Nouhou-tolo"
+    ],
+    "goalkeeper": "Andre-onana",
+    "mid": [
+      "Frank-anguissa",
+      "Samuel-oum-gouet"
+    ]
   },
-  "Iran ": {
-    "goalkeeper": " Beiranvand",
-    "def": [" Moharrami", "Kanaanizadegan", "Hosseini", "Hajsafi"],
-    "mid": [" Ezatolahi", "Ghoddos", "Gholizadeh"],
-    "att": [" Jahanbakhsh", "Taremi", "Azmoun"]
-  },
-  "Arabia Saudi ": {
-    "goalkeeper": " Al Owais",
-    "def": [" Al Burayk", "Al Amri", "Al Bulayhi", "Al Shahrani"],
-    "mid": [" Kanno", "Al Faraj", "Bahebri"],
-    "att": [" S. Al Dawsari", "Al Shehri", "Al Buraikan"]
-  },
-  "Argentina ": {
-    "goalkeeper": " Martinez",
-    "def": [" Molina", "Romero", "Otamendi", "Acuna"],
-    "mid": [" De Paul", "Paredes"],
-    "att": [" Di Maria", "Nico Gonzalez", "Messi"]
-  },
-  "Mexico ": {
-    "goalkeeper": " Ochoa",
-    "def": [" K. Alvarez", "Araujo", "Moreno", "Gallardo"],
-    "mid": [" E. Alvarez", "Guardado", "Herrera"],
-    "att": [" Vega", "Lozano", "Raul Jimenez"]
-  },
-  "Polonia ": {
-    "goalkeeper": " Szczesny",
-    "def": [" Bereszynski", "Bednarek", "Glik", "Kiwior", "Zalewski"],
-    "mid": [" Zurkowski", "Krychowiak"],
-    "att": [" Zielinski", "Szymanski", "Lewandowski"]
-  },
-  "Australia ": {
-    "goalkeeper": " Ryan",
-    "def": [" Atkinson", "Wright", "Rowles", "Behich"],
-    "mid": [" Mooy", "Irvine", "Hrustic"],
-    "att": [" Leckie", "Boyle", "Duke"]
-  },
-  "Dinamarca ": {
-    "goalkeeper": " Schmeichel",
-    "def": [" Kristensen", "Andersen", "Christensen", "Maehle"],
-    "mid": [" Hojbjerg", "Delaney", "Eriksen"],
-    "att": [" Damsgaard", "Olsen", "Braithwaite"]
-  },
-  "Francia ": {
-    "goalkeeper": " Lloris",
-    "def": [" Pavard", "Upamecano", "Kounde", "Varane", "Lucas"],
-    "mid": [" Tchouameni", "Rabiot"],
-    "att": [" Griezmann", "Mbappe", "Benzema"]
-  },
-  "Tunez ": {
-    "goalkeeper": " Dahmen",
-    "def": [" Drager", "Bronn", "Talbi", "Abdi"],
-    "mid": [" Skhiri", "Laidouni", "Slimane"],
-    "att": [" Mejbri", "Sliti", "Jaziri"]
-  },
-  "Alemania ": {
-    "goalkeeper": " Neuer",
-    "def": [" Klostermann", "Sule", "Rudiger", "Raum"],
-    "mid": [" Gundogan", "Kimmich", "Musiala"],
-    "att": [" Muller", "Sane", "Havertz"]
-  },
-  "Costa Rica ": {
-    "goalkeeper": " Keylor Navas",
-    "def": [" Martinez", "Duarte", "Calvo", "Oviedo"],
-    "mid": [" Borges", "Tejeda", "Torres", "Bennette"],
-    "att": [" Contreras", "Campbell"]
-  },
-  "Espana ": {
-    "goalkeeper": " Unai Simon",
-    "def": [" Carvajal", "Eric Garcia", "Laporte", "Gaya"],
-    "mid": [" Busquets", "Pedri", "Gavi"],
-    "att": [" Dani Olmo", "Sarabia", "Morata"]
-  },
-  "Japon ": {
-    "goalkeeper": " Gonda",
-    "def": [" Yamane", "Tomiyasu", "Yoshida", "Nagatomo"],
-    "mid": [" Endo", "Morita", "Kubo"],
-    "att": ["Minamino", "Asano"]
-  },
-  "Belgica ": {
-    "goalkeeper": " Courtois",
-    "def": [" Meunier", "Alderweirlend", "Vertonghen", "Debast", "Carrasco"],
-    "mid": [" Witsel", "Tielemans"],
-    "att": [" De Bruyne", "Hazard", "Batshuayi"]
-  },
-  "Canada ": {
-    "goalkeeper": " Borjan",
-    "def": [" Buchanan", "Johnston", "Vitoria", "Miller", "Adekugbe"],
-    "mid": [" Eustaquio", "Hutchinson", "Davies"],
-    "att": [" Larin", "Jonathan David"]
-  },
-  "Croacia ": {
-    "goalkeeper": " Livakovic",
-    "def": [" Juranovic", "Vida", "Gvardiol", "Barisic"],
-    "mid": [" Brozovic", "Kovacic", "Modric"],
-    "att": [" Orsic", "Perisic", "Kramaric"]
-  },
-  "Marruecos ": {
-    "goalkeeper": " Bono",
-    "def": [" Mazraoui", "Aguerd", "Saiss", "Achraf"],
-    "mid": [" Amrabat", "Ounahi", "Amallah"],
-    "att": [" Boufal", "Ziyech", "En-Nesyri"]
-  },
-  "Brasil ": {
-    "goalkeeper": " Alisson",
-    "def": [" Militao", "Marquinhos", "Thiago Silva", "Alex Telles"],
-    "mid": [" Casemiro", "Paqueta"],
-    "att": [" Vinicius", "Raphinha", "Neymar"]
-  },
-  "Camerun ": {
-    "goalkeeper": " Onana",
-    "def": [" Fai", "Castelletto", "Ngadeu", "Nouhou Tolo"],
-    "mid": [" Anguissa", "Oum Gouet"],
-    "att": [" Ngamaleu", "Choupo Moting", "Ekambi"]
-  },
-  "Serbia ": {
-    "goalkeeper": " V. Milinkovic-Savic",
-    "def": [" Lazovic", "Veljkovic", "Milenkovic", "Pavlovic", "Kostic"],
-    "mid": [" Gudelj", "Lukic"],
-    "att": [" S. Milinkovic-Savic", "Tadic", "Vlahovic"]
-  },
-  "Suiza ": {
-    "goalkeeper": " Sommer",
-    "def": [" Widmer", "Akanji", "Elvedi", "Ricardo Rodriguez"],
-    "mid": [" Xhaka", "Freuler"],
-    "att": [" Vargas", "Shaqiri", "Sow"]
+  "canada ": {
+    "att": [
+      "Cyle-larin",
+      "Jonathan-david"
+    ],
+    "def": [
+      "Tajon-buchanan",
+      "Alistair-johnston",
+      "Steven-vitoria",
+      "Kamal-miller",
+      "Sam-adekugbe"
+    ],
+    "goalkeeper": "Milan-borjan",
+    "mid": [
+      "Stephen-eustaquio",
+      "Atiba-hutchinson",
+      "Alphonso-davies"
+    ]
   },
   "Corea del Sur ": {
+    "att": [
+      " Lee Jae-Sung",
+      "Hwang Hee-Chan",
+      "Son Heung-Min"
+    ],
+    "def": [
+      " Kim Tae-Hwan",
+      "Kim Min-Jae",
+      "Kim Young-Gwon",
+      "Kim Jin-Su"
+    ],
     "goalkeeper": " Kim Seung-Gyu",
-    "def": [" Kim Tae-Hwan", "Kim Min-Jae", "Kim Young-Gwon", "Kim Jin-Su"],
-    "mid": [" Jung Woo-Young", "Hwang In-Beom", "Jeong Woo-Yeong"],
-    "att": [" Lee Jae-Sung", "Hwang Hee-Chan", "Son Heung-Min"]
+    "mid": [
+      " Jung Woo-Young",
+      "Hwang In-Beom",
+      "Jeong Woo-Yeong"
+    ]
+  },
+  "Costa Rica ": {
+    "att": [
+      " Contreras",
+      "Campbell"
+    ],
+    "def": [
+      " Martinez",
+      "Duarte",
+      "Calvo",
+      "Oviedo"
+    ],
+    "goalkeeper": " Keylor Navas",
+    "mid": [
+      " Borges",
+      "Tejeda",
+      "Torres",
+      "Bennette"
+    ]
+  },
+  "Croacia ": {
+    "att": [
+      " Orsic",
+      "Perisic",
+      "Kramaric"
+    ],
+    "def": [
+      " Juranovic",
+      "Vida",
+      "Gvardiol",
+      "Barisic"
+    ],
+    "goalkeeper": " Livakovic",
+    "mid": [
+      " Brozovic",
+      "Kovacic",
+      "Modric"
+    ]
+  },
+  "Dinamarca ": {
+    "att": [
+      " Damsgaard",
+      "Olsen",
+      "Braithwaite"
+    ],
+    "def": [
+      " Kristensen",
+      "Andersen",
+      "Christensen",
+      "Maehle"
+    ],
+    "goalkeeper": " Schmeichel",
+    "mid": [
+      " Hojbjerg",
+      "Delaney",
+      "Eriksen"
+    ]
+  },
+  "Ecuador ": {
+    "att": [
+      " Plata",
+      "Ibarra",
+      "Estrada"
+    ],
+    "def": [
+      " Castillo",
+      "Porozo",
+      "Hincapie",
+      "Estupinan"
+    ],
+    "goalkeeper": " Dominguez",
+    "mid": [
+      " Gruezo",
+      "Caicedo",
+      "Mena"
+    ]
+  },
+  "Espana ": {
+    "att": [
+      " Dani Olmo",
+      "Sarabia",
+      "Morata"
+    ],
+    "def": [
+      " Carvajal",
+      "Eric Garcia",
+      "Laporte",
+      "Gaya"
+    ],
+    "goalkeeper": " Unai Simon",
+    "mid": [
+      " Busquets",
+      "Pedri",
+      "Gavi"
+    ]
+  },
+  "Estados Unidos ": {
+    "att": [
+      " Reyna",
+      "Pulisic",
+      "Weah"
+    ],
+    "def": [
+      " Dest",
+      "Carter-Vickers",
+      "Long",
+      "Robinson"
+    ],
+    "goalkeeper": " Turner",
+    "mid": [
+      " Adams",
+      "McKennie",
+      "Musah"
+    ]
+  },
+  "Francia ": {
+    "att": [
+      " Griezmann",
+      "Mbappe",
+      "Benzema"
+    ],
+    "def": [
+      " Pavard",
+      "Upamecano",
+      "Kounde",
+      "Varane",
+      "Lucas"
+    ],
+    "goalkeeper": " Lloris",
+    "mid": [
+      " Tchouameni",
+      "Rabiot"
+    ]
+  },
+  "Gales ": {
+    "att": [
+      " James",
+      "Johnson",
+      "Bale"
+    ],
+    "def": [
+      " C. Roberts",
+      "Mepham",
+      "Rodon",
+      "Davies",
+      "N. Williams"
+    ],
+    "goalkeeper": " Hennessey",
+    "mid": [
+      " Allen",
+      "Ampadu"
+    ]
   },
   "Ghana ": {
+    "att": [
+      " Williams",
+      "Ayew",
+      "Kudu"
+    ],
+    "def": [
+      " Odoi",
+      "Amartey",
+      "Djiku",
+      "Baba Rahman"
+    ],
     "goalkeeper": " Wollacott",
-    "def": [" Odoi", "Amartey", "Djiku", "Baba Rahman"],
-    "mid": [" Thomas", "Samed"],
-    "att": [" Williams", "Ayew", "Kudu"]
+    "mid": [
+      " Thomas",
+      "Samed"
+    ]
+  },
+  "Inglaterra ": {
+    "att": [
+      " Sterling",
+      "Foden",
+      "Harry Kane"
+    ],
+    "def": [
+      " Trippier",
+      "Walker",
+      "Dier",
+      "Maguire",
+      "Shaw"
+    ],
+    "goalkeeper": " Pickford",
+    "mid": [
+      " Rice",
+      "Bellingham"
+    ]
+  },
+  "Iran ": {
+    "att": [
+      " Jahanbakhsh",
+      "Taremi",
+      "Azmoun"
+    ],
+    "def": [
+      " Moharrami",
+      "Kanaanizadegan",
+      "Hosseini",
+      "Hajsafi"
+    ],
+    "goalkeeper": " Beiranvand",
+    "mid": [
+      " Ezatolahi",
+      "Ghoddos",
+      "Gholizadeh"
+    ]
+  },
+  "Japon ": {
+    "att": [
+      "Minamino",
+      "Asano"
+    ],
+    "def": [
+      " Yamane",
+      "Tomiyasu",
+      "Yoshida",
+      "Nagatomo"
+    ],
+    "goalkeeper": " Gonda",
+    "mid": [
+      " Endo",
+      "Morita",
+      "Kubo"
+    ]
+  },
+  "Marruecos ": {
+    "att": [
+      " Boufal",
+      "Ziyech",
+      "En-Nesyri"
+    ],
+    "def": [
+      " Mazraoui",
+      "Aguerd",
+      "Saiss",
+      "Achraf"
+    ],
+    "goalkeeper": " Bono",
+    "mid": [
+      " Amrabat",
+      "Ounahi",
+      "Amallah"
+    ]
+  },
+  "Mexico ": {
+    "att": [
+      " Vega",
+      "Lozano",
+      "Raul Jimenez"
+    ],
+    "def": [
+      " K. Alvarez",
+      "Araujo",
+      "Moreno",
+      "Gallardo"
+    ],
+    "goalkeeper": " Ochoa",
+    "mid": [
+      " E. Alvarez",
+      "Guardado",
+      "Herrera"
+    ]
+  },
+  "Paises Bajos ": {
+    "att": [
+      " Bergwijn",
+      "Memphis"
+    ],
+    "def": [
+      " Dumfries",
+      "Van Dijk",
+      "Timber",
+      "Ake",
+      "Blind"
+    ],
+    "goalkeeper": " Pasveer",
+    "mid": [
+      " De Jong",
+      "Koopmeiners",
+      "Berghuis"
+    ]
+  },
+  "Polonia ": {
+    "att": [
+      " Zielinski",
+      "Szymanski",
+      "Lewandowski"
+    ],
+    "def": [
+      " Bereszynski",
+      "Bednarek",
+      "Glik",
+      "Kiwior",
+      "Zalewski"
+    ],
+    "goalkeeper": " Szczesny",
+    "mid": [
+      " Zurkowski",
+      "Krychowiak"
+    ]
   },
   "Portugal ": {
+    "att": [
+      " Bernardo Silva",
+      "Rafael Leao",
+      "Cristiano Ronaldo"
+    ],
+    "def": [
+      " Cancelo",
+      "Ruben Dias",
+      "Pepe",
+      "Guerreiro"
+    ],
     "goalkeeper": " Diogo Costa",
-    "def": [" Cancelo", "Ruben Dias", "Pepe", "Guerreiro"],
-    "mid": [" Neves", "William Carvalho", "Bruno Fernandes"],
-    "att": [" Bernardo Silva", "Rafael Leao", "Cristiano Ronaldo"]
+    "mid": [
+      " Neves",
+      "William Carvalho",
+      "Bruno Fernandes"
+    ]
+  },
+  "Qatar ": {
+    "att": [
+      " Almoez Ali",
+      "Akram Afif"
+    ],
+    "def": [
+      " I. Mohammad",
+      "Pedro Miguel",
+      "B. Hisham",
+      "Salman",
+      "M. Waad"
+    ],
+    "goalkeeper": " Y. Hassan",
+    "mid": [
+      " A. Hatem",
+      "Ali Assadalla",
+      "Al Haydos"
+    ]
+  },
+  "Senegal ": {
+    "att": [
+      " Mane",
+      "Ismaila Sarr",
+      "Boulaye Dia"
+    ],
+    "def": [
+      " Sabaly",
+      "Koulibaly",
+      "Diallo",
+      "Ballo-Toure"
+    ],
+    "goalkeeper": " Mendy",
+    "mid": [
+      " Gueye",
+      "N. Mendy",
+      "Pape Mata Sarr"
+    ]
+  },
+  "Serbia ": {
+    "att": [
+      " S. Milinkovic-Savic",
+      "Tadic",
+      "Vlahovic"
+    ],
+    "def": [
+      " Lazovic",
+      "Veljkovic",
+      "Milenkovic",
+      "Pavlovic",
+      "Kostic"
+    ],
+    "goalkeeper": " V. Milinkovic-Savic",
+    "mid": [
+      " Gudelj",
+      "Lukic"
+    ]
+  },
+  "Suiza ": {
+    "att": [
+      " Vargas",
+      "Shaqiri",
+      "Sow"
+    ],
+    "def": [
+      " Widmer",
+      "Akanji",
+      "Elvedi",
+      "Ricardo Rodriguez"
+    ],
+    "goalkeeper": " Sommer",
+    "mid": [
+      " Xhaka",
+      "Freuler"
+    ]
+  },
+  "Tunez ": {
+    "att": [
+      " Mejbri",
+      "Sliti",
+      "Jaziri"
+    ],
+    "def": [
+      " Drager",
+      "Bronn",
+      "Talbi",
+      "Abdi"
+    ],
+    "goalkeeper": " Dahmen",
+    "mid": [
+      " Skhiri",
+      "Laidouni",
+      "Slimane"
+    ]
   },
   "Uruguay ": {
+    "att": [
+      " De Arrascaeta",
+      "Darwin Nunez",
+      "Luis Suarez"
+    ],
+    "def": [
+      " Varela",
+      "Coates",
+      "Gimenez",
+      "Olivera"
+    ],
     "goalkeeper": " Rochet",
-    "def": [" Varela", "Coates", "Gimenez", "Olivera"],
-    "mid": [" Vecino", "Bentancur", "Valverde"],
-    "att": [" De Arrascaeta", "Darwin Nunez", "Luis Suarez"]
+    "mid": [
+      " Vecino",
+      "Bentancur",
+      "Valverde"
+    ]
   }
 }
