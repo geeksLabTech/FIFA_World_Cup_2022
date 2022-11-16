@@ -3,7 +3,7 @@ from typing import Dict
 from zone import Zone
 
 class Player:
-    def __init__(self, name, team, features , role , position, current_position , ballposition: bool):
+    def __init__(self, name, team, features , role , position: Zone, current_position : Zone, ballposition: bool):
         self.name = name
         self.role = role
         self.features = features
