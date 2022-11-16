@@ -47,17 +47,45 @@ class Football(Game):
             variables ,problem =football.football_model(team_with_posecionball,player_with_ballposition)
             sol = breadth_first_tree_search(ForwardPlan(problem))[0]
             solution = sol.solution(variables)
-            player_success ,action = self.choose_player_success(variables([solution.args[0]],solution.name),actions_defenses)
-            
+            #TODO Javier lo rojo eso que esta ahi es tuyo
+            player_success = self.choose_player_success(variables([solution.args[0]],solution.name),actions_defenses)
+            self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
             print("Time: ", i, end="\r")
         print("Game Over")
         if(self.points[0] > self.points[1]):
             print("Team 1 win" , self.points)
         else : print('Team 2 win' , self.points)
         
+    def action_success(self ,playerballposition : Player, actionplayerball : str , actions_defeses : List[Tuple[Player,str]], player_success : Player):
+        for i in actions_defeses:
+            if (i[0] == player_success):
+                self.execute_action(i[1],i[0] , 'D')
+                return
+                
+        self.execute_action(actionplayerball,playerballposition, 'A')
+        
+    def execute_action(self,action_name : str , player: Player , rol : str):
+        if(action_name == 'Move'):
+            success_action = action.Move('move')
+            if(rol == 'D'):
+                success_action.execute(player,-1,0)
+
+            #TODO necesito que el jugador ue tiene la pelota me diga para donde se mueve
+        elif(action_name == 'Entry'):
+            success_action = action.Entry('entry')
+            success_action.execute(player)
+        elif(action_name == 'Shoot'):
+            success_action = action.Shoot('shoot')
+            success_action.execute()
+        elif(action_name == 'Pass'):
+            success_action = action.Pass('pass')
+            #TODO necesito que el jugador que tiene la pelota me diga a quien esta pasado 
+            # los que estan defendiendo no pasan
+            return
 
 
-    def choose_player_success(self, player_with_ball: Tuple[Player, str], adversaries: List[Tuple[Player, str]]):
+
+    def choose_player_success(self, player_with_ball: Tuple[Player, str], adversaries: List[Tuple[Player, action.Action]]):
 
         player, action = player_with_ball
 
@@ -84,13 +112,11 @@ class Football(Game):
     def move_player_in_team_without_ballposicion(self , player_with_ball : Player ,team : Team):
         actions = []
         for player in team.players:
-            if(player.current_position == player_with_ball.current_position and not player.role == 'goalkeeper'):
-                entry = action.Entry('entry')
-                actions.append((player,entry))
+            if(player.current_position == player_with_ball.current_position and not player.role == 'goalkeeper'):  
+                actions.append((player,'Entry'))
             elif(not player.current_position  == player.position):
                 if(self.IsValid(player.current_position.row - 1)):
-                    move = action.Move('move', player.current_position.row - 1)
-                    actions.append((player,move))
+                    actions.append((player,'Move' ))
         return actions
 
     def select_initial_team_with_ball(self):
