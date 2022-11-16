@@ -3,6 +3,7 @@ import json
 
 from player import Player
 from zone import Zone
+from typing import List
 
 
 class Team():
@@ -11,7 +12,7 @@ class Team():
         self.players = self.get_players(zones)
         self.active_players = self.players
 
-    def get_players(self,zones) -> list[Player]:
+    def get_players(self,zones) -> List[Player]:
         
         with open('data.json', 'r', encoding="utf-8") as file:
             data = json.load(file)
@@ -19,28 +20,37 @@ class Team():
             lineups = json.load(file)[self.team_name]
         
 
-    
         players = []
-        
+        # TODO Refactor this code
         for en,p in enumerate(lineups['att']):
             name = p
             team = self.team_name
-            features = data[self.team_name][p]
+            try:
+                features = data[self.team_name][p]
+            except KeyError:
+                features = {}
             position = "F"
             players.append(Player(name,team,features,position, zones[6+en%3], zones[6+en%3] , False))
         
         for en,p in enumerate(lineups['mid']):
             name = p
             team = self.team_name
-            features = data[self.team_name][p]
+            try:
+                features = data[self.team_name][p]
+            except KeyError:
+                features = {}
             position = "M"
             players.append(Player(name,team,features,position, zones[3+en%3], zones[3+en%3] , False))
         for en,p in enumerate(lineups['def']):
             name = p
             team = self.team_name
-            features = data[self.team_name][p]
+            try:
+                features = data[self.team_name][p]
+            except KeyError:
+                features = {}
             position = "D"
             players.append(Player(name,team,features,position, zones[en%3], zones[en%3] , False))
+            
         p = lineups['goalkeeper']
         print(p)
         print(data[self.team_name])
@@ -49,6 +59,7 @@ class Team():
         features = data[self.team_name][p]
         position = "G"
         players.append(Player(name,team,features,position, None, None , False))
+        assert len(players) == 11
         return players
     
     def set_active_players(self,names):

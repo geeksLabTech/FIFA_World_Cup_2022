@@ -1,5 +1,5 @@
 import random
-from typing import Dict
+from typing import Dict, List
 from zone import Zone
 
 class Player:
@@ -14,7 +14,7 @@ class Player:
         normalized_data = self.load_and_normalize_data_from_json()
         self.attributes_score = self.compute_attributes_score_from_data(normalized_data)
 
-    def check_null_values(self, features:list[str]):
+    def check_null_values(self, features: List[str]):
         for i in features:
             if i not in self.features:
                 self.features[i] = random.randint(20, 45)
