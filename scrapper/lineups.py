@@ -83,7 +83,7 @@ def assign_lineups_to_team(lineup:List[int], players: List[str]):
 def main():
     bs = get_page(URL)
     results = get_lineups_data(bs)
-    out_file = open("lineups.json", "w")
+    out_file = open("lineups_preprocess.json", "w")
     print('results')
     print(results)
     json.dump(results, out_file)
