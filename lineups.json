@@ -377,115 +377,115 @@
   },
   "japan": {
     "att": [
-      "Minamino",
-      "Asano"
+      "Takumi-minamino",
+      "Takuma-asano"
     ],
     "def": [
-      " Yamane",
-      "Tomiyasu",
-      "Yoshida",
-      "Nagatomo"
+      "Miki-yamane",
+      "Tomiyasu-takehiro",
+      "Maya-yoshida",
+      "Yuto-nagatomo"
     ],
-    "goalkeeper": " Gonda",
+    "goalkeeper": "Shuichi-gonda",
     "mid": [
-      " Endo",
+      "Wataru-endo",
       "Hidemasa-morita",
       "Kubo-takefusa"
     ]
   },
-  "Marruecos ": {
+  "morocco": {
     "att": [
-      " Boufal",
-      "Ziyech",
-      "En-Nesyri"
+      "Sofiane-boufal",
+      "Hakim-ziyech",
+      "Youssef-en-nesyri"
     ],
     "def": [
-      " Mazraoui",
-      "Aguerd",
-      "Saiss",
-      "Achraf"
+      "Noussair-mazraoui",
+      "Nayef-aguerd",
+      "Romain-saiss",
+      "Hakimi-achraf"
     ],
-    "goalkeeper": " Bono",
+    "goalkeeper": "Bono",
     "mid": [
-      " Amrabat",
-      "Ounahi",
-      "Amallah"
+      "Sofyan-amrabat",
+      "Azzedine-ounahi",
+      "Amallah-selim"
     ]
   },
-  "Mexico ": {
+  "mexico": {
     "att": [
-      " Vega",
-      "Lozano",
-      "Raul Jimenez"
+      "Alexis-vega",
+      "Hirving-lozano",
+      "Raul-jimenez"
     ],
     "def": [
-      " K. Alvarez",
-      "Araujo",
-      "Moreno",
-      "Gallardo"
+      "Kevin-alvarez",
+      "Nestor-araujo",
+      "Hector-moreno",
+      "Jesus-gallardo"
     ],
-    "goalkeeper": " Ochoa",
+    "goalkeeper": "Guillermo-ochoa",
     "mid": [
-      " E. Alvarez",
-      "Guardado",
-      "Herrera"
+      "Edson-alvarez",
+      "Andres-guardad",
+      "Hector-herrera"
     ]
   },
-  "Paises Bajos ": {
+  "netherlands": {
     "att": [
-      " Bergwijn",
-      "Memphis"
+      "Steven-bergwijn",
+      "Memphis-depay"
     ],
     "def": [
-      " Dumfries",
-      "Van Dijk",
-      "Timber",
-      "Ake",
-      "Blind"
+      "Denzel-dumfries",
+      "Virgil-van-dijk",
+      "Jurrien-timber",
+      "Nathan-ake",
+      "Daley-blind"
     ],
     "goalkeeper": " Pasveer",
     "mid": [
-      " De Jong",
-      "Koopmeiners",
-      "Berghuis"
+      "Frenkie-de-jong",
+      "Teun-koopmeiners",
+      "Steven-berghuis"
     ]
   },
-  "Polonia ": {
+  "poland": {
     "att": [
-      " Zielinski",
-      "Szymanski",
-      "Lewandowski"
+      "Piotr-zielinski",
+      "Damian-szymanski",
+      "Robert-lewandowski"
     ],
     "def": [
-      " Bereszynski",
-      "Bednarek",
-      "Glik",
-      "Kiwior",
-      "Zalewski"
+      "Bartosz-bereszynski",
+      "Jan-bednarek",
+      "Kamil-glik",
+      "Kiwior-jakub",
+      "Nicola-zalewski"
     ],
-    "goalkeeper": " Szczesny",
+    "goalkeeper": "Wojciech-szczesny",
     "mid": [
-      " Zurkowski",
-      "Krychowiak"
+      "Szymon-zurkowski",
+      "Grzegorz-krychowiak"
     ]
   },
   "Portugal ": {
     "att": [
-      " Bernardo Silva",
-      "Rafael Leao",
-      "Cristiano Ronaldo"
+      "Bernardo-silva",
+      "Rafael-leao",
+      "Cristiano-ronaldo"
     ],
     "def": [
-      " Cancelo",
-      "Ruben Dias",
+      "Joao-cancelo",
+      "Ruben-dias",
       "Pepe",
-      "Guerreiro"
+      "Raphael-guerreiro"
     ],
-    "goalkeeper": " Diogo Costa",
+    "goalkeeper": "Diogo-costa",
     "mid": [
-      " Neves",
-      "William Carvalho",
-      "Bruno Fernandes"
+      "Ruben-neves",
+      "William-carvalho",
+      "Bruno-fernandes"
     ]
   },
   "Qatar ": {
