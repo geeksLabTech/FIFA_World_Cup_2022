@@ -31,14 +31,14 @@ class Football(Game):
         for i in range(self.time):
             self.team1.set_active_players([player.name for player in self.team1.players[0:11]])
             self.team2.set_active_players([player.name for player in self.team2.players[0:11]])
-            team_with_posecionball = self.select_team_with_ball(self)
-            self.select_player_with_ball(team_with_posecionball)
+            team_with_posecionball = self.select_initial_team_with_ball()
+            self.select_initial_player_with_ball(team_with_posecionball)
             self.initialize_attakers_positions(self.team1 , self.team2)
             print("Time: ", i, end="\r")
         print("Game Over")
-        if(self.team1.points > self.team2.points):
-            print("Team 1 win")
-        else : print('Team 2 win')
+        if(self.points[0] > self.points[1]):
+            print("Team 1 win" , self.points)
+        else : print('Team 2 win' , self.points)
         
 
 
