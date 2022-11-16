@@ -490,21 +490,21 @@
   },
   "Qatar ": {
     "att": [
-      " Almoez Ali",
-      "Akram Afif"
+      "Almoez-ali",
+      "Akram-afif"
     ],
     "def": [
-      " I. Mohammad",
-      "Pedro Miguel",
-      "B. Hisham",
-      "Salman",
-      "M. Waad"
+      "Ismael-mohammed",
+      "Pedro-miguel",
+      "Boualem-khoukhi",
+      "Tarek-salman",
+      "Mostafa-mashaal"
     ],
-    "goalkeeper": " Y. Hassan",
+    "goalkeeper": "Yousef-hassan",
     "mid": [
-      " A. Hatem",
-      "Ali Assadalla",
-      "Al Haydos"
+      "Abdelaziz-hatem",
+      "Ali-assadalla",
+      "Ahmed-alaaeldin"
     ]
   },
   "Senegal ": {
@@ -528,39 +528,39 @@
   },
   "Serbia ": {
     "att": [
-      " S. Milinkovic-Savic",
-      "Tadic",
-      "Vlahovic"
+      " Sergej-milinkovic-savic",
+      "Dusan-tadic",
+      "Dusan-vlahovic"
     ],
     "def": [
-      " Lazovic",
-      "Veljkovic",
-      "Milenkovic",
-      "Pavlovic",
-      "Kostic"
+      "Darko-lazovic",
+      "Milos-veljkovic",
+      "Nikola-milenkovic",
+      "Strahinja-pavlovic",
+      "Filip-kostic"
     ],
-    "goalkeeper": " V. Milinkovic-Savic",
+    "goalkeeper": " Vanja-milinkovic-savic",
     "mid": [
-      " Gudelj",
-      "Lukic"
+      "Nemanja-gudelj",
+      "Sasa-lukic"
     ]
   },
   "Suiza ": {
     "att": [
-      " Vargas",
-      "Shaqiri",
-      "Sow"
+      " Ruben-vargas",
+      "Xherdan-shaqiri",
+      "Djibril-sow"
     ],
     "def": [
-      " Widmer",
-      "Akanji",
-      "Elvedi",
-      "Ricardo Rodriguez"
+      "Silvan-widmer",
+      "Manuel-akanji",
+      "Nico-elvedi",
+      "Ricardo-rodriguez"
     ],
-    "goalkeeper": " Sommer",
+    "goalkeeper": "Yann-sommer",
     "mid": [
-      " Xhaka",
-      "Freuler"
+      "Granit-xhaka",
+      "Remo-freuler"
     ]
   },
   "Tunez ": {
