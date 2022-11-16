@@ -509,21 +509,21 @@
   },
   "Senegal ": {
     "att": [
-      "Sadio-mane",
-      "Ismaila-sarr",
-      "Dia-boulaye"
+      " Mane",
+      "Ismaila Sarr",
+      "Boulaye Dia"
     ],
     "def": [
-      "Youssouf-sabaly",
-      "Kalidou-koulibaly",
-      "Abdou-diallo",
-      "Fode-ballo-toure"
+      " Sabaly",
+      "Koulibaly",
+      "Diallo",
+      "Ballo-Toure"
     ],
-    "goalkeeper": "Formose-mendy",
+    "goalkeeper": " Mendy",
     "mid": [
-      "Idrissa-gueye",
-      "Nampalys-mendy",
-      "Pape-matar-sarr"
+      " Gueye",
+      "N. Mendy",
+      "Pape Mata Sarr"
     ]
   },
   "Serbia ": {
@@ -565,40 +565,40 @@
   },
   "Tunez ": {
     "att": [
-      "Hannibal-mejbri",
-      "Naim-sliti",
-      "Seifeddine-jaziri"
+      " Mejbri",
+      "Sliti",
+      "Jaziri"
     ],
     "def": [
-      "Mohamed-drager",
-      "Dylan-bronn",
-      "Montassar-talbi",
-      "Ali-abdi"
+      " Drager",
+      "Bronn",
+      "Talbi",
+      "Abdi"
     ],
-    "goalkeeper": "Aymen-dahmen",
+    "goalkeeper": " Dahmen",
     "mid": [
-      "Ellyes-skhiri",
-      "Aissa-laidouni",
-      "Anis-ben-slimane"
+      " Skhiri",
+      "Laidouni",
+      "Slimane"
     ]
   },
   "Uruguay ": {
     "att": [
-      "Giorgian-de-arrascaeta",
-      "Darwin-nunez",
-      "Luis-suarez"
+      " De Arrascaeta",
+      "Darwin Nunez",
+      "Luis Suarez"
     ],
     "def": [
-      "Guillermo-varela",
-      "Sebastian-coates",
-      "Jose-maria-gimenez",
-      "Mathias-olivera"
+      " Varela",
+      "Coates",
+      "Gimenez",
+      "Olivera"
     ],
     "goalkeeper": " Rochet",
     "mid": [
-      "Matias-vecino",
-      "Bentancur-rodrigo",
-      "Federico-valverde"
+      " Vecino",
+      "Bentancur",
+      "Valverde"
     ]
   }
 }
