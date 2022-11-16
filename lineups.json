@@ -488,7 +488,7 @@
       "Bruno-fernandes"
     ]
   },
-  "Qatar ": {
+  "qatar": {
     "att": [
       "Almoez-ali",
       "Akram-afif"
@@ -507,28 +507,28 @@
       "Ahmed-alaaeldin"
     ]
   },
-  "Senegal ": {
+  "senegal": {
     "att": [
-      " Mane",
-      "Ismaila Sarr",
-      "Boulaye Dia"
+      "Sadio-mane",
+      "Dia-boulaye",
+      "Ismaila-sarr"
     ],
     "def": [
-      " Sabaly",
-      "Koulibaly",
-      "Diallo",
-      "Ballo-Toure"
+      "Youssouf-sabaly",
+      "Kalidou-koulibaly",
+      "Abdou-diallo",
+      "Fode-ballo-toure"
     ],
-    "goalkeeper": " Mendy",
+    "goalkeeper": "Edouard-mendy",
     "mid": [
-      " Gueye",
-      "N. Mendy",
-      "Pape Mata Sarr"
+      "Idrissa-gueye",
+      "Nampalys-mendy",
+      "Pape-matar-sarr"
     ]
   },
-  "Serbia ": {
+  "serbia": {
     "att": [
-      " Sergej-milinkovic-savic",
+      "Sergej-milinkovic-savic",
       "Dusan-tadic",
       "Dusan-vlahovic"
     ],
@@ -545,9 +545,9 @@
       "Sasa-lukic"
     ]
   },
-  "Suiza ": {
+  "switzerland": {
     "att": [
-      " Ruben-vargas",
+      "Ruben-vargas",
       "Xherdan-shaqiri",
       "Djibril-sow"
     ],
@@ -563,42 +563,42 @@
       "Remo-freuler"
     ]
   },
-  "Tunez ": {
+  "tunisia": {
     "att": [
-      " Mejbri",
-      "Sliti",
-      "Jaziri"
+      "Hannibal-mejbri",
+      "Naim-sliti",
+      "Seifeddine-jaziri"
     ],
     "def": [
-      " Drager",
-      "Bronn",
-      "Talbi",
-      "Abdi"
+      "Mohamed-drager",
+      "Dylan-bronn",
+      "Montassar-talbi",
+      "Ali-abdi"
     ],
-    "goalkeeper": " Dahmen",
+    "goalkeeper": "Aymen-dahmen",
     "mid": [
-      " Skhiri",
-      "Laidouni",
-      "Slimane"
+      "Ellyes-skhiri",
+      "Aissa-laidouni",
+      "Anis-ben-slimane"
     ]
   },
-  "Uruguay ": {
+  "uruguay": {
     "att": [
-      " De Arrascaeta",
-      "Darwin Nunez",
-      "Luis Suarez"
+      "Giorgian-de-arrascaeta",
+      "Darwin-nunez",
+      "Luis-suarez"
     ],
     "def": [
-      " Varela",
-      "Coates",
-      "Gimenez",
-      "Olivera"
+      "Guillermo-varela",
+      "Sebastian-coates",
+      "Jose-maria-gimenez",
+      "Mathias-olivera"
     ],
     "goalkeeper": " Rochet",
     "mid": [
-      " Vecino",
-      "Bentancur",
-      "Valverde"
+      "Matias-vecino",
+      "Bentancur-rodrigo",
+      "Federico-valverde"
     ]
   }
 }
