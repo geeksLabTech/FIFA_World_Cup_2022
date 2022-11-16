@@ -50,8 +50,8 @@ class Move(ComplexAction):
         self.zone = zone
         super().__init__(name)
 
-    def execute(self, zone : Zone , player : Player):
-        player.position = zone
+    def execute(self, player : Player):
+        player.position = self.zone
 
 
 class Entry(ComplexAction):
