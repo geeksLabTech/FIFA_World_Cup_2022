@@ -72,11 +72,29 @@ class Football(Game):
                 actions.append((player,move))
         return actions
 
-    
+    def select_initial_team_with_ball(self):
+        return self.team1 if random.randint(0,1) == 0 else self.team2
+
+    def select_initial_player_with_ball(self, team : Team):
+        att = [player for player in team.players if player.role == 'F']
+        return random.choice(att)
+
+    def initialize_attakers_positions(self, firstTeam: Team, secondTeam: Team):
+        for i in range(len(firstTeam.players)):
+            if firstTeam.players[i].role == 'F':
+                firstTeam.players[i] = firstTeam.players[i].current_position.row - 1 
+
+            if secondTeam.players[i].role == 'F':
+                secondTeam.players[i] = secondTeam.players[i].current_position.row - 1 
+
+        return firstTeam, secondTeam
+        
     def IsValid(self , row):
         if(row < 3):
             return True
         return False
+
+    
     
 
     
