@@ -104,6 +104,7 @@ class Node:
             0: 0.2
         }
         prob = players[str(node.action.args[0])].attributes_score[node.action.name.lower()]
+        # print(players[str(node.action.args[0])].attributes_score)
         if node.action.name.lower() == 'shoot':
             position = players[str(node.action.args[0])]
             position = position.position
@@ -115,10 +116,12 @@ class Node:
             position2 = players[str(node.action.args[1])].position
             # calculate distance between players and that will affect the probability of success
             dist = math.sqrt((position1.row - position2.row)**2 + (position1.column - position2.column)**2)
+            print(dist)
             prob *= (1/(1+dist))
                 
         if node.parent is not None and node.parent.action is not None:
             prob = self.eval_probability(node.parent, players) + prob / 2
+        # print(prob)
         return prob
 
     def solution(self,players):
@@ -198,7 +201,7 @@ class SimpleProblemSolvingAgentProgram:
 # Uninformed Search algorithms
 
 
-def breadth_first_tree_search(problem, iterations = 10):
+def breadth_first_tree_search(problem, iterations = 10000):
     """
     [Figure 3.7]
     Search the shallowest nodes in the search tree first.
@@ -218,7 +221,7 @@ def breadth_first_tree_search(problem, iterations = 10):
             solutions_nodes.append(node)
         frontier.extend(node.expand(problem))
         iterations -= 1
-    print(solutions_nodes)
+    print(len(solutions_nodes))
     return solutions_nodes
 
 
