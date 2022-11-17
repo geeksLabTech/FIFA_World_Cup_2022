@@ -6,3 +6,5 @@ class Zone():
         self.column = column
         self.types = types
     
+    def get_coords(self):
+        return (self.row, self.column)
