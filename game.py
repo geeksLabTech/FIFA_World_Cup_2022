@@ -45,10 +45,9 @@ class Football(Game):
                 actions_defenses= self.move_player_in_team_without_ballposicion(player_with_ballposition,self.team2)
             variables ,problem =football.football_model(team_with_posecionball,player_with_ballposition)
             sol = breadth_first_tree_search(ForwardPlan(problem))[0]
-            solution = sol.solution(variables)
-            #TODO Javier lo rojo eso que esta ahi es tuyo
-            player_success = self.choose_player_success(variables([solution.args[0]],solution.name),actions_defenses)
-            self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
+            action_player_ballpocision = self.get_best_solution(sol,variables)
+            player_success = self.choose_player_success((player_with_ballposition,action_player_ballpocision), variables,actions_defenses)
+            # self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
             print("Time: ", i, end="\r")
         print("Game Over")
         if(self.points[0] > self.points[1]):
