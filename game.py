@@ -9,7 +9,6 @@ import action
 from planning import football
 from zone import Zone
 import random
-import planning
 from planning.planning import ForwardPlan
 from planning.search import breadth_first_tree_search
 

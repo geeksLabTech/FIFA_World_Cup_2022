@@ -284,8 +284,13 @@ class ForwardPlan(search.Problem):
         self.expanded_actions = self.planning_problem.expand_actions()
 
     def actions(self, state):
+        print('mira las acciones', self.expanded_actions)
+        print('precondiciones', conjuncts(state))
+        print()
+        for x in self.expanded_actions:
+            print('accion: ', x, 'precondiciones: ', x.precond)
+            print()
         result = [action for action in self.expanded_actions if all(pre in conjuncts(state) for pre in action.precond)]
-        # print('acciones q se pueden hacer', result)
         return result
         
 
