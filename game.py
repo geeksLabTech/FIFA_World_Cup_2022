@@ -46,43 +46,50 @@ class Football(Game):
                 actions_defenses= self.move_player_in_team_without_ballposicion(player_with_ballposition,self.team2)
             variables ,problem =football.football_model(team_with_posecionball,player_with_ballposition)
             sol = breadth_first_tree_search(ForwardPlan(problem))[0]
-            solution = sol.solution(variables)
-            #TODO Javier lo rojo eso que esta ahi es tuyo
-            player_success = self.choose_player_success(variables([solution.args[0]],solution.name),actions_defenses)
-            self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
+            action_player_ballpocision = self.get_best_solution(sol,variables)
+            results = self.choose_player_success((player_with_ballposition,action_player_ballpocision), variables,actions_defenses)
+            self.process_results(results)
+            # self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
             print("Time: ", i, end="\r")
         print("Game Over")
         if(self.points[0] > self.points[1]):
             print("Team 1 win" , self.points)
         else : print('Team 2 win' , self.points)
-        
-    def action_success(self ,playerballposition : Player, actionplayerball : str , actions_defeses : List[Tuple[Player,str]], player_success : Player):
-        for i in actions_defeses:
-            if (i[0] == player_success):
-                self.execute_action(i[1],i[0] , 'D')
-                return
-                
-        self.execute_action(actionplayerball,playerballposition, 'A')
-        
-    def execute_action(self,action_name : str , player: Player , rol : str):
-        if(action_name == 'Move'):
-            success_action = action.Move('move')
-            if(rol == 'D'):
-                success_action.execute(player,-1,0)
 
-            #TODO necesito que el jugador ue tiene la pelota me diga para donde se mueve
-        elif(action_name == 'Entry'):
-            success_action = action.Entry('entry')
-            success_action.execute(player)
-        elif(action_name == 'Shoot'):
-            success_action = action.Shoot('shoot')
-            success_action.execute()
-        elif(action_name == 'Pass'):
-            success_action = action.Pass('pass')
-            #TODO necesito que el jugador que tiene la pelota me diga a quien esta pasado 
-            # los que estan defendiendo no pasan
-            return
+    def process_results (self , result):
 
+        if(result[1] == 'Shoot'):
+            self.points[0] += 1
+        if(result[1] == 'Move'):
+            actionsuccess = action.Move('Move')
+            actionsuccess.execute(result[0],result[2])
+        if(result[1] == 'Pass'):
+            actionsuccess = action.Pass('Pass')
+            actionsuccess.execute(result[2])
+        if(result[1] == 'Intercept'):
+            actionsuccess = action.Intercept('Intercept')
+            actionsuccess.execute(result[1])
+        if(result[1] == 'Entry'):
+            actionsuccess = action.Entry('Entry')
+            actionsuccess.execute(result[1])
+        if(result[1] == 'Defend' ):
+            actionsuccess = action.Tackle('Tackle')
+            actionsuccess.execute(result[1])
+        
+        
+        
+
+
+
+    def get_best_solution(self , sol , variables):
+        best = -1
+        final_sol = None 
+        for s in sol :
+            sol_act , sol_prec = s.solution(variables)
+            if(sol_act > best):
+                best = sol_act
+                final_sol = sol_act
+        return final_sol.path( )[1].best
 
     # TODO Refactor this function
     def choose_player_success(self, player_with_ball: Tuple[Player, Action], dicc: Dict[str, Player], adversaries: List[Tuple[Player, str]], pos_to_zone: Dict[Tuple[int, int], Zone]):
@@ -174,18 +181,23 @@ class Football(Game):
     def move_player_in_team_with_ballposicion(self , player_with_ball : Player , team : Team):
         for player in team.players:
             if (player_with_ball.current_position.types == 'Attack' or player_with_ball.position.types == 'Midfield'):
+                if(player.role == 'G'):
+                    continue
                 if(self.IsValid(player.current_position.row + 1)):
-                    player.position.row += 1
-    
+                    # player.position.row += 1
+                    self.move_player(player.current_position.row+1,player.current_position.column,player,team.field.zones)
 
     def move_player_in_team_without_ballposicion(self , player_with_ball : Player ,team : Team):
         actions = []
         for player in team.players:
-            if(player.current_position == player_with_ball.current_position and not player.role == 'goalkeeper'):  
+            if(player.role == 'G'):
+                actions.append((player,'Defend'))
+            if(player.current_position == player_with_ball.current_position):  
                 actions.append((player,'Entry'))
             elif(not player.current_position  == player.position):
                 if(self.IsValid(player.current_position.row - 1)):
-                    actions.append((player,'Move' ))
+                    player.position.row += 1
+                    actions.append((player,'Intercept'))
         return actions
 
     def select_initial_team_with_ball(self):
@@ -198,10 +210,12 @@ class Football(Game):
     def initialize_attakers_positions(self, firstTeam: Team, secondTeam: Team):
         for i in range(len(firstTeam.players)):
             if firstTeam.players[i].role == 'F':
-                firstTeam.players[i] = firstTeam.players[i].current_position.row - 1 
+                self.move_player(firstTeam.players[i].position.row-1,firstTeam.players[i].position.column,firstTeam.players[i],firstTeam.field.zones)
+                # firstTeam.players[i] = firstTeam.players[i].current_position.row - 1 
 
             if secondTeam.players[i].role == 'F':
-                secondTeam.players[i] = secondTeam.players[i].current_position.row - 1 
+                self.move_player(secondTeam.players[i].position.row-1,secondTeam.players[i].position.column,secondTeam.players[i],secondTeam.field.zones)
+                # secondTeam.players[i] = secondTeam.players[i].current_position.row - 1 
 
         return firstTeam, secondTeam
         
