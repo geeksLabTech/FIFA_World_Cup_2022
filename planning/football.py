@@ -20,7 +20,7 @@ def football_model(team:Team, player:Player):
                                             effect = 'BallInGoal() & ~BallPocesion(z)',
                                             domain = 'Player(z)'),
                                         Action('Pass(x,y)',
-                                            precond = 'BallPocesion(x) & Player(x) & Player(y)' ,
+                                            precond = 'BallPocesion(x)' ,
                                             effect = '~BallPocesion(x) & BallPocesion(y)',
-                                            domain = 'Player(y) & Player(z)')],
+                                            domain = 'Player(x) & Player(y)')],
                             domain = 'Player(P) & Player(P1) & Player(P2) & Player(P3) & Player(P4) & Player(P5) & Player(P6) & Player(P7) & Player(P8) & Player(P9) & Player(P10)')
