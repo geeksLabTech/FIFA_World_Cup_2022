@@ -9,12 +9,12 @@ def football_model(team:Team, player:Player):
             names[f'P{iter}'] = p
             iter += 1
             
-    return names,PlanningProblem(initial = 'BallPocesion(P) & Player(P) & Player(P1) & Player(P2) & Player(P3)  & Player(P4) & Player(P5) & Player(P6) & Player(P7) & Player(P8) & Player(P9) & Player(P10) ',
+    return names,PlanningProblem(initial = 'BallPocesion(P) & & Player(P) & Player(P1) & Player(P2) & Player(P3)  & Player(P4) & Player(P5) & Player(P6) & Player(P7) & Player(P8) & Player(P9) & Player(P10) ',
                             goals = 'BallInGoal()',
-                            actions = [Action('Move(x,y,z)',
-                                            precond = 'Position(z,x) ',
-                                            effect = 'Position(z,y)',
-                                            domain = 'Player(z) & Posicion(x) & Posicion(y)'),
+                            actions = [Action('Move(x)',
+                                            precond = 'BallPocesion(x) ',
+                                            effect = 'BallPocesion(x)',
+                                            domain = 'Player(x)'),
                                         Action ('Shoot(z)',
                                             precond = 'BallPocesion(z)',
                                             effect = 'BallInGoal() & ~BallPocesion(z)',
