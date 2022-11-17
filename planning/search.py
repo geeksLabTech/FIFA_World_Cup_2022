@@ -213,7 +213,7 @@ def breadth_first_tree_search(problem, iterations = 1000):
     frontier = deque([Node(problem.initial)])  # FIFO queue
     solutions_nodes = []
     while frontier:
-        print(iterations)
+        # print(iterations)
         if iterations == 0:
             break
         node = frontier.popleft()
@@ -221,7 +221,7 @@ def breadth_first_tree_search(problem, iterations = 1000):
             solutions_nodes.append(node)
         frontier.extend(node.expand(problem))
         iterations -= 1
-    print(len(solutions_nodes))
+    # print(len(solutions_nodes))
     return solutions_nodes
 
 
