@@ -26,7 +26,7 @@ class ComplexAction(Action):
         super().__init__(name)
 
     @abstractmethod
-    def execute(self , object : object):
+    def execute(self , *object : object):
         pass
 
 
@@ -46,12 +46,12 @@ class Pass(ComplexAction):
 
 
 class Move(ComplexAction):
-    def __init__(self, name , zone : Zone):
-        self.zone = zone
+    def __init__(self, name):
         super().__init__(name)
 
-    def execute(self, zone : Zone , player : Player):
-        player.position = zone
+    def execute(self, player : Player , row , column ):
+        player.position.row += row
+        player.position.column+= column
 
 
 class Entry(ComplexAction):
