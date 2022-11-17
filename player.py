@@ -21,18 +21,18 @@ class Player:
 
     def load_and_normalize_data_from_json(self):
         normalized_data = {}
-        if self.role != "G":
-            self.check_null_values(['attack',
-                                    'creativity',
-                                    'defending',
-                                    'tactical',
-                                    'technical'])
-            normalized_data['attack'] = float(self.features['attack'])/100
-            normalized_data['creativity'] = float(self.features['creativity'])/100
-            normalized_data['defending'] = float(self.features['defending'])/100
-            normalized_data['tactical'] = float(self.features['tactical'])/100
-            normalized_data['technical'] = float(self.features['technical'])/100
-        else:
+        # if self.role != "G":
+        self.check_null_values(['attack',
+                                'creativity',
+                                'defending',
+                                'tactical',
+                                'technical'])
+        normalized_data['attack'] = float(self.features['attack'])/100
+        normalized_data['creativity'] = float(self.features['creativity'])/100
+        normalized_data['defending'] = float(self.features['defending'])/100
+        normalized_data['tactical'] = float(self.features['tactical'])/100
+        normalized_data['technical'] = float(self.features['technical'])/100
+        if self.role == 'G':
             self.check_null_values([
                 'aerial',
                 'anticipation',
@@ -50,11 +50,11 @@ class Player:
 
     def compute_attributes_score_from_data(self, data: Dict[str, float]):
         attributes_score = {}
-        if self.role != "G":
-            attributes_score['pass'] = data['tactical'] * data['technical'] * data['creativity']
-            attributes_score['shoot'] = data['attack'] * data['technical'] * data['creativity']
-            attributes_score['entry'] = data['defending'] * data['tactical'] * data['technical']
-            attributes_score['move'] = data['tactical'] * data['technical']
-            attributes_score['intercept'] = data['defending'] * data['tactical'] * data['creativity']
+        # if self.role != "G":
+        attributes_score['pass'] = data['tactical'] * data['technical'] * data['creativity']
+        attributes_score['shoot'] = data['attack'] * data['technical'] * data['creativity']
+        attributes_score['entry'] = data['defending'] * data['tactical'] * data['technical']
+        attributes_score['move'] = data['tactical'] * data['technical']
+        attributes_score['intercept'] = data['defending'] * data['tactical'] * data['creativity']
 
         return attributes_score
