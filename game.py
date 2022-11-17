@@ -46,13 +46,38 @@ class Football(Game):
             variables ,problem =football.football_model(team_with_posecionball,player_with_ballposition)
             sol = breadth_first_tree_search(ForwardPlan(problem))[0]
             action_player_ballpocision = self.get_best_solution(sol,variables)
-            player_success = self.choose_player_success((player_with_ballposition,action_player_ballpocision), variables,actions_defenses)
+            results = self.choose_player_success((player_with_ballposition,action_player_ballpocision), variables,actions_defenses)
+            self.process_results(results)
             # self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
             print("Time: ", i, end="\r")
         print("Game Over")
         if(self.points[0] > self.points[1]):
             print("Team 1 win" , self.points)
         else : print('Team 2 win' , self.points)
+
+    def process_results (self , result):
+
+        if(result[1] == 'Shoot'):
+            self.points[0] += 1
+        if(result[1] == 'Move'):
+            actionsuccess = action.Move('Move')
+            actionsuccess.execute(result[0],result[2])
+        if(result[1] == 'Pass'):
+            actionsuccess = action.Pass('Pass')
+            actionsuccess.execute(result[2])
+        if(result[1] == 'Intercept'):
+            actionsuccess = action.Intercept('Intercept')
+            actionsuccess.execute(result[1])
+        if(result[1] == 'Entry'):
+            actionsuccess = action.Entry('Entry')
+            actionsuccess.execute(result[1])
+        if(result[1] == 'Defend' ):
+            actionsuccess = action.Tackle('Tackle')
+            actionsuccess.execute(result[1])
+        
+        
+        
+
 
 
     def get_best_solution(self , sol , variables):
@@ -99,13 +124,13 @@ class Football(Game):
         actions = []
         for player in team.players:
             if(player.role == 'G'):
-                actions.append((player,'Defening'))
+                actions.append((player,'Defend'))
             if(player.current_position == player_with_ball.current_position):  
                 actions.append((player,'Entry'))
             elif(not player.current_position  == player.position):
                 if(self.IsValid(player.current_position.row - 1)):
                     player.position.row += 1
-                    actions.append((player,'Intercet'))
+                    actions.append((player,'Intercept'))
         return actions
 
     def select_initial_team_with_ball(self):

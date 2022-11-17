@@ -41,7 +41,7 @@ class Pass(ComplexAction):
     def __init__(self, name ):
         super().__init__(name)
 
-    def execute(self , player : Player):
+    def execute(self , player : Player ):
         player.ballposition =  True
 
 
@@ -49,9 +49,8 @@ class Move(ComplexAction):
     def __init__(self, name):
         super().__init__(name)
 
-    def execute(self, player : Player , row , column ):
-        player.position.row += row
-        player.position.column+= column
+    def execute(self, player : Player , zone : Zone):
+        player.position = zone
 
 class Tackle(ComplexAction):
     def __init__(self, name):
@@ -61,13 +60,13 @@ class Tackle(ComplexAction):
         player.ballposition = True
 
 
-class Intercet(ComplexAction):
+class Intercept(ComplexAction):
     def __init__(self, name):
         super().__init__(name)  
 
     def execute(self , player : Player):
         player.ballposition = True   
-        
+
 class Entry(ComplexAction):
     def __init__(self, name):
         super().__init__(name)
