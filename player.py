@@ -21,18 +21,18 @@ class Player:
 
     def load_and_normalize_data_from_json(self):
         normalized_data = {}
-        if self.role != "G":
-            self.check_null_values(['attack',
-                                    'creativity',
-                                    'defending',
-                                    'tactical',
-                                    'technical'])
-            normalized_data['attack'] = float(self.features['attack'])/100
-            normalized_data['creativity'] = float(self.features['creativity'])/100
-            normalized_data['defending'] = float(self.features['defending'])/100
-            normalized_data['tactical'] = float(self.features['tactical'])/100
-            normalized_data['technical'] = float(self.features['technical'])/100
-        else:
+        # if self.role != "G":
+        self.check_null_values(['attack',
+                                'creativity',
+                                'defending',
+                                'tactical',
+                                'technical'])
+        normalized_data['attack'] = float(self.features['attack'])/100
+        normalized_data['creativity'] = float(self.features['creativity'])/100
+        normalized_data['defending'] = float(self.features['defending'])/100
+        normalized_data['tactical'] = float(self.features['tactical'])/100
+        normalized_data['technical'] = float(self.features['technical'])/100
+        if self.role == 'G':
             self.check_null_values([
                 'aerial',
                 'anticipation',

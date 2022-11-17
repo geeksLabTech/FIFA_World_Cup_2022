@@ -115,25 +115,25 @@ class Node:
             position1 = players[str(node.action.args[0])].position
             position2 = players[str(node.action.args[1])].position
             # calculate distance between players and that will affect the probability of success
-            dist = math.sqrt((position1.row - position2.row)**2 + (position1.column - position2.column)**2)
-            print(dist)
+            try:
+                dist = math.sqrt((position1.row - position2.row)**2 + (position1.column - position2.column)**2)
+            except:
+                dist = 3
+                
             prob *= (1/(1+dist))
                 
         if node.parent is not None and node.parent.action is not None:
-            prob = self.eval_probability(node.parent, players) + prob / 2
+            prob = self.eval_probability(node.parent, players) + prob
         # print(prob)
         return prob
 
     def solution(self,players):
         """Return the sequence of actions to go from the root to this node."""
-        mean_precision = -1
-        solution = None
+        mean_precision = 0
         for node in self.path()[1:]:
-            sol_precision = self.eval_probability(node,players)
-            if mean_precision < sol_precision:
-                mean_precision = sol_precision
-                solution = node.action
-        return solution,mean_precision
+            mean_precision += self.eval_probability(node,players)
+            
+        return self,mean_precision/len(self.path())
 
     def path(self):
         """Return a list of nodes forming the path from the root to this node."""
@@ -201,7 +201,7 @@ class SimpleProblemSolvingAgentProgram:
 # Uninformed Search algorithms
 
 
-def breadth_first_tree_search(problem, iterations = 10000):
+def breadth_first_tree_search(problem, iterations = 1000):
     """
     [Figure 3.7]
     Search the shallowest nodes in the search tree first.

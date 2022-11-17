@@ -57,7 +57,7 @@ class Team():
         team = self.team_name
         features = data[self.team_name][p]
         position = "G"
-        players.append(Player(name,team,features,position, None, None , False))
+        players.append(Player(name,team,features,position, Zone("Gate",5,5,"Gate"), Zone("Gate",5,5,"Gate") , False))
         assert len(players) == 11
         return players
     
