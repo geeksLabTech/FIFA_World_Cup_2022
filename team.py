@@ -24,7 +24,7 @@ class Team():
         # TODO Refactor this code
         for en,p in enumerate(lineups['att']):
             name = p
-            team = self.team_name
+            team = self
             try:
                 features = data[self.team_name][p]
             except KeyError:
@@ -34,7 +34,7 @@ class Team():
         
         for en,p in enumerate(lineups['mid']):
             name = p
-            team = self.team_name
+            team = self
             try:
                 features = data[self.team_name][p]
             except KeyError:
@@ -43,7 +43,7 @@ class Team():
             players.append(Player(name,team,features,position, zones[3+en%3], zones[3+en%3] , False))
         for en,p in enumerate(lineups['def']):
             name = p
-            team = self.team_name
+            team = self
             try:
                 features = data[self.team_name][p]
             except KeyError:
@@ -54,7 +54,7 @@ class Team():
         p = lineups['goalkeeper']
 
         name = p
-        team = self.team_name
+        team = self
         features = data[self.team_name][p]
         position = "G"
         players.append(Player(name,team,features,position, Zone("Gate",5,5,"Gate"), Zone("Gate",5,5,"Gate") , False))

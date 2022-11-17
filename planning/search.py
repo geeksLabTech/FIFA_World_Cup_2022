@@ -105,7 +105,7 @@ class Node:
         }
         prob = players[str(node.action.args[0])].attributes_score[node.action.name.lower()]
         # print(players[str(node.action.args[0])].attributes_score)
-        if node.action.name.lower() == 'shoot':
+        if node.action.name == 'Shoot':
             position = players[str(node.action.args[0])]
             position = position.position
             if position.row and position.row not in [1,2]:
