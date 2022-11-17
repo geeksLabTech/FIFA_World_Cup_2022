@@ -39,6 +39,7 @@ class Player:
                 'ballDistribution',
                 'saves',
                 'tactical'])
+            
             normalized_data['aerial'] = float(self.features['aerial'])/100
             normalized_data['anticipation'] = float(self.features['anticipation'])/100
             normalized_data['ballDistribution'] = float(self.features['ballDistribution'])/100
@@ -50,11 +51,14 @@ class Player:
 
     def compute_attributes_score_from_data(self, data: Dict[str, float]):
         attributes_score = {}
-        # if self.role != "G":
-        attributes_score['pass'] = data['tactical'] * data['technical'] * data['creativity']
-        attributes_score['shoot'] = data['attack'] * data['technical'] * data['creativity']
-        attributes_score['entry'] = data['defending'] * data['tactical'] * data['technical']
-        attributes_score['move'] = data['tactical'] * data['technical']
-        attributes_score['intercept'] = data['defending'] * data['tactical'] * data['creativity']
+        if self.role != "G":
+            attributes_score['Pass'] = data['tactical'] * data['technical'] * data['creativity']
+            attributes_score['Shoot'] = data['attack'] * data['technical'] * data['creativity']
+            attributes_score['Entry'] = data['defending'] * data['tactical'] * data['technical']
+            attributes_score['Move'] = data['tactical'] * data['technical']
+            attributes_score['Intercept'] = data['defending'] * data['tactical'] * data['creativity']
+
+        else:
+            attributes_score['Defend'] = sum(data.values()) / len(data)
 
         return attributes_score

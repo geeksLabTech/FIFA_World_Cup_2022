@@ -23,7 +23,7 @@ class Field():
                 if(i == 1):
                     zone.types = 'Midfield'
                 if(i == 2):
-                    zone.types = 'Atack'
+                    zone.types = 'Attack'
                 field.append(zone)
         return field    
 

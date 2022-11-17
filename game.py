@@ -101,7 +101,10 @@ class Football(Game):
         model = {player.name: player_prob/total}
         for adversary in adversaries:
             player, action = adversary
-            player_prob = player.attributes_score[action]
+            if player.role == 'G':
+                player_prob = player.attributes_score[action]
+            else:
+                player_prob = player.attributes_score[action]
             model[player.name] = player_prob/total
 
         # Choose a random action in model based on player_probs
@@ -110,7 +113,7 @@ class Football(Game):
       
     def move_player_in_team_with_ballposicion(self , player_with_ball : Player , team : Team):
         for player in team.players:
-            if (player_with_ball.current_position.types == 'Atack' or player_with_ball.position.types == 'Midfield'):
+            if (player_with_ball.current_position.types == 'Attack' or player_with_ball.position.types == 'Midfield'):
                 if(self.IsValid(player.current_position.row + 1)):
                     # player.position.row += 1
                     self.move_player(player.current_position.row+1,player.current_position.column,player,team.field.zones)
