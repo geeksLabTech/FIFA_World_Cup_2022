@@ -210,6 +210,7 @@ def breadth_first_tree_search(problem, iterations = 10):
     frontier = deque([Node(problem.initial)])  # FIFO queue
     solutions_nodes = []
     while frontier:
+        print(iterations)
         if iterations == 0:
             break
         node = frontier.popleft()

@@ -42,8 +42,7 @@ class Team():
             position = "D"
             players.append(Player(name,team,features,position, zones[en%3], zones[en%3] , False))
         p = lineups['goalkeeper']
-        print(p)
-        print(data[self.team_name])
+
         name = p
         team = self.team_name
         features = data[self.team_name][p]
