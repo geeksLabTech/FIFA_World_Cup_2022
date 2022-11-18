@@ -98,6 +98,8 @@ class Node:
 
     def eval_probability(self, node, players:dict[str,Player]):
         
+            
+        
         zone_coef = {
             2: 1,
             1: 0.5,
@@ -105,6 +107,8 @@ class Node:
         }
         
         prob = players[str(node.action.args[0])].attributes_score[node.action.name]
+        if node.action.name in ["move", "Move"]:
+            prob /= 6
         # print(players[str(node.action.args[0])].attributes_score)
         if node.action.name == 'Shoot':
             position = players[str(node.action.args[0])]

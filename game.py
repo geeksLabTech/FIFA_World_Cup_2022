@@ -42,13 +42,14 @@ class Football(Game):
             if(self.team1 == team_with_ball_possession):
                 actions_defenses = self.move_player_in_team_without_ballposicion(player_with_ballposition,self.team2)
             else:
-                actions_defenses= self.move_player_in_team_without_ballposicion(player_with_ballposition,self.team2)
+                actions_defenses= self.move_player_in_team_without_ballposicion(player_with_ballposition,self.team1)
+            print(actions_defenses)
             variables ,problem =football.football_model(team_with_ball_possession,player_with_ballposition)
             sol = breadth_first_tree_search(ForwardPlan(problem))
             action_of_player_with_ball, prob = self.get_best_solution(sol,variables)
             print('action', action_of_player_with_ball, type(action_of_player_with_ball))
             results = self.choose_player_success((player_with_ballposition, action_of_player_with_ball), variables,actions_defenses, self.field.coords_to_zone)
-            self.process_results(results)
+            player_with_ballposition , team_with_ball_possession = self.process_results(results)
             # self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
             print("Time: ", i, end="\r")
         print("Game Over")
@@ -72,17 +73,23 @@ class Football(Game):
                 team_with_ball = self.team1
             self.set_players_to_original_positions(self.team1 , self.team2)
             self.initialize_attakers_positions(self.team1 , self.team2)
-            self.select_initial_player_with_ball(team_with_ball)
+            return self.select_initial_player_with_ball(team_with_ball) , team_with_ball
+            
         if(result[1] == 'Move'):
             action.Move.execute(result[0],result[2])
+            return result[0] , result[0].team
         if(result[1] == 'Pass'):
             action.Pass.execute(result[0], result[2])
+            return result[0] , result[0].team
         if(result[1] == 'Intercept'):
             action.Intercept.execute(result[0], result[2])
+            return result[0] , result[0].team
         if(result[1] == 'Entry'):
             action.Entry.execute(result[0] , result[2])
+            return result[0] , result[0].team
         if(result[1] == 'Defend' ):
             action.Tackle.execute(result[0], result[2])
+            return result[0], result[0].team
         
         
     def get_best_solution(self , sol , variables):
@@ -218,11 +225,11 @@ class Football(Game):
         for player in team.players:
             if(player.role == 'G'):
                 actions.append((player,'Defend'))
-            if(player.current_position == player_with_ball.current_position):  
+            if(player.current_position.types == player_with_ball.current_position.types):  
                 actions.append((player,'Entry'))
-            elif(not player.current_position  == player.position):
+            elif(not player.current_position.types  == player.position.types):
                 if(self.IsValid(player.current_position.row - 1)):
-                    player.position.row += 1
+                    player.position.row -= 1
                     actions.append((player,'Intercept'))
         # print('acciones q intentan los defensas', actions)
         return actions
