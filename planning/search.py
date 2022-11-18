@@ -101,8 +101,8 @@ class Node:
             
         
         zone_coef = {
-            2: 1,
-            1: 0.5,
+            2: 3,
+            1: 0.7,
             0: 0.2
         }
         
@@ -116,8 +116,8 @@ class Node:
             if position.row and position.row not in [1,2]:
                 position.row = 0
             prob *= zone_coef[position.row]
-        if len(node.action.args) > 1 and node.action.args[1] is not None:
-            position1 = players[str(node.action.args[0])].position
+            if len(node.action.args) > 1 and node.action.args[1] is not None:
+                position1 = players[str(node.action.args[0])].position
             position2 = players[str(node.action.args[1])].position
             # calculate distance between players and that will affect the probability of success
             try:
