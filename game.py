@@ -89,6 +89,14 @@ class Football(Game):
                 final_sol = sol_act
         return final_sol.path()[1].best
 
+    def move_player(self,x:int,y:int,player:Player, field:list[Zone]):
+        zones = {}
+        for i in field:
+            for a in range(3):
+                for b in range(3):
+                    zones[(a,b)] = i
+        player.current_position = zones[(x,y)]
+
     # TODO Refactor this function
     def choose_player_success(self, player_with_ball: Tuple[Player, Action], dicc: Dict[str, Player], adversaries: List[Tuple[Player, str]], pos_to_zone: Dict[Tuple[int, int], Zone]):
         all_players = [player_with_ball] + adversaries
