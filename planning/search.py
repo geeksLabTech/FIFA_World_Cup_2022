@@ -100,7 +100,7 @@ class Node:
         zone_coef = {
             2: 1,
             1: 0.7,
-            0: 11.2
+            0: 0.5
         }
         
         prob = players[str(node.action.args[0])].attributes_score[node.action.name]
@@ -121,8 +121,8 @@ class Node:
             # calculate distance between players and that will affect the probability of success
             try:
                 dist = math.sqrt((position1.row - position2.row)**2 + (position1.column - position2.column)**2)
-                if dist == 0:
-                    prob /= 2
+                # if dist == 0:
+                #     prob /= 4
             except:
                 dist = 3
             

@@ -46,11 +46,9 @@ class Football(Game):
                 actions_defenses = self.move_player_in_team_without_ballposicion(player_with_ballposition,self.team2)
             else:
                 actions_defenses= self.move_player_in_team_without_ballposicion(player_with_ballposition,self.team1)
-            print(actions_defenses)
             variables ,problem =football.football_model(team_with_ball_possession,player_with_ballposition)
             sol = breadth_first_tree_search(ForwardPlan(problem))
             action_of_player_with_ball, prob = self.get_best_solution(sol,variables)
-            print('action', action_of_player_with_ball, type(action_of_player_with_ball))
             results = self.choose_player_success((player_with_ballposition, action_of_player_with_ball), variables,actions_defenses, self.field.coords_to_zone)
             temp_player_with_ballposition , temp_team_with_ball_possession = self.process_results(results)
             if temp_player_with_ballposition != player_with_ballposition:
@@ -66,8 +64,10 @@ class Football(Game):
         print("Game Over")
         if self.points[0] > self.points[1]:
             print(f"Team {self.team1.team_name} win" , self.points)
+            return self.team1
         elif self.points[0] < self.points[1]:
             print(f'Team {self.team2.team_name} win' , self.points)
+            return self.team2
         else:
             print(f'Draw {self.team1.team_name} {self.team2.team_name} {self.points}')
 
