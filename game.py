@@ -73,7 +73,7 @@ class Football(Game):
 
     def process_results (self , result):
         if result[1] == 'Shoot':
-            print(f'{result[0]} Goooooooalll')
+            print(f'{result[0].name} Goooooooalll')
             team_with_ball = None
             team = result[0].team
             if team == self.team1:
