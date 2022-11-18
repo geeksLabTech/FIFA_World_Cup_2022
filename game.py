@@ -61,7 +61,7 @@ class Football(Game):
                 # print(team_with_ball_possession.team_name," loses the ball")
                 print(temp_team_with_ball_possession.team_name," now has the ball")
                 team_with_ball_possession = temp_team_with_ball_possession
-            # self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
+           
             print("Time: ", i, end="\r")
         print("Game Over")
         if self.points[0] > self.points[1]:
