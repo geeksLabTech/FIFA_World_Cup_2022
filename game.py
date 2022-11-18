@@ -123,12 +123,19 @@ class Football(Game):
             real_adversaries = [(p, act) for p, act in adversaries if p.current_position == target_player.current_position or p.current_position == current_player.current_position]
             total = sum([x[0].attributes_score[x[1]] for x in real_adversaries]) + player_prob
             success_probs = [player_prob/total]
+            adversaries_probs = []
+            new_total = 0
             players_to_choose = [player_with_ball] + real_adversaries
             for x in real_adversaries:
                 adv_prov = x[0].attributes_score[x[1]] / total
-                success_probs.append(adv_prov)
+                adversaries_probs.append(adv_prov)
             
-            succesful_player = np.random.choice([x[0].name for x in players_to_choose], p=success_probs)
+            new_total = player_prob + sum(adversaries_probs) 
+            succesful_player = np.random.choice([0,1], p=[player_prob / new_total, sum(adversaries_probs) / new_total])
+            if succesful_player == 0:
+                succesful_player = current_player.name
+            else:
+                real_adversaries = self.select_sucessful_adversary(real_adversaries, adversaries_probs)
             result = ()
             for x in all_players:
                 if x[0].name == succesful_player:
@@ -145,12 +152,18 @@ class Football(Game):
             real_adversaries = [(p, act) for p, act in adversaries if p.current_position == current_player.current_position or p.role == 'G']
             total = sum([x[0].attributes_score[x[1]] for x in real_adversaries]) + player_prob
             success_probs = [player_prob/total]
+            adversaries_probs = []
             players_to_choose = [player_with_ball] + real_adversaries
             for x in real_adversaries:
                 adv_prov = x[0].attributes_score[x[1]] / total
-                success_probs.append(adv_prov)
+                adversaries_probs.append(adv_prov)
             
-            succesful_player = np.random.choice([x[0].name for x in players_to_choose], p=success_probs)
+            new_total = player_prob + sum(adversaries_probs) 
+            succesful_player = np.random.choice([0,1], p=[player_prob / new_total, sum(adversaries_probs) / new_total])
+            if succesful_player == 0:
+                succesful_player = current_player.name
+            else:
+                real_adversaries = self.select_sucessful_adversary(real_adversaries, adversaries_probs)
             result = ()
             for x in all_players:
                 if x[0].name == succesful_player:
@@ -196,7 +209,12 @@ class Football(Game):
             for x in target_players:
                 target_probs.append(zones_probs[target_zone][x])
 
-            succesful_player = np.random.choice([x.name for x in target_players], p=target_probs)
+            new_total = player_prob + sum(target_probs) 
+            succesful_player = np.random.choice([0,1], p=[player_prob / new_total, sum(target_probs) / new_total])
+            if succesful_player == 0:
+                succesful_player = current_player.name
+            else:
+                real_adversaries = self.select_sucessful_adversary(real_adversaries, target_probs)
             print()
             print('target players', target_players)
             result = ()
@@ -210,6 +228,13 @@ class Football(Game):
             
             return result
             
+
+    def select_sucessful_adversary(self, adversaries: List[Tuple[Player, str]], adv_probs: List[float]):
+        succesful_adversary = np.random.choice([x[0].name for x in adversaries], p=adv_probs)
+        for x in adversaries:
+            if x[0].name == succesful_adversary:
+                return x
+
       
     def move_player_in_team_with_ballposicion(self , player_with_ball : Player , team : Team):
         for player in team.players:
