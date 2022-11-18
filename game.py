@@ -73,7 +73,7 @@ class Football(Game):
 
     def process_results (self , result):
         if result[1] == 'Shoot':
-            print('Ejecuto disparo')
+            print(f'{result[0]} Goooooooalll')
             team_with_ball = None
             team = result[0].team
             if team == self.team1:
@@ -145,7 +145,7 @@ class Football(Game):
             if len(adversaries_probs) == 0:
                 adversaries_probs.append(0)
             new_total = player_prob + max(adversaries_probs) 
-            print('chekeo de probs', [player_prob / new_total, max(adversaries_probs) / new_total])
+            # print('chekeo de probs', [player_prob / new_total, max(adversaries_probs) / new_total])
             succesful_player = np.random.choice([0,1], p=[player_prob / new_total, max(adversaries_probs) / new_total])
             if succesful_player == 0:
                 succesful_player = current_player.name
@@ -166,6 +166,7 @@ class Football(Game):
 
 
         elif action.name == 'Shoot':
+            print(f'Player {current_player.name} is shooting')
             real_adversaries = [(p, act) for p, act in adversaries if p.current_position == current_player.current_position or p.role == 'G']
             total = sum([x[0].attributes_score[x[1]] for x in real_adversaries]) + player_prob
             success_probs = [player_prob/total]
@@ -178,7 +179,7 @@ class Football(Game):
             if len(adversaries_probs) == 0:
                 adversaries_probs.append(0)
             new_total = player_prob + max(adversaries_probs) 
-            print('chekeo de probs', [player_prob / new_total, max(adversaries_probs) / new_total])
+            # print('chekeo de probs', [player_prob / new_total, max(adversaries_probs) / new_total])
             succesful_player = np.random.choice([0,1], p=[player_prob / new_total, max(adversaries_probs) / new_total])
             if succesful_player == 0:
                 succesful_player = current_player.name
@@ -190,7 +191,6 @@ class Football(Game):
                 if x[0].name == succesful_player:
                     if type(x[1]) == Action:
                         result = (x[0], x[1].name)
-                        print('Disparo:', result)
                     else:
                         result = (x[0], x[1], current_player)
                     break
@@ -234,7 +234,7 @@ class Football(Game):
             if len(target_probs) == 0:
                 target_probs.append(0)
             new_total = player_prob + max(target_probs) 
-            print('chekeo de probs', [player_prob / new_total, max(target_probs) / new_total])
+            # print('chekeo de probs', [player_prob / new_total, max(target_probs) / new_total])
             succesful_player = np.random.choice([0,1], p=[player_prob / new_total, max(target_probs) / new_total])
             if succesful_player == 0:
                 succesful_player = current_player.name
@@ -258,7 +258,7 @@ class Football(Game):
     def select_sucessful_adversary(self, adversaries: List[Player], adv_probs: List[float]):
         total = sum(adv_probs)
         normalized_probs = [x/total for x in adv_probs]
-        print('normalized probs:', normalized_probs)
+        # print('normalized probs:', normalized_probs)
         succesful_adversary = np.random.choice([x.name for x in adversaries], p=normalized_probs)
         for x in adversaries:
             if x.name == succesful_adversary:
