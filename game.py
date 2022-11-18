@@ -36,6 +36,9 @@ class Football(Game):
         self.initialize_attakers_positions(self.team1 , self.team2)
         print('Initialization Complete')
         for i in range(self.time):
+            for i in self.team1.players:
+                print(i.position.name)
+                
             if(i!= 0):
                 self.move_player_in_team_with_ballposicion(player_with_ballposition,team_with_ball_possession)
             actions_defenses = []
@@ -259,11 +262,11 @@ class Football(Game):
 
     def initialize_attakers_positions(self, firstTeam: Team, secondTeam: Team):
         for i in range(len(firstTeam.players)):
-            if firstTeam.players[i].role == 'F':
+            if firstTeam.players[i].role == 'F' and firstTeam.players[i].position.types == "Attack":
                 self.move_player(firstTeam.players[i].position.row-1,firstTeam.players[i].position.column,firstTeam.players[i],self.field.field)
                 # firstTeam.players[i] = firstTeam.players[i].current_position.row - 1 
 
-            if secondTeam.players[i].role == 'F':
+            if secondTeam.players[i].role == 'F' and secondTeam.players[i].position.types == "Attack":
                 self.move_player(secondTeam.players[i].position.row-1,secondTeam.players[i].position.column,secondTeam.players[i],self.field.field)
                 # secondTeam.players[i] = secondTeam.players[i].current_position.row - 1 
 
