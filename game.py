@@ -36,8 +36,8 @@ class Football(Game):
         self.initialize_attakers_positions(self.team1 , self.team2)
         print('Initialization Complete')
         for i in range(self.time):
-            for i in self.team1.players:
-                print(i.position.name)
+            # for i in self.team1.players:
+            #     print(i.position.name)
                 
             if(i!= 0):
                 self.move_player_in_team_with_ballposicion(player_with_ballposition,team_with_ball_possession)
@@ -54,11 +54,11 @@ class Football(Game):
             results = self.choose_player_success((player_with_ballposition, action_of_player_with_ball), variables,actions_defenses, self.field.coords_to_zone)
             temp_player_with_ballposition , temp_team_with_ball_possession = self.process_results(results)
             if temp_player_with_ballposition != player_with_ballposition:
-                print(player_with_ballposition.name, "no longer has the ball")
+                # print(player_with_ballposition.name, "no longer has the ball")
                 print(temp_player_with_ballposition.name, "now has the ball")
                 player_with_ballposition = temp_player_with_ballposition
             if temp_team_with_ball_possession != team_with_ball_possession:
-                print(team_with_ball_possession.team_name," loses the ball")
+                # print(team_with_ball_possession.team_name," loses the ball")
                 print(temp_team_with_ball_possession.team_name," now has the ball")
                 team_with_ball_possession = temp_team_with_ball_possession
             # self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
@@ -69,7 +69,7 @@ class Football(Game):
         elif self.points[0] < self.points[1]:
             print(f'Team {self.team2.team_name} win' , self.points)
         else:
-            print(f'Draw {self.team1.team_name} {self.team2.team_name}')
+            print(f'Draw {self.team1.team_name} {self.team2.team_name} {self.points}')
 
     def process_results (self , result):
         if result[1] == 'Shoot':
@@ -138,16 +138,21 @@ class Football(Game):
             new_total = 0
             players_to_choose = [player_with_ball] + real_adversaries
             for x in real_adversaries:
-                adv_prov = x[0].attributes_score[x[1]] / total
+                adv_prov = x[0].attributes_score[x[1]]
                 adversaries_probs.append(adv_prov)
             
-            new_total = player_prob + sum(adversaries_probs) 
-            succesful_player = np.random.choice([0,1], p=[player_prob / new_total, sum(adversaries_probs) / new_total])
+            if len(adversaries_probs) == 0:
+                adversaries_probs.append(0)
+            new_total = player_prob + max(adversaries_probs) 
+            print('chekeo de probs', [player_prob / new_total, max(adversaries_probs) / new_total])
+            succesful_player = np.random.choice([0,1], p=[player_prob / new_total, max(adversaries_probs) / new_total])
             if succesful_player == 0:
                 succesful_player = current_player.name
             else:
-                real_adversaries = self.select_sucessful_adversary(real_adversaries, adversaries_probs)
+                print(adversaries_probs)
+                succesful_player = self.select_sucessful_adversary([x[0] for x in real_adversaries], adversaries_probs)
             result = ()
+            # print("player satisfactorio vs todos: ", succesful_player, all_players)
             for x in all_players:
                 if x[0].name == succesful_player:
                     if type(x[1]) == Action:
@@ -166,16 +171,20 @@ class Football(Game):
             adversaries_probs = []
             players_to_choose = [player_with_ball] + real_adversaries
             for x in real_adversaries:
-                adv_prov = x[0].attributes_score[x[1]] / total
+                adv_prov = x[0].attributes_score[x[1]]
                 adversaries_probs.append(adv_prov)
             
-            new_total = player_prob + sum(adversaries_probs) 
-            succesful_player = np.random.choice([0,1], p=[player_prob / new_total, sum(adversaries_probs) / new_total])
+            if len(adversaries_probs) == 0:
+                adversaries_probs.append(0)
+            new_total = player_prob + max(adversaries_probs) 
+            print('chekeo de probs', [player_prob / new_total, max(adversaries_probs) / new_total])
+            succesful_player = np.random.choice([0,1], p=[player_prob / new_total, max(adversaries_probs) / new_total])
             if succesful_player == 0:
                 succesful_player = current_player.name
             else:
-                real_adversaries = self.select_sucessful_adversary(real_adversaries, adversaries_probs)
+                succesful_player = self.select_sucessful_adversary([x[0] for x in real_adversaries], adversaries_probs)
             result = ()
+            # print("player satisfactorio vs todos: ", succesful_player, all_players)
             for x in all_players:
                 if x[0].name == succesful_player:
                     if type(x[1]) == Action:
@@ -185,6 +194,7 @@ class Football(Game):
                         result = (x[0], x[1], current_player)
                     break
             
+
             return result
         elif action.name == 'Move':
             current_zone = current_player.current_position
@@ -204,7 +214,7 @@ class Football(Game):
                 zones_probs[pos_to_zone[coords]] = {current_player: player_prob/total}
                 for x in possible_adversaries:
                     adv_prov = x[0].attributes_score[x[1]]
-                    zones_probs[pos_to_zone[coords]][x[0]] = adv_prov/total
+                    zones_probs[pos_to_zone[coords]][x[0]] = adv_prov
                 
             success_arr = [zones_probs[x][current_player] for x in zones_probs]
             total_success = sum(success_arr)
@@ -220,15 +230,19 @@ class Football(Game):
             for x in target_players:
                 target_probs.append(zones_probs[target_zone][x])
 
-            new_total = player_prob + sum(target_probs) 
-            succesful_player = np.random.choice([0,1], p=[player_prob / new_total, sum(target_probs) / new_total])
+            if len(target_probs) == 0:
+                target_probs.append(0)
+            new_total = player_prob + max(target_probs) 
+            print('chekeo de probs', [player_prob / new_total, max(target_probs) / new_total])
+            succesful_player = np.random.choice([0,1], p=[player_prob / new_total, max(target_probs) / new_total])
             if succesful_player == 0:
                 succesful_player = current_player.name
             else:
-                real_adversaries = self.select_sucessful_adversary(real_adversaries, target_probs)
-            print()
-            print('target players', target_players)
+                succesful_player = self.select_sucessful_adversary([x for x in target_players], target_probs)
+            # print()
+            # print('target players', target_players)
             result = ()
+            # print("player satisfactorio vs todos: ", succesful_player, all_players)
             for x in all_players:
                 if x[0].name == succesful_player:
                     if type(x[1]) == Action:
@@ -240,11 +254,14 @@ class Football(Game):
             return result
             
 
-    def select_sucessful_adversary(self, adversaries: List[Tuple[Player, str]], adv_probs: List[float]):
-        succesful_adversary = np.random.choice([x[0].name for x in adversaries], p=adv_probs)
+    def select_sucessful_adversary(self, adversaries: List[Player], adv_probs: List[float]):
+        total = sum(adv_probs)
+        normalized_probs = [x/total for x in adv_probs]
+        print('normalized probs:', normalized_probs)
+        succesful_adversary = np.random.choice([x.name for x in adversaries], p=normalized_probs)
         for x in adversaries:
-            if x[0].name == succesful_adversary:
-                return x
+            if x.name == succesful_adversary:
+                return x.name
 
       
     def move_player_in_team_with_ballposicion(self , player_with_ball : Player , team : Team):
