@@ -49,7 +49,15 @@ class Football(Game):
             action_of_player_with_ball, prob = self.get_best_solution(sol,variables)
             print('action', action_of_player_with_ball, type(action_of_player_with_ball))
             results = self.choose_player_success((player_with_ballposition, action_of_player_with_ball), variables,actions_defenses, self.field.coords_to_zone)
-            player_with_ballposition , team_with_ball_possession = self.process_results(results)
+            temp_player_with_ballposition , temp_team_with_ball_possession = self.process_results(results)
+            if temp_player_with_ballposition != player_with_ballposition:
+                print(player_with_ballposition.name, "no longer has the ball")
+                print(temp_player_with_ballposition.name, "now has the ball")
+                player_with_ballposition = temp_player_with_ballposition
+            if temp_team_with_ball_possession != team_with_ball_possession:
+                print(team_with_ball_possession.team_name," loses the ball")
+                print(temp_team_with_ball_possession.team_name," now has the ball")
+                team_with_ball_possession = temp_team_with_ball_possession
             # self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
             print("Time: ", i, end="\r")
         print("Game Over")
