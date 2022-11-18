@@ -111,6 +111,7 @@ class Football(Game):
             if(sol_prec > best):
                 best = sol_prec
                 final_sol = sol_act
+                # print("new best", best, final_sol.path()[1].action.name)
         return final_sol.path()[1].action, best
 
     def move_player(self,x:int,y:int,player:Player, field:list[Zone]):

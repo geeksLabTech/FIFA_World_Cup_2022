@@ -97,11 +97,8 @@ class Node:
         return next_node
 
     def eval_probability(self, node, players:dict[str,Player]):
-        
-            
-        
         zone_coef = {
-            2: 3,
+            2: 1,
             1: 0.7,
             0: 0.2
         }
@@ -116,29 +113,34 @@ class Node:
             if position.row and position.row not in [1,2]:
                 position.row = 0
             prob *= zone_coef[position.row]
-            if len(node.action.args) > 1 and node.action.args[1] is not None:
-                position1 = players[str(node.action.args[0])].position
-                position2 = players[str(node.action.args[1])].position
+            # print("shoot prob", prob)
+            
+        if len(node.action.args) > 1 and node.action.args[1] is not None:
+            position1 = players[str(node.action.args[0])].position
+            position2 = players[str(node.action.args[1])].position
             # calculate distance between players and that will affect the probability of success
-                try:
-                    dist = math.sqrt((position1.row - position2.row)**2 + (position1.column - position2.column)**2)
-                except:
-                    dist = 3
-                
-                prob *= (1/(1+dist))
+            try:
+                dist = math.sqrt((position1.row - position2.row)**2 + (position1.column - position2.column)**2)
+                if dist == 0:
+                    prob = 0
+            except:
+                dist = 3
+            
+            # print("distncia:", dist)
+            prob /= (1+dist)
                 
         if node.parent is not None and node.parent.action is not None:
-            prob = self.eval_probability(node.parent, players) + prob
+            prob = self.eval_probability(node.parent, players)
         # print(prob)
         return prob
 
     def solution(self,players):
         """Return the sequence of actions to go from the root to this node."""
-        mean_precision = 0
-        for node in self.path()[1:]:
-            mean_precision += self.eval_probability(node,players)
+        # mean_precision = 0
+        # for node in self.path()[1:]:
+        #     mean_precision += self.eval_probability(node,players)
             
-        return self,mean_precision/len(self.path())
+        return self,self.eval_probability(self.path()[-1], players)/len(self.path())
 
     def path(self):
         """Return a list of nodes forming the path from the root to this node."""
