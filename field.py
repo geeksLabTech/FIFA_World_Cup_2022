@@ -7,8 +7,9 @@ class Field():
         self.name = name
         self.width = width
         self.lenght = lenght
+        self.coords_to_zone = {}
         self.field = self.generate_zones(3,3, names)
-
+        
     def generate_zones(self,x,y, names):
         it = 0
         field = []
@@ -25,6 +26,7 @@ class Field():
                 if(i == 2):
                     zone.types = 'Attack'
                 field.append(zone)
+                self.coords_to_zone[(i,j)] = zone
         return field    
 
     

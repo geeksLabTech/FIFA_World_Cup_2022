@@ -26,16 +26,15 @@ class Game(ABC) :
         pass
 
 class Football(Game):
-    def __init__(self,team1 , team2 , field , time , points):
-        super().__init__(team1 , team2 , field , time , points)
+    def __init__(self, team1, team2, field, time):
+        super().__init__(team1 , team2 , field , time , [0,0])
     
     def play(self):
-        print("Playing Football")
-        self.team1.set_active_players([player.name for player in self.team1.players[0:11]])
-        self.team2.set_active_players([player.name for player in self.team2.players[0:11]])
+        print("Start Game")
         team_with_posecionball = self.select_initial_team_with_ball()
         player_with_ballposition = self.select_initial_player_with_ball(team_with_posecionball)
         self.initialize_attakers_positions(self.team1 , self.team2)
+        print('Initialization Complete')
         for i in range(self.time):
             if(i!= 0):
                 self.move_player_in_team_with_ballposicion(player_with_ballposition,team_with_posecionball)
@@ -47,19 +46,22 @@ class Football(Game):
             variables ,problem =football.football_model(team_with_posecionball,player_with_ballposition)
             sol = breadth_first_tree_search(ForwardPlan(problem))[0]
             action_player_ballpocision = self.get_best_solution(sol,variables)
-            results = self.choose_player_success((player_with_ballposition,action_player_ballpocision), variables,actions_defenses)
+            results = self.choose_player_success((player_with_ballposition,action_player_ballpocision), variables,actions_defenses, self.field.coords_to_zone)
             self.process_results(results)
             # self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
             print("Time: ", i, end="\r")
         print("Game Over")
         if(self.points[0] > self.points[1]):
-            print("Team 1 win" , self.points)
-        else : print('Team 2 win' , self.points)
+            print(f"Team {self.team1} win" , self.points)
+        else : print(f'Team {self.team2} win' , self.points)
 
     def process_results (self , result):
-
         if(result[1] == 'Shoot'):
-            self.points[0] += 1
+            team = result[0].team
+            if team == self.team1:
+                self.points[0] += 1
+            else:
+                self.points[1] += 1
         if(result[1] == 'Move'):
             actionsuccess = action.Move('Move')
             actionsuccess.execute(result[0],result[2])
@@ -77,10 +79,6 @@ class Football(Game):
             actionsuccess.execute(result[1])
         
         
-        
-
-
-
     def get_best_solution(self , sol , variables):
         best = -1
         final_sol = None 
@@ -89,7 +87,7 @@ class Football(Game):
             if(sol_act > best):
                 best = sol_act
                 final_sol = sol_act
-        return final_sol.path( )[1].best
+        return final_sol.path()[1].best
 
     # TODO Refactor this function
     def choose_player_success(self, player_with_ball: Tuple[Player, Action], dicc: Dict[str, Player], adversaries: List[Tuple[Player, str]], pos_to_zone: Dict[Tuple[int, int], Zone]):
