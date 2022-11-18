@@ -109,7 +109,7 @@ class Football(Game):
         current_player, action = player_with_ball
         player_prob = current_player.attributes_score[action.name]
         real_adversaries = []
-        positions_arr = [(0,1), (1,0), (0,-1), (-1, 0), (1,1), (-1,-1), (1,-1), (-1,1)]
+        positions_arr = [(0,1), (1,0), (0,-1), (-1, 0), (1,1), (-1,-1), (1,-1), (-1,1), (0,0)]
 
         if action.name == 'Pass':
             target_player = dicc[str(action.args[1])]
@@ -126,7 +126,7 @@ class Football(Game):
             for x in all_players:
                 if x[0].name == succesful_player:
                     if type(x[1]) == Action:
-                        result = (x[0], x[1].name, target_player)
+                        result = (target_player, x[1].name, x[0])
                     else:
                         result = (x[0], x[1], current_player)
                     break
@@ -161,10 +161,14 @@ class Football(Game):
             # print('pos_to_zone', pos_to_zone )
             # print('mmm', current_zone.get_coords()+positions_arr[0])
             current_zone_coords = current_zone.get_coords()
+            # print('cuurent coords', current_zone_coords)
             possible_coords_zones = [(current_zone_coords[0]+pos[0], current_zone_coords[1]+pos[1]) for pos in positions_arr if (current_zone_coords[0]+pos[0], current_zone_coords[1]+pos[1]) in pos_to_zone]
             zones_probs: Dict[Zone, Dict[Player, float]] = {}
+            
             for coords in possible_coords_zones:
+                # print('actual coords', coords)
                 possible_adversaries = [(p, act) for p, act in adversaries if p.current_position.get_coords() == coords]
+                # print('possible adversaries', possible_adversaries)
                 total = sum([x[0].attributes_score[x[1]] for x in possible_adversaries]) + player_prob
                 zones_probs[pos_to_zone[coords]] = {current_player: player_prob/total}
                 for x in possible_adversaries:
@@ -186,6 +190,8 @@ class Football(Game):
                 target_probs.append(zones_probs[target_zone][x])
 
             succesful_player = np.random.choice([x.name for x in target_players], p=target_probs)
+            print()
+            print('target players', target_players)
             result = ()
             for x in all_players:
                 if x[0].name == succesful_player:
@@ -218,6 +224,7 @@ class Football(Game):
                 if(self.IsValid(player.current_position.row - 1)):
                     player.position.row += 1
                     actions.append((player,'Intercept'))
+        # print('acciones q intentan los defensas', actions)
         return actions
 
     def select_initial_team_with_ball(self):
