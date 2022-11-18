@@ -62,23 +62,23 @@ class Football(Game):
     def process_results (self , result):
         if(result[1] == 'Shoot'):
             print('Ejecuto disparo')
-            team_witch_ball = None
+            team_with_ball = None
             team = result[0].team
             if team == self.team1:
                 self.points[0] += 1
-                team_witch_ball = self.team2
+                team_with_ball = self.team2
             else:
                 self.points[1] += 1
-                team_witch_ball = self.team1
-            self.player_in_your_position(self.team1 , self.team2)
+                team_with_ball = self.team1
+            self.set_players_to_original_positions(self.team1 , self.team2)
             self.initialize_attakers_positions(self.team1 , self.team2)
-            self.select_initial_player_with_ball(team_witch_ball)
+            self.select_initial_player_with_ball(team_with_ball)
         if(result[1] == 'Move'):
             action.Move.execute(result[0],result[2])
         if(result[1] == 'Pass'):
             action.Pass.execute(result[0], result[2])
         if(result[1] == 'Intercept'):
-            action.Intercept.execute(result[0])
+            action.Intercept.execute(result[0], result[2])
         if(result[1] == 'Entry'):
             action.Entry.execute(result[0] , result[2])
         if(result[1] == 'Defend' ):
@@ -128,7 +128,7 @@ class Football(Game):
                     if type(x[1]) == Action:
                         result = (x[0], x[1].name, target_player)
                     else:
-                        result = (x[0], x[1])
+                        result = (x[0], x[1], current_player)
                     break
             
             return result
@@ -151,7 +151,7 @@ class Football(Game):
                         result = (x[0], x[1].name)
                         print('Disparo:', result)
                     else:
-                        result = (x[0], x[1])
+                        result = (x[0], x[1], current_player)
                     break
             
             return result
@@ -192,7 +192,7 @@ class Football(Game):
                     if type(x[1]) == Action:
                         result = (x[0], x[1].name, target_zone)
                     else:
-                        result = (x[0], x[1])
+                        result = (x[0], x[1], current_player)
                     break
             
             return result
@@ -228,7 +228,7 @@ class Football(Game):
         att = [player for player in team.players if player.role == 'F']
         return random.choice(att)
 
-    def player_in_your_position(self , firstTeam : Team , secondTeam : Team):
+    def set_players_to_original_positions(self , firstTeam : Team , secondTeam : Team):
         for player in firstTeam.players:
             player.current_position = player.position
         for player in secondTeam.players:

@@ -44,7 +44,7 @@ class Pass(ComplexAction):
         super().__init__(name)
 
     @staticmethod
-    def execute(old_player : Player, new_player: Player ):
+    def execute(new_player: Player, old_player : Player):
         old_player.ballposition = False
         new_player.ballposition =  True
 
@@ -62,8 +62,8 @@ class Tackle(ComplexAction):
         super().__init__(name)
 
     @staticmethod
-    def execute(player : Player, goalKeeper: Player):
-        player.ballposition = False
+    def execute(goalKeeper: Player, old_player: Player):
+        old_player.ballposition = False
         goalKeeper.ballposition = True
 
 
@@ -72,15 +72,16 @@ class Intercept(ComplexAction):
         super().__init__(name)  
 
     @staticmethod
-    def execute(player : Player):
-        player.ballposition = True   
+    def execute(new_player: Player, old_player : Player):
+        old_player.ballposition = False
+        new_player.ballposition = True   
 
 class Entry(ComplexAction):
     def __init__(self, name):
         super().__init__(name)
 
     @staticmethod
-    def execute(old_player : Player, new_player: Player):
+    def execute(new_player: Player, old_player : Player):
         old_player.ballposition = False
         new_player.ballposition = True
 
