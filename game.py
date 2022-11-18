@@ -31,52 +31,53 @@ class Football(Game):
     
     def play(self):
         print("Start Game")
-        team_with_posecionball = self.select_initial_team_with_ball()
-        player_with_ballposition = self.select_initial_player_with_ball(team_with_posecionball)
+        team_with_ball_possession = self.select_initial_team_with_ball()
+        player_with_ballposition = self.select_initial_player_with_ball(team_with_ball_possession)
         self.initialize_attakers_positions(self.team1 , self.team2)
         print('Initialization Complete')
         for i in range(self.time):
             if(i!= 0):
-                self.move_player_in_team_with_ballposicion(player_with_ballposition,team_with_posecionball)
+                self.move_player_in_team_with_ballposicion(player_with_ballposition,team_with_ball_possession)
             actions_defenses = []
-            if(self.team1 == team_with_posecionball):
+            if(self.team1 == team_with_ball_possession):
                 actions_defenses = self.move_player_in_team_without_ballposicion(player_with_ballposition,self.team2)
             else:
                 actions_defenses= self.move_player_in_team_without_ballposicion(player_with_ballposition,self.team2)
-            variables ,problem =football.football_model(team_with_posecionball,player_with_ballposition)
-            sol = breadth_first_tree_search(ForwardPlan(problem))[0]
-            action_player_ballpocision = self.get_best_solution(sol,variables)
-            results = self.choose_player_success((player_with_ballposition,action_player_ballpocision), variables,actions_defenses, self.field.coords_to_zone)
+            variables ,problem =football.football_model(team_with_ball_possession,player_with_ballposition)
+            sol = breadth_first_tree_search(ForwardPlan(problem))
+            action_of_player_with_ball, prob = self.get_best_solution(sol,variables)
+            print('action', action_of_player_with_ball, type(action_of_player_with_ball))
+            results = self.choose_player_success((player_with_ballposition, action_of_player_with_ball), variables,actions_defenses, self.field.coords_to_zone)
             self.process_results(results)
             # self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
             print("Time: ", i, end="\r")
         print("Game Over")
         if(self.points[0] > self.points[1]):
-            print(f"Team {self.team1} win" , self.points)
-        else : print(f'Team {self.team2} win' , self.points)
+            print(f"Team {self.team1.team_name} win" , self.points)
+        elif self.points[0] < self.points[1]:
+            print(f'Team {self.team2.team_name} win' , self.points)
+        else:
+            print(f'Draw {self.team1.team_name} {self.team2.team_name}')
 
     def process_results (self , result):
         if(result[1] == 'Shoot'):
+            print('Ejecuto disparo')
             team = result[0].team
             if team == self.team1:
                 self.points[0] += 1
             else:
                 self.points[1] += 1
+            
         if(result[1] == 'Move'):
-            actionsuccess = action.Move('Move')
-            actionsuccess.execute(result[0],result[2])
+            action.Move.execute(result[0],result[2])
         if(result[1] == 'Pass'):
-            actionsuccess = action.Pass('Pass')
-            actionsuccess.execute(result[2])
+            action.Pass.execute(result[0], result[2])
         if(result[1] == 'Intercept'):
-            actionsuccess = action.Intercept('Intercept')
-            actionsuccess.execute(result[1])
+            action.Intercept.execute(result[0])
         if(result[1] == 'Entry'):
-            actionsuccess = action.Entry('Entry')
-            actionsuccess.execute(result[1])
+            action.Entry.execute(result[0])
         if(result[1] == 'Defend' ):
-            actionsuccess = action.Tackle('Tackle')
-            actionsuccess.execute(result[1])
+            action.Tackle.execute(result[0])
         
         
     def get_best_solution(self , sol , variables):
@@ -84,10 +85,10 @@ class Football(Game):
         final_sol = None 
         for s in sol :
             sol_act , sol_prec = s.solution(variables)
-            if(sol_act > best):
-                best = sol_act
+            if(sol_prec > best):
+                best = sol_prec
                 final_sol = sol_act
-        return final_sol.path()[1].best
+        return final_sol.path()[1].action, best
 
     def move_player(self,x:int,y:int,player:Player, field:list[Zone]):
         zones = {}
@@ -101,7 +102,7 @@ class Football(Game):
     def choose_player_success(self, player_with_ball: Tuple[Player, Action], dicc: Dict[str, Player], adversaries: List[Tuple[Player, str]], pos_to_zone: Dict[Tuple[int, int], Zone]):
         all_players = [player_with_ball] + adversaries
         current_player, action = player_with_ball
-        player_prob = current_player.attributes_score[action]
+        player_prob = current_player.attributes_score[action.name]
         real_adversaries = []
         positions_arr = [(0,1), (1,0), (0,-1), (-1, 0), (1,1), (-1,-1), (1,-1), (-1,1)]
 
@@ -127,6 +128,7 @@ class Football(Game):
             
             return result
 
+
         elif action.name == 'Shoot':
             real_adversaries = [(p, act) for p, act in adversaries if p.current_position == current_player.current_position or p.role == 'G']
             total = sum([x[0].attributes_score[x[1]] for x in real_adversaries]) + player_prob
@@ -142,6 +144,7 @@ class Football(Game):
                 if x[0].name == succesful_player:
                     if type(x[1]) == Action:
                         result = (x[0], x[1].name)
+                        print('Disparo:', result)
                     else:
                         result = (x[0], x[1])
                     break
@@ -149,7 +152,11 @@ class Football(Game):
             return result
         elif action.name == 'Move':
             current_zone = current_player.current_position
-            possible_coords_zones = [current_zone.get_coords() + pos for pos in positions_arr if current_zone.get_coords() + pos in pos_to_zone]
+            # print('current_zone_coords', current_zone.get_coords())
+            # print('pos_to_zone', pos_to_zone )
+            # print('mmm', current_zone.get_coords()+positions_arr[0])
+            current_zone_coords = current_zone.get_coords()
+            possible_coords_zones = [(current_zone_coords[0]+pos[0], current_zone_coords[1]+pos[1]) for pos in positions_arr if (current_zone_coords[0]+pos[0], current_zone_coords[1]+pos[1]) in pos_to_zone]
             zones_probs: Dict[Zone, Dict[Player, float]] = {}
             for coords in possible_coords_zones:
                 possible_adversaries = [(p, act) for p, act in adversaries if p.current_position.get_coords() == coords]
@@ -163,7 +170,9 @@ class Football(Game):
             total_success = sum(success_arr)
             normalized_success_arr = [x/total_success for x in success_arr]
 
-            target_coords_zone = np.random.choice(possible_coords_zones, p=normalized_success_arr)
+            # print('possible coords_zones', possible_coords_zones)
+            target_index_coords_zone = np.random.choice([i for i in range(len(possible_coords_zones))], p=normalized_success_arr)
+            target_coords_zone = possible_coords_zones[target_index_coords_zone]
             target_zone = pos_to_zone[target_coords_zone]
 
             target_players = zones_probs[target_zone].keys()
@@ -191,7 +200,7 @@ class Football(Game):
                     continue
                 if(self.IsValid(player.current_position.row + 1)):
                     # player.position.row += 1
-                    self.move_player(player.current_position.row+1,player.current_position.column,player,team.field.zones)
+                    self.move_player(player.current_position.row+1,player.current_position.column,player,self.field.field)
 
     def move_player_in_team_without_ballposicion(self , player_with_ball : Player ,team : Team):
         actions = []
@@ -216,11 +225,11 @@ class Football(Game):
     def initialize_attakers_positions(self, firstTeam: Team, secondTeam: Team):
         for i in range(len(firstTeam.players)):
             if firstTeam.players[i].role == 'F':
-                self.move_player(firstTeam.players[i].position.row-1,firstTeam.players[i].position.column,firstTeam.players[i],firstTeam.field.zones)
+                self.move_player(firstTeam.players[i].position.row-1,firstTeam.players[i].position.column,firstTeam.players[i],self.field.field)
                 # firstTeam.players[i] = firstTeam.players[i].current_position.row - 1 
 
             if secondTeam.players[i].role == 'F':
-                self.move_player(secondTeam.players[i].position.row-1,secondTeam.players[i].position.column,secondTeam.players[i],secondTeam.field.zones)
+                self.move_player(secondTeam.players[i].position.row-1,secondTeam.players[i].position.column,secondTeam.players[i],self.field.field)
                 # secondTeam.players[i] = secondTeam.players[i].current_position.row - 1 
 
         return firstTeam, secondTeam

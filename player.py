@@ -60,5 +60,11 @@ class Player:
 
         else:
             attributes_score['Defend'] = sum(data.values()) / len(data)
+            attributes_score['Pass'] = data['tactical'] * data['ballDistribution']
+            attributes_score['Shoot'] = 0.05
+            attributes_score['Entry'] = 0.05
+            attributes_score['Move'] = 0
+            attributes_score['Intercept'] = 0.1
+
 
         return attributes_score

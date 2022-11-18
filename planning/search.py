@@ -103,7 +103,8 @@ class Node:
             1: 0.5,
             0: 0.2
         }
-        prob = players[str(node.action.args[0])].attributes_score[node.action.name.lower()]
+        
+        prob = players[str(node.action.args[0])].attributes_score[node.action.name]
         # print(players[str(node.action.args[0])].attributes_score)
         if node.action.name == 'Shoot':
             position = players[str(node.action.args[0])]
