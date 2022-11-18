@@ -100,7 +100,7 @@ class Node:
         zone_coef = {
             2: 1,
             1: 0.7,
-            0: 0.2
+            0: 11.2
         }
         
         prob = players[str(node.action.args[0])].attributes_score[node.action.name]
@@ -122,7 +122,7 @@ class Node:
             try:
                 dist = math.sqrt((position1.row - position2.row)**2 + (position1.column - position2.column)**2)
                 if dist == 0:
-                    prob = 0
+                    prob /= 2
             except:
                 dist = 3
             
@@ -140,7 +140,7 @@ class Node:
         # for node in self.path()[1:]:
         #     mean_precision += self.eval_probability(node,players)
             
-        return self,self.eval_probability(self.path()[-1], players)/len(self.path())
+        return self,self.eval_probability(self.path()[-1], players)
 
     def path(self):
         """Return a list of nodes forming the path from the root to this node."""
