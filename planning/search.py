@@ -118,14 +118,14 @@ class Node:
             prob *= zone_coef[position.row]
             if len(node.action.args) > 1 and node.action.args[1] is not None:
                 position1 = players[str(node.action.args[0])].position
-            position2 = players[str(node.action.args[1])].position
+                position2 = players[str(node.action.args[1])].position
             # calculate distance between players and that will affect the probability of success
-            try:
-                dist = math.sqrt((position1.row - position2.row)**2 + (position1.column - position2.column)**2)
-            except:
-                dist = 3
+                try:
+                    dist = math.sqrt((position1.row - position2.row)**2 + (position1.column - position2.column)**2)
+                except:
+                    dist = 3
                 
-            prob *= (1/(1+dist))
+                prob *= (1/(1+dist))
                 
         if node.parent is not None and node.parent.action is not None:
             prob = self.eval_probability(node.parent, players) + prob
