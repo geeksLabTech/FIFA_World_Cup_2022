@@ -53,7 +53,7 @@ class Football(Game):
             # self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
             print("Time: ", i, end="\r")
         print("Game Over")
-        if(self.points[0] > self.points[1]):
+        if self.points[0] > self.points[1]:
             print(f"Team {self.team1.team_name} win" , self.points)
         elif self.points[0] < self.points[1]:
             print(f'Team {self.team2.team_name} win' , self.points)
@@ -61,7 +61,7 @@ class Football(Game):
             print(f'Draw {self.team1.team_name} {self.team2.team_name}')
 
     def process_results (self , result):
-        if(result[1] == 'Shoot'):
+        if result[1] == 'Shoot':
             print('Ejecuto disparo')
             team_with_ball = None
             team = result[0].team
