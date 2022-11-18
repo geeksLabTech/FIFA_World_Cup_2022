@@ -40,11 +40,11 @@ class Player:
                 'saves',
                 'tactical'])
             
-            normalized_data['aerial'] = float(self.features['aerial'])
-            normalized_data['anticipation'] = float(self.features['anticipation'])
-            normalized_data['ballDistribution'] = float(self.features['ballDistribution'])
-            normalized_data['saves'] = float(self.features['saves'])
-            normalized_data['tactical'] = float(self.features['tactical'])
+            normalized_data['aerial'] = float(self.features['aerial'])/100
+            normalized_data['anticipation'] = float(self.features['anticipation'])/100
+            normalized_data['ballDistribution'] = float(self.features['ballDistribution'])/100
+            normalized_data['saves'] = float(self.features['saves'])/100
+            normalized_data['tactical'] = float(self.features['tactical'])/100
 
         return normalized_data
 
