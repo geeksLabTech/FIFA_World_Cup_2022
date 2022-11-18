@@ -11,6 +11,7 @@ from zone import Zone
 import random
 from planning.planning import ForwardPlan
 from planning.search import breadth_first_tree_search
+from planning.planning import Action
 
 class Game(ABC) :
     def __init__(self, team1 : Team, team2 : Team, field : Field , time , points : list ):
@@ -46,13 +47,38 @@ class Football(Game):
             variables ,problem =football.football_model(team_with_posecionball,player_with_ballposition)
             sol = breadth_first_tree_search(ForwardPlan(problem))[0]
             action_player_ballpocision = self.get_best_solution(sol,variables)
-            player_success = self.choose_player_success((player_with_ballposition,action_player_ballpocision), variables,actions_defenses)
+            results = self.choose_player_success((player_with_ballposition,action_player_ballpocision), variables,actions_defenses)
+            self.process_results(results)
             # self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
             print("Time: ", i, end="\r")
         print("Game Over")
         if(self.points[0] > self.points[1]):
             print("Team 1 win" , self.points)
         else : print('Team 2 win' , self.points)
+
+    def process_results (self , result):
+
+        if(result[1] == 'Shoot'):
+            self.points[0] += 1
+        if(result[1] == 'Move'):
+            actionsuccess = action.Move('Move')
+            actionsuccess.execute(result[0],result[2])
+        if(result[1] == 'Pass'):
+            actionsuccess = action.Pass('Pass')
+            actionsuccess.execute(result[2])
+        if(result[1] == 'Intercept'):
+            actionsuccess = action.Intercept('Intercept')
+            actionsuccess.execute(result[1])
+        if(result[1] == 'Entry'):
+            actionsuccess = action.Entry('Entry')
+            actionsuccess.execute(result[1])
+        if(result[1] == 'Defend' ):
+            actionsuccess = action.Tackle('Tackle')
+            actionsuccess.execute(result[1])
+        
+        
+        
+
 
 
     def get_best_solution(self , sol , variables):
@@ -73,26 +99,92 @@ class Football(Game):
                     zones[(a,b)] = i
         player.current_position = zones[(x,y)]
 
+    # TODO Refactor this function
+    def choose_player_success(self, player_with_ball: Tuple[Player, Action], dicc: Dict[str, Player], adversaries: List[Tuple[Player, str]], pos_to_zone: Dict[Tuple[int, int], Zone]):
+        all_players = [player_with_ball] + adversaries
+        current_player, action = player_with_ball
+        player_prob = current_player.attributes_score[action]
+        real_adversaries = []
+        positions_arr = [(0,1), (1,0), (0,-1), (-1, 0), (1,1), (-1,-1), (1,-1), (-1,1)]
 
-    def choose_player_success(self, player_with_ball: Tuple[Player, str], adversaries: List[Tuple[Player, action.Action]]):
+        if action.name == 'Pass':
+            target_player = dicc[str(action.args[1])]
+            real_adversaries = [(p, act) for p, act in adversaries if p.current_position == target_player.current_position or p.current_position == current_player.current_position]
+            total = sum([x[0].attributes_score[x[1]] for x in real_adversaries]) + player_prob
+            success_probs = [player_prob/total]
+            players_to_choose = [player_with_ball] + real_adversaries
+            for x in real_adversaries:
+                adv_prov = x[0].attributes_score[x[1]] / total
+                success_probs.append(adv_prov)
+            
+            succesful_player = np.random.choice([x[0].name for x in players_to_choose], p=success_probs)
+            result = ()
+            for x in all_players:
+                if x[0].name == succesful_player:
+                    if type(x[1]) == Action:
+                        result = (x[0], x[1].name, target_player)
+                    else:
+                        result = (x[0], x[1])
+                    break
+            
+            return result
 
-        player, action = player_with_ball
+        elif action.name == 'Shoot':
+            real_adversaries = [(p, act) for p, act in adversaries if p.current_position == current_player.current_position or p.role == 'G']
+            total = sum([x[0].attributes_score[x[1]] for x in real_adversaries]) + player_prob
+            success_probs = [player_prob/total]
+            players_to_choose = [player_with_ball] + real_adversaries
+            for x in real_adversaries:
+                adv_prov = x[0].attributes_score[x[1]] / total
+                success_probs.append(adv_prov)
+            
+            succesful_player = np.random.choice([x[0].name for x in players_to_choose], p=success_probs)
+            result = ()
+            for x in all_players:
+                if x[0].name == succesful_player:
+                    if type(x[1]) == Action:
+                        result = (x[0], x[1].name)
+                    else:
+                        result = (x[0], x[1])
+                    break
+            
+            return result
+        elif action.name == 'Move':
+            current_zone = current_player.current_position
+            possible_coords_zones = [current_zone.get_coords() + pos for pos in positions_arr if current_zone.get_coords() + pos in pos_to_zone]
+            zones_probs: Dict[Zone, Dict[Player, float]] = {}
+            for coords in possible_coords_zones:
+                possible_adversaries = [(p, act) for p, act in adversaries if p.current_position.get_coords() == coords]
+                total = sum([x[0].attributes_score[x[1]] for x in possible_adversaries]) + player_prob
+                zones_probs[pos_to_zone[coords]] = {current_player: player_prob/total}
+                for x in possible_adversaries:
+                    adv_prov = x[0].attributes_score[x[1]]
+                    zones_probs[pos_to_zone[coords]][x[0]] = adv_prov/total
+                
+            success_arr = [zones_probs[x][current_player] for x in zones_probs]
+            total_success = sum(success_arr)
+            normalized_success_arr = [x/total_success for x in success_arr]
 
-        player_prob = player.attributes_score[action]
-        # Dictionary with player name as key and TabularCPD as value
-        total = sum([x[0].attributes_score[x[1]] for x in adversaries]) + player_prob
-        model = {player.name: player_prob/total}
-        for adversary in adversaries:
-            player, action = adversary
-            if player.role == 'G':
-                player_prob = player.attributes_score[action]
-            else:
-                player_prob = player.attributes_score[action]
-            model[player.name] = player_prob/total
+            target_coords_zone = np.random.choice(possible_coords_zones, p=normalized_success_arr)
+            target_zone = pos_to_zone[target_coords_zone]
 
-        # Choose a random action in model based on player_probs
-        player_name = np.random.choice(list(model.keys()), p=list(model.values()))
-        return player_name
+            target_players = zones_probs[target_zone].keys()
+            target_probs = []
+            for x in target_players:
+                target_probs.append(zones_probs[target_zone][x])
+
+            succesful_player = np.random.choice([x.name for x in target_players], p=target_probs)
+            result = ()
+            for x in all_players:
+                if x[0].name == succesful_player:
+                    if type(x[1]) == Action:
+                        result = (x[0], x[1].name, target_zone)
+                    else:
+                        result = (x[0], x[1])
+                    break
+            
+            return result
+            
       
     def move_player_in_team_with_ballposicion(self , player_with_ball : Player , team : Team):
         for player in team.players:
@@ -107,13 +199,13 @@ class Football(Game):
         actions = []
         for player in team.players:
             if(player.role == 'G'):
-                actions.append((player,'Defening'))
+                actions.append((player,'Defend'))
             if(player.current_position == player_with_ball.current_position):  
                 actions.append((player,'Entry'))
             elif(not player.current_position  == player.position):
                 if(self.IsValid(player.current_position.row - 1)):
                     player.position.row += 1
-                    actions.append((player,'Intercet'))
+                    actions.append((player,'Intercept'))
         return actions
 
     def select_initial_team_with_ball(self):
