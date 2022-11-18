@@ -49,7 +49,7 @@ class Football(Game):
             action_of_player_with_ball, prob = self.get_best_solution(sol,variables)
             print('action', action_of_player_with_ball, type(action_of_player_with_ball))
             results = self.choose_player_success((player_with_ballposition, action_of_player_with_ball), variables,actions_defenses, self.field.coords_to_zone)
-            player_with_ballposition = self.process_results(results)
+            player_with_ballposition , team_with_ball_possession = self.process_results(results)
             # self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
             print("Time: ", i, end="\r")
         print("Game Over")
@@ -73,19 +73,23 @@ class Football(Game):
                 team_with_ball = self.team1
             self.set_players_to_original_positions(self.team1 , self.team2)
             self.initialize_attakers_positions(self.team1 , self.team2)
-            self.select_initial_player_with_ball(team_with_ball)
+            return self.select_initial_player_with_ball(team_with_ball) , team_with_ball
+            
         if(result[1] == 'Move'):
             action.Move.execute(result[0],result[2])
-            return result[0]
+            return result[0] , result[0].team
         if(result[1] == 'Pass'):
             action.Pass.execute(result[0], result[2])
-            return result[2]
+            return result[0] , result[0].team
         if(result[1] == 'Intercept'):
             action.Intercept.execute(result[0], result[2])
+            return result[0] , result[0].team
         if(result[1] == 'Entry'):
             action.Entry.execute(result[0] , result[2])
+            return result[0] , result[0].team
         if(result[1] == 'Defend' ):
             action.Tackle.execute(result[0], result[2])
+            return result[0], result[0].team
         
         
     def get_best_solution(self , sol , variables):
