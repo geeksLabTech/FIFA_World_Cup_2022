@@ -51,4 +51,4 @@ def run_group_matches(matches: List[Tuple[str, str]], group_name: str, field, it
 group_E = [('spain', 'japan')]
 
 
-run_group_matches(group_E, 'group_E', field)
+run_group_matches(group_E, 'group_E3', field)
