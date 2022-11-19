@@ -152,7 +152,7 @@ class Football(Game):
             if succesful_player == 0:
                 succesful_player = current_player.name
             else:
-                print(adversaries_probs)
+                # print(adversaries_probs)
                 succesful_player = self.select_sucessful_adversary([x[0] for x in real_adversaries], adversaries_probs)
             result = ()
             # print("player satisfactorio vs todos: ", succesful_player, all_players)
@@ -168,7 +168,7 @@ class Football(Game):
 
 
         elif action.name == 'Shoot':
-            print(f'Player {current_player.name} is shooting')
+            # print(f'Player {current_player.name} is shooting')
             real_adversaries = [(p, act) for p, act in adversaries if p.current_position == current_player.current_position or p.role == 'G']
             total = sum([x[0].attributes_score[x[1]] for x in real_adversaries]) + player_prob
             success_probs = [player_prob/total]
