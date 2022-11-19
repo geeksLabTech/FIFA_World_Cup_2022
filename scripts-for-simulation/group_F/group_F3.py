@@ -53,4 +53,4 @@ group_F = [('belgium', 'croatia')]
 
 
 
-run_group_matches(group_F, 'group_F', field)
+run_group_matches(group_F, 'group_F3', field)
