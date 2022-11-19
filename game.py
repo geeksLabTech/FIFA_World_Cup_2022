@@ -34,7 +34,7 @@ class Football(Game):
         team_with_ball_possession = self.select_initial_team_with_ball()
         player_with_ballposition = self.select_initial_player_with_ball(team_with_ball_possession)
         self.initialize_attakers_positions(self.team1 , self.team2)
-        print('Initialization Complete')
+        # print('Initialization Complete')
         for i in range(self.time):
             # for i in self.team1.players:
             #     print(i.position.name)
@@ -53,11 +53,11 @@ class Football(Game):
             temp_player_with_ballposition , temp_team_with_ball_possession = self.process_results(results)
             if temp_player_with_ballposition != player_with_ballposition:
                 # print(player_with_ballposition.name, "no longer has the ball")
-                print(temp_player_with_ballposition.name, "now has the ball")
+                # print(temp_player_with_ballposition.name, "now has the ball")
                 player_with_ballposition = temp_player_with_ballposition
             if temp_team_with_ball_possession != team_with_ball_possession:
                 # print(team_with_ball_possession.team_name," loses the ball")
-                print(temp_team_with_ball_possession.team_name," now has the ball")
+                # print(temp_team_with_ball_possession.team_name," now has the ball")
                 team_with_ball_possession = temp_team_with_ball_possession
             # self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
             print("Time: ", i, end="\r")
@@ -73,7 +73,7 @@ class Football(Game):
 
     def process_results (self , result):
         if result[1] == 'Shoot':
-            print(f'{result[0].name} Goooooooalll')
+            # print(f'{result[0].name} Goooooooalll')
             team_with_ball = None
             team = result[0].team
             if team == self.team1:
