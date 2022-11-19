@@ -120,6 +120,8 @@ class Football(Game):
             for a in range(3):
                 for b in range(3):
                     zones[(a,b)] = i
+        x = max(0,x)
+        y = max(0,y)
         player.current_position = zones[(x,y)]
 
     # TODO Refactor this function

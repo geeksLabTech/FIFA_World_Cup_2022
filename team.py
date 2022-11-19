@@ -37,7 +37,7 @@ class Team():
             team = self
             try:
                 features = data[self.team_name][p]
-            except KeyError:
+            except:
                 features = {}
             position = "M"
             players.append(Player(name,team,features,position, zones[3+en%3], zones[3+en%3] , False))
@@ -46,7 +46,7 @@ class Team():
             team = self
             try:
                 features = data[self.team_name][p]
-            except KeyError:
+            except:
                 features = {}
             position = "D"
             players.append(Player(name,team,features,position, zones[en%3], zones[en%3] , False))
@@ -55,7 +55,10 @@ class Team():
 
         name = p
         team = self
-        features = data[self.team_name][p]
+        try:
+            features = data[self.team_name][p]
+        except:
+            features = {}
         position = "G"
         players.append(Player(name,team,features,position, Zone("Gate",5,5,"Gate"), Zone("Gate",5,5,"Gate") , False))
         assert len(players) == 11
