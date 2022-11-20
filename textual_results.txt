@@ -1,0 +1,39 @@
+A - Senegal Ecuador
+B - England usa
+C - Argetntina Polonia
+D - Francia Australia
+E - Alemania España
+F - Belgica maruecos
+G - brasil cameroon
+H - portugal korea-sur
+
+-----------------------------
+
+Senegal usa  49 -- Usa
+Argetntina Australia 51  -- arg
+
+Francia Polonia 50 -- fra
+England Ecuador 52 -- eng
+
+germany maruecos 53 -- ger
+Belgica spain 55 -- bel
+
+brasil korea 54 -- bra
+portugal cameroon 56 -- cam
+
+----------------------------
+
+fra usa (1) -- fra
+ger bra (2) -- bra
+arg eng (3) -- arg
+bel cam (4) -- bel
+
+---------------------------
+semifinal
+fra bra (1) -- fra
+bel arg (2) -- 
+
+---------------------------
+final y 3er lugar
+fra arg (1) -- 
+bra bel (2) -- 
