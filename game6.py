@@ -48,7 +48,7 @@ def run_group_matches(matches: List[Tuple[str, str]], group_name: str, field, it
     df.to_csv(f'{group_name}.csv')
 
 
-group_C = [('mexico', 'poland')]
+group_C = [('france', 'argentina')]
 
 
-run_group_matches(group_C, 'group_C6', field)
+run_group_matches(group_C, 'bra-arg', field)
