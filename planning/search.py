@@ -128,10 +128,7 @@ class Node:
             
             # print("distncia:", dist)
             prob /= (1+dist)
-                
-        if node.parent is not None and node.parent.action is not None:
-            prob = self.eval_probability(node.parent, players)
-        # print(prob)
+            
         return prob
 
     def solution(self,players):
