@@ -1,12 +1,19 @@
 {
   "germany": {
+    "att_oth":[
+      "Leroy-sane"
+    ],
     "att": [
       "Thomas-muller",
-      "Leroy-sane",
-      "Kai-havertz"
+      "Jamal-musiala",
+      "Kai-havertz",
+      "Serge-gnabry"
+    ],
+    "def_oth":[
+      "Lukas-klostermann"
     ],
     "def": [
-      "Lukas-klostermann",
+      "Nico-schlotterbeck",
       "Niklas-sule",
       "Antonio-rudiger",
       "David-raum"
@@ -14,17 +21,21 @@
     "goalkeeper": "Manuel-neuer",
     "mid": [
       "Ilkay-gundogan",
-      "Joshua-kimmich",
-      "Jamal-musiala"
+      "Joshua-kimmich"
     ]
   },
   "saudi-arabia": {
+    "att_oth":[
+      "Firas-al-buraikan"
+    ],
     "att": [
       "Salem-al-dawsari",
       "Saleh-al-shehri",
-      "Firas-al-buraikan"
+      "Mohamed-kanno",
+      "Salman-al-faraj"
     ],
     "def": [
+      "Hassan-al-tambakti",
       "Mohammed-al-burayk",
       "Abdulelah-al-amri",
       "Al Bulayhi",
@@ -32,27 +43,30 @@
     ],
     "goalkeeper": "Mohammed-al-owais",
     "mid": [
-      "Mohamed-kanno",
-      "Salman-al-faraj",
       "Hattan-bahebri"
     ]
   },
   "argentina": {
+    "att_oth":["Nicolas-gonzalez"],
+
     "att": [
-      "Angel-di-maria",
-      "Nicolas-gonzalez",
       "Lautaro-martinez",
       "Lionel-messi"
+    ],
+    "def_oth": [
+      "Marcos-acuna"
     ],
     "def": [
       "Nahuel-molina",
       "Cristian-romero",
       "Nicolas-otamendi",
-      "Marcos-acuna"
+      "Nicolas-tagliafico"
     ],
     "goalkeeper": "Emiliano-martinez",
     "mid": [
+      "Angel-di-maria",
       "Rodrigo-de-paul",
+      "Papu-gomez",
       "Leandro-paredes"
     ]
   },
@@ -62,9 +76,12 @@
       "Martin-boyle",
       "Mitchell-duke"
     ],
+    "def_oth": [
+      "Bailey-wright"
+    ],
     "def": [
       "Nathaniel-atkinson",
-      "Bailey-wright",
+      "Harry-souttar",
       "Kye-rowles",
       "Aziz-behich"
     ],
@@ -81,17 +98,21 @@
       "Eden-hazard",
       "Michy-batshuayi"
     ],
-    "def": [
+    "def_oth":[
       "Thomas-meunier",
+      "Zeno-debast"
+    ],
+    "def": [
       "Toby-alderweireld",
       "Jan-vertonghen",
-      "Zeno-debast",
-      "Yannick-carrasco"
+      "Leander-dendoncker"
     ],
     "goalkeeper": "Thibaut-courtois",
     "mid": [
       "Axel-witsel",
-      "Youri-tielemans"
+      "Youri-tielemans",
+      "Timothy-castagne",
+      "Yannick-carrasco"
     ]
   },
   "brazil": {
@@ -102,10 +123,10 @@
       "Neymar"
     ],
     "def": [
-      "Eder-militao",
+      "Danilo",
       "Marquinhos",
       "Thiago-silva",
-      "Alex-telles"
+      "Alex-sandro"
     ],
     "goalkeeper": "Alisson",
     "mid": [
@@ -114,51 +135,67 @@
     ]
   },
   "cameroon": {
-    "att": [
+    "att_oth":[
       "Nicolas-moumie-ngamaleu",
+      "Vincent-aboubakar"
+    ],
+    "att": [
+      "Bryan-mbeumo",
       "Eric-maxim-choupo-moting",
-      "Vincent-aboubakar",
       "Karl-toko-ekambi"
     ],
+    "def_oth":["Michael-ngadeu"],
     "def": [
       "Collins-fai",
       "Jean-charles-castelletto",
-      "Michael-ngadeu",
+      "Nicolas-nkoulou",
       "Nouhou-tolo"
     ],
     "goalkeeper": "Andre-onana",
     "mid": [
       "Frank-anguissa",
-      "Samuel-oum-gouet"
+      "Samuel-oum-gouet",
+      "Martin-hongla"
     ]
   },
   "canada": {
     "att": [
-      "Cyle-larin",
+      "Tajon-buchanan",
+      "Junior-hoilett",
       "Jonathan-david"
     ],
+    "def_oth":[
+      "Cyle-larin",
+      "Sam-adekugbe"
+    ],
     "def": [
-      "Tajon-buchanan",
       "Alistair-johnston",
       "Steven-vitoria",
-      "Kamal-miller",
-      "Sam-adekugbe"
+      "Kamal-miller"
     ],
     "goalkeeper": "Milan-borjan",
     "mid": [
       "Stephen-eustaquio",
       "Atiba-hutchinson",
+      "Richie-laryea",
       "Alphonso-davies"
     ]
   },
   "south-korea": {
+    "att_oth":[
+      "Hee-chan-hwang"
+
+    ],
     "att": [
       "Jae-sung-lee",
-      "Hee-chan-hwang",
-      "Heung-min-son"
+      "Hwang-eui-jo",
+      "Heung-min-son",
+      "Sang-ho-na"
+    ],
+    "def_oth":[
+      "Tae-hwan-kim"
     ],
     "def": [
-      "Tae-hwan-kim",
       "Min-jae-kim",
       "Young-gwon-kim",
       "Jin-su-kim"
@@ -167,7 +204,7 @@
     "mid": [
       "Woo-young-jung",
       "In-beom-hwang",
-      "Woo-yeong-jeongg"
+      "Moon-hwan-kim"
     ]
   },
   "costa-rica": {
@@ -182,24 +219,35 @@
       "Bryan-oviedo"
     ],
     "goalkeeper": "Keylor-navas",
+    "mid_oth":[
+      "Jewison-bennette"
+    ],
     "mid": [
       "Celso-borges",
       "Yeltsin-tejeda",
       "Torres-gerson",
-      "Jewison-bennette"
+      "Keysher-fuller"
     ]
   },
   "croatia": {
+    "att_oth":[
+      "Mislav-orsic"
+    ],
     "att": [
-      "Mislav-orsic",
+      "Nikola-vlasic",
       "Ivan-perisic",
       "Andrej-kramaric"
     ],
+    "def_oth":[
+      "Domagoj-vida",
+      "Borna-barisic"
+      
+    ],
     "def": [
       "Josip-juranovic",
-      "Domagoj-vida",
       "Josko-gvardiol",
-      "Borna-barisic"
+      "Dejan-lovren",
+      "Borna-sosa"
     ],
     "goalkeeper": "Dominik-livakovic",
     "mid": [
@@ -209,19 +257,23 @@
     ]
   },
   "denmark": {
-    "att": [
+    "att_oth":[      
       "Damsgaard-mikkel",
-      "Andreas-skov-olsen",
       "Martin-braithwaite"
     ],
+    "att": [
+      "Andreas-skov-olsen",
+      "Kasper-dolberg"
+    ],
     "def": [
-      "Rasmus-kristensen",
       "Joachim-andersen",
       "Andreas-christensen",
-      "Joakim-maehle"
+      "Simon-kjaer"
     ],
     "goalkeeper": "Kasper-schmeichel",
     "mid": [
+      "Rasmus-kristensen",
+      "Joakim-maehle",
       "Pierre-emile-hojbjerg",
       "Thomas-delaney",
       "Christian-eriksen"
@@ -229,34 +281,52 @@
   },
   "ecuador": {
     "att": [
-      "Gonzalo-plata",
-      "Ibarra-romario",
+      "Enner-valencia",
       "Michael-estrada"
     ],
-    "def": [
+    "def_oth":[
       "Byron-castillo",
-      "Jackson-porozo",
-      "Piero-hincapie",
-      "Pervis-estupinan"
+      "Jackson-porozo"
     ],
-    "goalkeeper": "Alexander-dominguez",
-    "mid": [
+    "def": [
+      "Piero-hincapie",
+      "Pervis-estupinan",
+      "Felix-torres",
+      "Ayrton-preciado"
+    ],
+    "goalkeeper_oth": ["Alexander-dominguez"],
+    "goalkeeper": "Hernan-galindez",
+    "mid_oth":[
       "Carlos-gruezo",
-      "Moises-caicedo",
       "Angel-mena"
+    ],
+    "mid": [
+      "Moises-caicedo",
+      "Gonzalo-plata",
+      "Ibarra-romario",
+      "Jhegson-mendez"
     ]
   },
   "spain": {
-    "att": [
-      "Dani-olmo",
+    "att_oth":[
       "Pablo-sarabia",
       "Alvaro-morata"
     ],
-    "def": [
+    "att": [
+      "Dani-olmo",
+      "Marco-asensio",
+      "Ferran-torres"
+    ],
+    "def_oth":[
       "Daniel-carvajal",
       "Eric-garcia",
-      "Aymeric-laporte",
       "Jose-luis-gaya"
+    ],
+    "def": [
+      "Aymeric-laporte",
+      "Jordi-alba",
+      "Rodri",
+      "Cesar-azpilicueta"
     ],
     "goalkeeper": "Unai-simon",
     "mid": [
@@ -266,16 +336,23 @@
     ]
   },
   "usa": {
+    "att_oth":[
+      "Giovanni-reyna"
+    ],
     "att": [
-      "Giovanni-reyna",
       "Christian-pulisic",
-      "Weah-timothy"
+      "Weah-timothy",
+      "Josh-sargent"
+    ],
+    "def_oth":[ 
+      "Cameron-carter-vickers",
+      "Aaron-long"
     ],
     "def": [
       "Sergino-dest",
-      "Cameron-carter-vickers",
-      "Aaron-long",
-      "Antonee-robinson"
+      "Antonee-robinson",
+      "Zimmerman-walker",
+      "Tim-ream"
     ],
     "goalkeeper": "Matt-turner",
     "mid": [
@@ -288,13 +365,16 @@
     "att": [
       "Antoine-griezmann",
       "Kylian-mbappe",
-      "Karim-benzema"
+      "Ousmane-dembele",
+      "Olivier-giroud"
+    ],
+    "def_oth":[
+      "Raphael-varane"
     ],
     "def": [
       "Benjamin-pavard",
       "Dayot-upamecano",
       "Jules-kounde",
-      "Raphael-varane",
       "Lucas-hernandez"
     ],
     "goalkeeper": "Hugo-lloris",
@@ -304,54 +384,72 @@
     ]
   },
   "wales": {
+    "att_oth": [
+      "Brennan-johnson"
+    ],
     "att": [
       "Daniel-james",
-      "Brennan-johnson",
       "Gareth-bale"
     ],
     "def": [
-      "Connor-roberts",
       "Chris-mepham",
       "Rodon-joe",
-      "Adam-davies",
-      "Williams-neco"
+      "Adam-davies"
     ],
     "goalkeeper": "Wayne-hennessey",
     "mid": [
+      "Connor-roberts",
+      "Williams-neco",
       "Joe-allen",
+      "Aaron-ramsey",
       "Ethan-ampadu"
     ]
   },
   "ghana": {
+    "att_oth": [
+      "Afena-Gyan",
+      "Jordan-ayew"
+    ],
     "att": [
       "Inaki-williams",
-      "Jordan-ayew",
-      "Afena-Gyan",
-      "Mohammed-kudus"
+      "Andre-ayew"
+    ],
+    "def_oth":[
+      "Denis-odoi"
     ],
     "def": [
-      "Denis-odoi",
       "Daniel-amartey",
       "Alexander-djiku",
-      "Abdul-baba-rahman"
+      "Abdul-baba-rahman",
+      "Mohammed-salisu",
+      "Alidu-seidu"
     ],
-    "goalkeeper": "Wollacott",
+    "goalkeeper_oth": ["Wollacott"],
+    "goalkeeper": "Lawrence-ati",
     "mid": [
+      "Mohammed-kudus",
       "Thomas-partey",
       "Abdul-samed-salis"
     ]
   },
   "england": {
+    "att_oth":[
+      "Foden-phil"
+    ],
     "att": [
       "Raheem-sterling",
-      "Foden-phil",
+      "Bukayo-saka",
+      "Mason-mount",
       "Harry-kane"
+    ],
+    "def_oth":[
+      "Kyle-walker",
+      "Eric-dier"
     ],
     "def": [
       "Kieran-trippier",
-      "Kyle-walker",
-      "Eric-dier",
       "Harry-maguire",
+      "John-stones",
       "Luke-shaw"
     ],
     "goalkeeper": "Jordan-pickford",
@@ -361,41 +459,64 @@
     ]
   },
   "iran": {
-    "att": [
-      "Alireza-jahanbakhsh",
-      "Mehdi-taremi",
+    "att_oth":[
       "Sardar-azmoun"
+    ],
+    "att": [
+      "Mehdi-taremi"
+    ],
+    "def_oth":[
+      "Kanaanizadegan"
+
     ],
     "def": [
       "Sadegh-moharrami",
-      "Kanaanizadegan",
       "Majid-hosseini",
-      "Hajsafi"
+      "Milad-mohammadi",
+      "Roozbeh-cheshmi",
+      "Morteza-pouraliganji"
     ],
     "goalkeeper": "Alireza-beiranvand",
     "mid": [
+      "Alireza-jahanbakhsh",
+      "Safi-ehsan-haji",
+      "Ali-karimi",
+      "Ahmad-nourollahi"
+    ],
+    "mid_oth":[
       "Saeid-ezatolahi",
       "Saman-ghoddos",
       "Ali-gholizadeh"
     ]
   },
   "japan": {
-    "att": [
+    "att_oth":[
       "Takumi-minamino",
       "Takuma-asano"
     ],
-    "def": [
+    "att": [
+      "Kubo-takefusa",
+      "Junya-ito",
+      "Daichi-kamada",
+      "Daizen-maeda"
+    ],
+    "def_oth":[
       "Miki-yamane",
-      "Tomiyasu-takehiro",
+      "Tomiyasu-takehiro"
+    ],
+    "def": [
       "Maya-yoshida",
-      "Yuto-nagatomo"
+      "Yuto-nagatomo",
+      "Ko-itakura",
+      "Hiroki-sakai"
     ],
     "goalkeeper": "Shuichi-gonda",
+    "mid_oth":[
+      "Hidemasa-morita"
+    ],
     "mid": [
       "Wataru-endo",
-      "Hidemasa-morita",
-      "Kubo-takefusa",
-      "Junya-ito"
+      "Ao-tanaka"
     ]
   },
   "morocco": {
@@ -418,79 +539,113 @@
     ]
   },
   "mexico": {
+    "att_oth":["Raul-jimenez"],
     "att": [
       "Alexis-vega",
       "Hirving-lozano",
-      "Raul-jimenez"
+      "Henry-martin"
+    ],
+    "def_oth":[
+      "Kevin-alvarez",
+      "Nestor-araujo"
     ],
     "def": [
-      "Kevin-alvarez",
-      "Nestor-araujo",
+      "Jorge-sanchez",
+      "Cesar-montes",
       "Hector-moreno",
       "Jesus-gallardo"
     ],
     "goalkeeper": "Guillermo-ochoa",
+    "mid_oth":[
+      "Andres-guardad"
+    ],
     "mid": [
       "Edson-alvarez",
-      "Andres-guardad",
-      "Hector-herrera"
+      "Hector-herrera",
+      "Luis-chavez"
     ]
   },
   "netherlands": {
-    "att": [
-      "Steven-bergwijn",
+    "att_oth":[
       "Memphis-depay"
     ],
-    "def": [
-      "Denzel-dumfries",
-      "Virgil-van-dijk",
-      "Jurrien-timber",
-      "Nathan-ake",
-      "Daley-blind"
+    "att": [
+      "Steven-bergwijn",
+      "Vincent-janssen",
+      "Cody-gakpo"
     ],
-    "goalkeeper": " Pasveer",
+    "def_oth":[
+      "Jurrien-timber"
+    ],
+    "def": [
+      "Virgil-van-dijk",
+      "Matthijs-de-ligt",
+      "Nathan-ake"
+    ],
+    "goalkeeper_oth": ["Pasveer"],
+    "goalkeeper": "Andries-noppert",
     "mid": [
+      "Daley-blind",
+      "Denzel-dumfries",
       "Frenkie-de-jong",
-      "Teun-koopmeiners",
       "Steven-berghuis"
+    ],
+    "mid_oth":[
+      "Teun-koopmeiners"
     ]
   },
   "poland": {
     "att": [
       "Piotr-zielinski",
       "Damian-szymanski",
-      "Robert-lewandowski"
+      "Robert-lewandowski",
+      "Nicola-zalewski",
+      "Jakub-kaminski"
+    ],
+    "def_oth":[
+      "Jan-bednarek"
     ],
     "def": [
       "Bartosz-bereszynski",
-      "Jan-bednarek",
+      "Matty-cash",
       "Kamil-glik",
-      "Kiwior-jakub",
-      "Nicola-zalewski"
+      "Kiwior-jakub"
     ],
     "goalkeeper": "Wojciech-szczesny",
+    "mid_oth":[
+      "Szymon-zurkowski"
+    ],
     "mid": [
-      "Szymon-zurkowski",
       "Grzegorz-krychowiak"
     ]
   },
   "portugal": {
+    "att_oth":[
+      "Rafael-leao"
+    ],
     "att": [
-      "Bernardo-silva",
-      "Rafael-leao",
-      "Cristiano-ronaldo"
+      "Bruno-fernandes",
+      "Cristiano-ronaldo",
+      "Joao-felix"
+    ],
+    "def_oth":[
+      "Pepe"
     ],
     "def": [
       "Joao-cancelo",
       "Ruben-dias",
-      "Pepe",
+      "Danilo-pereira",
       "Raphael-guerreiro"
     ],
     "goalkeeper": "Diogo-costa",
-    "mid": [
-      "Ruben-neves",
+    "mid_oth":[
       "William-carvalho",
       "Bruno-fernandes"
+    ],
+    "mid": [
+      "Bernardo-silva",
+      "Ruben-neves",
+      "Otavio"
     ]
   },
   "qatar": {
@@ -514,38 +669,51 @@
   },
   "senegal": {
     "att": [
-      "Sadio-mane",
+      "Idrissa-gueye",
       "Dia-boulaye",
+      "Krepin-diatta",
       "Ismaila-sarr"
+    ],
+    "def_oth":[
+      "Fode-ballo-toure"
     ],
     "def": [
       "Youssouf-sabaly",
       "Kalidou-koulibaly",
       "Abdou-diallo",
-      "Fode-ballo-toure"
+      "Pape-abou-cisse"
     ],
     "goalkeeper": "Edouard-mendy",
     "mid": [
-      "Idrissa-gueye",
       "Nampalys-mendy",
+      "Cheikhou-kouyate"
+    ],
+    "mif_oth":[
       "Pape-matar-sarr"
     ]
   },
   "serbia": {
+    "att_oth":[
+      "Dusan-vlahovic"
+    ],
     "att": [
       "Sergej-milinkovic-savic",
       "Dusan-tadic",
-      "Dusan-vlahovic"
+      "Aleksandar-mitrovic"
     ],
-    "def": [
+    "def_oth":[
       "Darko-lazovic",
-      "Milos-veljkovic",
-      "Nikola-milenkovic",
-      "Strahinja-pavlovic",
       "Filip-kostic"
     ],
-    "goalkeeper": " Vanja-milinkovic-savic",
+    "def": [
+      "Milos-veljkovic",
+      "Nikola-milenkovic",
+      "Strahinja-pavlovic"
+    ],
+    "goalkeeper": "Vanja-milinkovic-savic",
     "mid": [
+      "Andrija-zivkovic",
+      "Filip-mladenovic",
       "Nemanja-gudelj",
       "Sasa-lukic"
     ]
@@ -570,37 +738,49 @@
     ]
   },
   "tunisia": {
-    "att": [
+    "att_oth":[
       "Hannibal-mejbri",
       "Naim-sliti",
       "Seifeddine-jaziri"
     ],
+    "att": [
+      "Issam-jebali",
+      "Youssef-msakni",
+      "Anis-ben-slimane"
+    ],
     "def": [
-      "Mohamed-drager",
       "Dylan-bronn",
       "Montassar-talbi",
-      "Ali-abdi"
+      "Yassine-meriah"
     ],
     "goalkeeper": "Aymen-dahmen",
     "mid": [
       "Ellyes-skhiri",
       "Aissa-laidouni",
-      "Anis-ben-slimane"
+      "Ali-abdi",
+      "Mohamed-drager"
     ]
   },
   "uruguay": {
+    "att_oth":[
+      "Giorgian-de-arrascaeta"
+    ],
     "att": [
-      "Giorgian-de-arrascaeta",
       "Darwin-nunez",
+      "Facundo-pellistri",
       "Luis-suarez"
     ],
-    "def": [
+    "def_oth":[
       "Guillermo-varela",
-      "Sebastian-coates",
+      "Sebastian-coates"
+    ],
+    "def": [
+      "Diego-godin",
+      "Martin-caceres",
       "Jose-maria-gimenez",
       "Mathias-olivera"
     ],
-    "goalkeeper": " Rochet",
+    "goalkeeper": "Rochet",
     "mid": [
       "Matias-vecino",
       "Bentancur-rodrigo",
