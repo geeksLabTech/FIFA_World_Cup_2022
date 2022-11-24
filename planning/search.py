@@ -205,7 +205,7 @@ class SimpleProblemSolvingAgentProgram:
 # Uninformed Search algorithms
 
 
-def breadth_first_tree_search(problem, iterations = 1000):
+def breadth_first_tree_search(problem, iterations = 100):
     """
     [Figure 3.7]
     Search the shallowest nodes in the search tree first.
