@@ -38,9 +38,12 @@ class Football(Game):
         for i in range(self.time):
             # for i in self.team1.players:
             #     print(i.position.name)
-                
+            if (team_with_ball_possession == self.team1):
+                team_adversarie = self.team2
+            else:
+                team_adversarie = self.team1
             if(i!= 0):
-                self.move_player_in_team_with_ballposicion(player_with_ballposition,team_with_ball_possession)
+                self.move_player_in_team_with_ballposicion(player_with_ballposition,team_with_ball_possession , team_adversarie)
             actions_defenses = []
             if(self.team1 == team_with_ball_possession):
                 actions_defenses = self.move_player_in_team_without_ballposicion(player_with_ballposition,self.team2)
@@ -266,15 +269,38 @@ class Football(Game):
             if x.name == succesful_adversary:
                 return x.name
 
-      
-    def move_player_in_team_with_ballposicion(self , player_with_ball : Player , team : Team):
+    def move_player_in_team_with_ballposicion(self, player_with_ball : Player ,team : Team , team_adversarie : Team):
+        dir_x = [-1,-1,-1,0,0,0,1,1,1]
+        dir_y = [1,0,-1,1,0,-1,1,0,-1]
         for player in team.players:
-            if (player_with_ball.current_position.types == 'Attack' or player_with_ball.position.types == 'Midfield'):
-                if(player.role == 'G'):
-                    continue
-                if(self.IsValid(player.current_position.row + 1)):
-                    # player.position.row += 1
-                    self.move_player(player.current_position.row+1,player.current_position.column,player,self.field.field)
+            if player == player_with_ball:
+                continue
+            possible_new_dir = {}
+            for i in range(len(dir_x)):
+                x , y = player.current_position.get_coords()
+                if(self.IsValid(x+i,y+i)):
+                    count = 0
+                    for adversaries in team_adversarie.players:
+                        if(adversaries.current_position.get_coords() == x + dir_x[i] , y + dir_y[i]):
+                            count +=1
+                    possible_new_dir[x + dir_x[i] , y + dir_y[i]] = count
+            for posicion_back in possible_new_dir:
+                index = 0
+                while(index < 3):
+                    possible_new_dir[posicion_back] +=2
+                    index +=1
+            sorted_possible_new_dir = sorted(possible_new_dir.items(), key=lambda x: x[1])
+            pos = random.randint(0,2)
+            player.current_position = sorted_possible_new_dir[pos][0]
+
+    # def move_player_in_team_with_ballposicion(self , player_with_ball : Player , team : Team):
+    #     for player in team.players:
+    #         if (player_with_ball.current_position.types == 'Attack' or player_with_ball.position.types == 'Midfield'):
+    #             if(player.role == 'G'):
+    #                 continue
+    #             if(self.IsValid(player.current_position.row + 1)):
+    #                 # player.position.row += 1
+    #                 self.move_player(player.current_position.row+1,player.current_position.column,player,self.field.field)
 
     def move_player_in_team_without_ballposicion(self , player_with_ball : Player ,team : Team):
         actions = []
@@ -284,7 +310,7 @@ class Football(Game):
             if(player.current_position.types == player_with_ball.current_position.types):  
                 actions.append((player,'Entry'))
             elif(not player.current_position.types  == player.position.types):
-                if(self.IsValid(player.current_position.row - 1)):
+                if(self.IsValid(player.current_position.row - 1,0)):
                     player.position.row -= 1
                     actions.append((player,'Intercept'))
         # print('acciones q intentan los defensas', actions)
@@ -317,8 +343,8 @@ class Football(Game):
 
         return firstTeam, secondTeam
         
-    def IsValid(self , row):
-        if(row < 3):
+    def IsValid(self , row , column):
+        if(row < 3 and column < 3):
             return True
         return False
 
