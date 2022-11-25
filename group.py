@@ -23,4 +23,5 @@ class Group:
         self.scores[team.team_name] += 3
         
     def get_groups_classifications(self):
-        return sorted(self.scores.items(), key=lambda x: x[1], reverse=True)[:2]
+        a = sorted(self.scores.items(), key=lambda x: x[1], reverse=True)[:2]
+        return [i[0] for i in a]
