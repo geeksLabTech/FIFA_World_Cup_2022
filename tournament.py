@@ -86,7 +86,7 @@ class Tournament:
         "Attack Right"
         ]
         field = Field("f1", 3, 3, zones)
-        print(match)
+        # print(match)
         team1 = Team(match[0], field.field)
         team2 = Team(match[1], field.field)
 
@@ -98,9 +98,9 @@ class Tournament:
 
         game = Football(team1, team2, field, 90)
         result = game.play()
-        print(result)
+        # print(result)
         if type(result) is tuple:
-            print("draw, re-playing")
+            # print("draw, re-playing")
             result = self.play_game((team1.team_name, team2.team_name))
             return result
         else:
@@ -127,7 +127,7 @@ class Tournament:
     
     def run(self):
         
-        print("Starting tournament")
+        print("\n\nStarting tournament\n\n", end='\r')
         # for group in self.groups:
         with Pool(12) as p:
             self.group_winners.append(p.map(self.run_group_games, self.groups))
@@ -138,8 +138,8 @@ class Tournament:
             # p.join()
                 # self.group_winners.append(self.run_group_games(group))
 
-        print("Group games finished")
-        print(self.group_winners)
+        print("\n\nGroup games finished\n\n", end='\r')
+        # print(self.group_winners)
         # 8th Finals
         self.matches = [
                         (self.group_winners[0][0][0], self.group_winners[1][0][1]), # 49
@@ -153,8 +153,7 @@ class Tournament:
                         (self.group_winners[7][0][0], self.group_winners[6][0][1])] # 56
         
         self.teams_8th = self.run_games(self.matches)[0]
-        print(self.teams_8th)
-        print("8th Finals finished")
+        print("\n\n8th Finals finished\n\n", end='\r')
         # Quarter Finals
         
         self.matches = [
@@ -165,7 +164,7 @@ class Tournament:
         ] 
         
         self.teams_4th = self.run_games(self.matches)[0]
-        print("Quarter Finals finished")
+        print("\n\nQuarter Finals finished\n\n", end='\r')
         # Semi Finals
         self.matches = [
             (self.teams_4th[0].team_name,self.teams_4th[1].team_name),
@@ -173,25 +172,29 @@ class Tournament:
         ]
         
         final_teams = self.run_games(self.matches)[0]
-        print([t.team_name for t in final_teams])
-        # print(self.teams_4th)
-        # get difference between self.teams and final_teams
-        third_place = list(set(self.teams_4th) - set(final_teams))
-        print(third_place)
-        print("Semi Finals finished")
+        # print(final_teams)
+        third = []
+        for t in self.teams_4th:
+            if not (t.team_name in [t1.team_name for t1 in final_teams]):
+                # print(t.team_name)
+                third.append(t)
+        
+        print("\n\nSemi Finals finished\n\n", end='\r')
         # Final
-        winner = self.play_game((final_teams[0].team_name,final_teams[1].team_name))
-        third = self.play_game((third_place[0].team_name,third_place[1].team_name))
-        
-        
+        winner = self.play_game((final_teams[0].team_name,final_teams[1].team_name)) 
+        if winner.team_name == final_teams[0].team_name:
+            second = final_teams[1]
+        else:
+            second = final_teams[0]
+            
+        third = self.play_game((third[0].team_name,third[1].team_name))
+
         print("Classified teams", [item for t in self.group_winners for item in t])
         print("8th Finals teams",   [t.team_name for t in self.teams_8th])
         print("4th Finals teams",   [t.team_name for t in self.teams_4th])
-        # print("8th Finals teams", [item for t in self.teams_8th for item in t])
-        # print("4th Finals teams", [item for t in self.teams_4th for item in t])
-        
-        print("Third Place: ", third.team_name)    
-        print("Second Place: ", list(set(final_teams) - set([winner]))[0].team_name)
-        print("Winner: ",winner.team_name)
-        return self.group_winners,self.teams_8th,self.teams_4th,final_teams,third_place,winner,third
+
+        print("Third Place: ", third.team_name)
+        print("Second Place: ", second.team_name)
+        print("Winner: ", winner.team_name)
+        return self.group_winners,self.teams_8th,self.teams_4th,self.matches,final_teams,winner
         
