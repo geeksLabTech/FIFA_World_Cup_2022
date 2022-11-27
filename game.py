@@ -273,25 +273,28 @@ class Football(Game):
         dir_x = [-1,-1,-1,0,0,0,1,1,1]
         dir_y = [1,0,-1,1,0,-1,1,0,-1]
         for player in team.players:
-            if player == player_with_ball:
+            if player == player_with_ball or player.role == 'G':
                 continue
             possible_new_dir = {}
+            x , y = player.current_position.get_coords()
             for i in range(len(dir_x)):
-                x , y = player.current_position.get_coords()
-                if(self.IsValid(x+i,y+i)):
+                if(self.IsValid(x+dir_x[i],y+dir_y[i])):
                     count = 0
                     for adversaries in team_adversarie.players:
-                        if(adversaries.current_position.get_coords() == x + dir_x[i] , y + dir_y[i]):
+                        if(adversaries.current_position.row == x + dir_x[i] and adversaries.current_position.column == y + dir_y[i]):
                             count +=1
                     possible_new_dir[x + dir_x[i] , y + dir_y[i]] = count
             for posicion_back in possible_new_dir:
-                index = 0
-                while(index < 3):
+                if(posicion_back[0] < x or posicion_back[1] < y):
                     possible_new_dir[posicion_back] +=2
-                    index +=1
+                else : break
+            
             sorted_possible_new_dir = sorted(possible_new_dir.items(), key=lambda x: x[1])
-            pos = random.randint(0,2)
-            player.current_position = sorted_possible_new_dir[pos][0]
+            pos = random.randint(0,int(len(sorted_possible_new_dir)/2))
+            print(len(sorted_possible_new_dir) , 'len')
+            if(len(sorted_possible_new_dir) > 0):
+                new_zone = self.field.coords_to_zone[sorted_possible_new_dir[pos][0][0], sorted_possible_new_dir[pos][0][1]]
+                player.current_position = new_zone
 
     # def move_player_in_team_with_ballposicion(self , player_with_ball : Player , team : Team):
     #     for player in team.players:
@@ -344,7 +347,7 @@ class Football(Game):
         return firstTeam, secondTeam
         
     def IsValid(self , row , column):
-        if(row < 3 and column < 3):
+        if(row < 3 and column < 3 and row >= 0 and column >=0):
             return True
         return False
 
