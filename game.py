@@ -30,7 +30,7 @@ class Football(Game):
         super().__init__(team1 , team2 , field , time , [0,0])
     
     def play(self):
-        print("Start Game")
+        # print("Start Game")
         team_with_ball_possession = self.select_initial_team_with_ball()
         player_with_ballposition = self.select_initial_player_with_ball(team_with_ball_possession)
         self.initialize_attakers_positions(self.team1 , self.team2)
@@ -63,16 +63,17 @@ class Football(Game):
                 # print(temp_team_with_ball_possession.team_name," now has the ball")
                 team_with_ball_possession = temp_team_with_ball_possession
             # self.action_success(player_with_ballposition, solution.name,actions_defenses , player_success)
-            print("Time: ", i, end="\r")
-        print("Game Over")
+            # print("Time: ", i, end="\r")
+        # print("Game Over")
         if self.points[0] > self.points[1]:
-            print(f"Team {self.team1.team_name} win" , self.points)
+            # print(f"Team {self.team1.team_name} win" , self.points)
             return self.team1
         elif self.points[0] < self.points[1]:
-            print(f'Team {self.team2.team_name} win' , self.points)
+            # print(f'Team {self.team2.team_name} win' , self.points)
             return self.team2
         else:
-            print(f'Draw {self.team1.team_name} {self.team2.team_name} {self.points}')
+            # print(f'Draw {self.team1.team_name} {self.team2.team_name} {self.points}')
+            return self.team1, self.team2
 
     def process_results (self , result):
         if result[1] == 'Shoot':

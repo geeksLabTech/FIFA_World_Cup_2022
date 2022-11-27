@@ -113,6 +113,7 @@ class Node:
             if position.row and position.row not in [1,2]:
                 position.row = 0
             prob *= zone_coef[position.row]
+            return prob
             # print("shoot prob", prob)
             
         if len(node.action.args) > 1 and node.action.args[1] is not None:
@@ -129,7 +130,7 @@ class Node:
             # print("distncia:", dist)
             prob /= (1+dist)
             
-        return prob
+        return (prob + self.eval_probability(node.parent, players))/2 if node.parent else prob
 
     def solution(self,players):
         """Return the sequence of actions to go from the root to this node."""
@@ -137,7 +138,7 @@ class Node:
         # for node in self.path()[1:]:
         #     mean_precision += self.eval_probability(node,players)
             
-        return self,self.eval_probability(self.path()[-1], players)
+        return self,self.eval_probability(self.path()[1], players)
 
     def path(self):
         """Return a list of nodes forming the path from the root to this node."""
@@ -205,7 +206,7 @@ class SimpleProblemSolvingAgentProgram:
 # Uninformed Search algorithms
 
 
-def breadth_first_tree_search(problem, iterations = 1000):
+def breadth_first_tree_search(problem, iterations = 10):
     """
     [Figure 3.7]
     Search the shallowest nodes in the search tree first.
