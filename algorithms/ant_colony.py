@@ -39,7 +39,7 @@ class AntColony:
 
         
         # A solution is a tuple with (path, total_distance)
-        self.good_solutions: list[tuple[list[PlayerNode], int]] = []
+        self.good_solutions = []
 
 
     def run(self, iterations: int):
@@ -55,8 +55,8 @@ class AntColony:
             self.__evaporate_pheromone()
 
             for i in range(len(results)):
-                if results[i] > self.target_to_optimize:
-                    self.good_solutions.append((solutions_from_ants[i], results[i]))
+                if results[i][0] > self.target_to_optimize:
+                    self.good_solutions.append((results[i][1], results[i][0]))
                     self.__update_pheromone(solutions_from_ants[i][0], solutions_from_ants[i][1])
 
         best_solution = max(self.good_solutions, key=lambda x: x[1])
@@ -161,7 +161,7 @@ class AntColony:
         new_team = Team(self.team_name, FIELD.field, lineup)
 
         result = self.__run_matches(new_team, self.target_oponent)
-        return result
+        return result, lineup
 
 
     def __run_matches(self, new_team: Team, oponent_team: Team, iterations=30):
