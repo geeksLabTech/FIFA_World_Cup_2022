@@ -50,7 +50,7 @@ class AntColony:
                 node.visitants = []
 
             solutions_from_ants = self.__run_ants()
-            assert len(solutions_from_ants) == 3, "Not enough solutions"
+            assert len(solutions_from_ants) == 2, "Not enough solutions"
             # A result is the mean of goals difference of the games simulated
             results = [self.__simulate_solution(solution[0]) for solution in solutions_from_ants]
             self.__evaporate_pheromone()
@@ -60,10 +60,13 @@ class AntColony:
                     self.good_solutions.append((results[i][1], results[i][0]))
                     self.__update_pheromone(solutions_from_ants[i][0], solutions_from_ants[i][1])
 
+        if len(self.good_solutions) == 0:
+            return "No good solutions found"
+            
         best_solution = max(self.good_solutions, key=lambda x: x[1])
         return best_solution
 
-    def __run_ants(self, ants=3):
+    def __run_ants(self, ants=2):
         probabilities = [self.__calculate_pheromone(node) * self.__calculate_heuristic(node, 0) for node in self.nodes]
         p = np.array(probabilities)
         p /= p.sum()
