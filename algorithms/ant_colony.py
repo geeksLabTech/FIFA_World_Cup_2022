@@ -50,6 +50,7 @@ class AntColony:
                 node.visitants = []
 
             solutions_from_ants = self.__run_ants()
+            assert len(solutions_from_ants) == 3, "Not enough solutions"
             # A result is the mean of goals difference of the games simulated
             results = [self.__simulate_solution(solution[0]) for solution in solutions_from_ants]
             self.__evaporate_pheromone()
@@ -66,6 +67,7 @@ class AntColony:
         probabilities = [self.__calculate_pheromone(node) * self.__calculate_heuristic(node, 0) for node in self.nodes]
         p = np.array(probabilities)
         p /= p.sum()
+        assert len(self.nodes) > 0, "No nodes"
         random_start_nodes: list[int] = list(np.random.choice([i for i in range(len(self.nodes))], size=ants, p=p, replace=False))
         solutions_from_ants = []
         for index in random_start_nodes:
@@ -100,6 +102,9 @@ class AntColony:
 
     def __select_next_node(self, node: PlayerNode, ant_id, current_distance: int):
         valid_adjacent_nodes = [x for x in node.adjacent_nodes if ant_id not in x.visitants]
+
+        assert len(valid_adjacent_nodes) > 0, "No valid adjacent nodes"
+
         probabilities = [self.__calculate_pheromone(node) * self.__calculate_heuristic(node, current_distance) for node in valid_adjacent_nodes]
         # Normalize:
         p = np.array(probabilities)
