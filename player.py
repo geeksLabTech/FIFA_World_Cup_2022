@@ -54,8 +54,8 @@ class Player:
         if self.role != "G":
             attributes_score['Pass'] = data['tactical'] * data['technical'] * data['creativity']
             attributes_score['Shoot'] = data['attack'] * data['technical']
-            # attributes_score['Entry'] = data['defending'] * data['tactical'] * data['technical']
-            attributes_score['Entry'] = 0
+            attributes_score['Entry'] = data['defending'] * data['technical']
+            # attributes_score['Entry'] = 0
             attributes_score['Move'] = data['tactical'] * data['technical']
             attributes_score['Intercept'] = data['defending'] * data['tactical'] * data['creativity']
 
